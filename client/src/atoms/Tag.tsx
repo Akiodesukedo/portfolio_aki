@@ -1,13 +1,11 @@
 import { useState } from 'react'
 
 const Tag = () => {
-  const [tagName, setTagName] = useState("tag example")
+  const [tagName, setTagName] = useState('tag example')
 
   return (
     <div>
-      <button>
-        {tagName}
-      </button>
+      <button>{tagName}</button>
     </div>
   )
 }
