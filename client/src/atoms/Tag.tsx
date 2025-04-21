@@ -1,5 +1,5 @@
 type TagProps = {
-  tagName: String
+  tagName: string
 }
 
 const Tag: React.FC<TagProps> = ({ tagName }) => {

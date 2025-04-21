@@ -2,9 +2,14 @@ import { useState } from 'react'
 import '../App.css'
 import Tag from '../atoms/Tag'
 import BtnExample from '../atoms/BtnExample'
+import CtaBtn from '../atoms/ctaBtn'
 
 const Home = () => {
   const [count, setCount] = useState(0)
+
+  const testFunc = () => {
+    console.log("test button clicked");
+  }
 
   return (
     <div>
@@ -18,6 +23,7 @@ const Home = () => {
       </div>
       <BtnExample />
       <Tag tagName="tag example here"/>
+      <CtaBtn btnMsg='Test' bgColor='white' borderColor='black' txtColor='black' passedFunc={testFunc}/>
     </div>
   )
 }
