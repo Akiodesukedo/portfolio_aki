@@ -10,7 +10,7 @@ const CtaBtn: React.FC<CtaBtnProps> = ({btnMsg, borderColor, bgColor, txtColor, 
   return (
     <button
       onClick={passedFunc}
-      className="!rounded-full border px-4 w-full my-[20px]"
+      className="!rounded-full border h-[64px] w-full mt-[20px]"
       style={{ 
         backgroundColor: bgColor, 
         borderColor: borderColor, 
