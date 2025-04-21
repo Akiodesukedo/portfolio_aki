@@ -1,13 +1,14 @@
-import { useState } from 'react'
+type TagProps = {
+  tagName: String
+}
 
-const Tag = () => {
-  const [tagName, setTagName] = useState("tag example")
+const Tag: React.FC<TagProps> = ({ tagName }) => {
 
   return (
-    <div>
-      <button>
+    <div className="bg-black w-fit px-4 py-2 rounded-full ">
+      <p className="text-white">
         {tagName}
-      </button>
+      </p>
     </div>
   )
 }
