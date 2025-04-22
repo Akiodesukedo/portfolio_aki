@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../App.css'
 import Tag from '../atoms/Tag'
 import BtnExample from '../atoms/BtnExample'
-import CtaBtn from '../atoms/ctaBtn'
+import CtaBtn from '../atoms/CtaBtn'
 
 const Home = () => {
   const [count, setCount] = useState(0)
