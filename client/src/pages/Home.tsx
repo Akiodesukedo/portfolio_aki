@@ -4,6 +4,7 @@ import '../App.css'
 import Tag from '../atoms/Tag'
 import BtnExample from '../atoms/BtnExample'
 import CtaBtn from '../atoms/CtaBtn'
+import Header from '../components/Header';
 
 const Home = () => {
   const [count, setCount] = useState(0)
@@ -15,6 +16,7 @@ const Home = () => {
 
   return (
     <div>
+      <Header WebsiteName="Aki's Room"/>
       <h1>Aki's portfolio</h1>
       <div className="card">
         <button onClick={() => setCount(count => count + 1)} className="mr-10">
