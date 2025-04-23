@@ -10,9 +10,6 @@ const Home = () => {
   const [count, setCount] = useState(0)
 
   const navigate = useNavigate();
-  const navigateToTest = () => {
-    navigate('/test')
-  }
 
   return (
     <div>
@@ -27,7 +24,7 @@ const Home = () => {
       </div>
       <BtnExample />
       <Tag tagName="tag example here"/>
-      <CtaBtn btnMsg='Move to Test Page' bgColor='white' borderColor='black' txtColor='black' passedFunc={navigateToTest}/>
+      <CtaBtn btnMsg='Move to Test Page' bgColor='white' borderColor='black' txtColor='black' passedFunc={() => navigate('/test')}/>
     </div>
   )
 }
