@@ -9,7 +9,7 @@ const Header: React.FC<HeaderProps> = ({ WebsiteName, txtColor }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full bg-neutral-300 flex flex-nowrap justify-between p-[20px]">
+    <div className="w-full flex flex-nowrap justify-between p-[20px] z-50 absolute top-0 left-0">
       <h1
         style={{color: txtColor ? txtColor: 'black'}}
         className="text-[20px]"
