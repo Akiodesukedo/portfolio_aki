@@ -3,18 +3,18 @@ type CtaBtnProps = {
   borderColor: string,
   bgColor: string,
   txtColor: string,
-  passedFunc: () => void
+  passedFunc?: () => void
 }
 
 const CtaBtn: React.FC<CtaBtnProps> = ({btnMsg, borderColor, bgColor, txtColor, passedFunc}) => {
   return (
     <button
       onClick={passedFunc}
-      className="!rounded-full border h-[64px] w-full mt-[20px]"
+      className="!rounded-full border h-[64px] w-full mt-[24px]"
       style={{ 
         backgroundColor: bgColor, 
         borderColor: borderColor, 
-        color: txtColor 
+        color: txtColor,
       }}
     >
       {btnMsg}
