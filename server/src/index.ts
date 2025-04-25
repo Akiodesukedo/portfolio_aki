@@ -14,7 +14,8 @@ app.use(cors({
   origin: [
     "http://localhost:5173/",
     "http://localhost:5174/",
-    "https://akisroom.com"
+    "https://akisroom.com",
+    "https://www.akisroom.com/"
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
 }));
