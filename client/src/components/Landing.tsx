@@ -12,6 +12,7 @@ const Landing: React.FC<LandingProps> = ({}) => {
         className="object-cover h-full"
       />
       <div className='absolute inset-0 bg-neutral-700 opacity-70'></div>
+      
     </div>
   )
 }

@@ -14,7 +14,7 @@ const Home = () => {
 
   return (
     <div>
-      <Header WebsiteName="Aki's Room" txtColor='white'/>
+      <Header WebsiteName="Aki's Room" txtColor='white' absolute={true}/>
       <Landing />
       <h1>Aki's portfolio</h1>
       <BtnExample />
