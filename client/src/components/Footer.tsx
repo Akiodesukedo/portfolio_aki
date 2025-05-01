@@ -47,7 +47,7 @@ const Footer: React.FC<FooterProps> = ({ imgUrl, email, github, linkedIn }) => {
         { imgUrl ?
             <img src={imgUrl} alt="Aki's face" />
           :
-            <div className="h-[60px] w-[60px] rounded-full bg-neutral-300"></div>
+            <div className="h-[60px] min-w-[60px] rounded-full bg-neutral-300"></div>
         }
         <p className="text-white ml-[14px] mr-[10px] text-[30px] text-left">Let's Collaborate!</p>
       </div>

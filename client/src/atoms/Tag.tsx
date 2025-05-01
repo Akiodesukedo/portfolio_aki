@@ -5,8 +5,8 @@ type TagProps = {
 const Tag: React.FC<TagProps> = ({ tagName }) => {
 
   return (
-    <div className="bg-black w-fit px-4 py-2 rounded-full ">
-      <p className="text-white">
+    <div className="bg-black w-fit px-[20px] py-[6px] rounded-full ">
+      <p className="text-white text-[11px]">
         {tagName}
       </p>
     </div>
