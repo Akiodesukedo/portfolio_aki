@@ -16,7 +16,7 @@ type MajorWorkProps = {
 
 const MajorWork: React.FC<MajorWorkProps> = ({ majorWorks }) => {
   return (
-    <div className='mx-[30px] mt-[100px]'>
+    <div className='mx-[30px] mt-[100px] mb-[60px]'>
       <h2 className='font-bold text-[36px] text-left mb-[32px]'>MAJOR WORKS</h2>
       {majorWorks.map((work) => (
         <div>
