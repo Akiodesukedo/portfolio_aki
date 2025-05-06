@@ -1,13 +1,13 @@
 
 import { useNavigate } from 'react-router-dom';
 import '../App.css'
-import Tag from '../atoms/Tag'
-import BtnExample from '../atoms/BtnExample'
 import CtaBtn from '../atoms/CtaBtn'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Landing from '../components/Landing';
 import MajorWork from '../components/MajorWork';
+import RightTriangleBtn from '../atoms/RightTriangleBtn';
+import Intro from '../components/Intro';
 
 const Home = () => {
 
@@ -39,10 +39,8 @@ const Home = () => {
     <div>
       <Header WebsiteName="Aki's Room" txtColor='white' absolute={true}/>
       <Landing />
+      <Intro />
       <MajorWork majorWorks={majorWorks}/>
-      <h1>Aki's portfolio</h1>
-      <BtnExample />
-      <Tag tagName="tag example here"/>
       <CtaBtn btnMsg='Move to Test Page' bgColor='white' borderColor='black' txtColor='black' passedFunc={() => navigate('/test')}/>
       <Footer email="abtai0227aki@gmail.com" github="github link" linkedIn="linedIn link" />
     </div>
