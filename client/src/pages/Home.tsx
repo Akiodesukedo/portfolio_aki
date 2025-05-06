@@ -6,7 +6,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Landing from '../components/Landing';
 import MajorWork from '../components/MajorWork';
-import RightTriangleBtn from '../atoms/RightTriangleBtn';
 import Intro from '../components/Intro';
 
 const Home = () => {
