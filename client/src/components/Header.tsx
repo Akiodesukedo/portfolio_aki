@@ -4,14 +4,15 @@ type HeaderProps = {
   WebsiteName: string
   txtColor?: string
   absolute?: boolean
+  openMenu: () => void
 }
 
-const Header: React.FC<HeaderProps> = ({ WebsiteName, txtColor, absolute = false }) => {
+const Header: React.FC<HeaderProps> = ({ WebsiteName, txtColor, absolute = false, openMenu }) => {
   const navigate = useNavigate();
 
   return (
     <div 
-      className={`w-full flex flex-nowrap justify-between p-[20px] z-50 ${absolute ? 'absolute top-0 left-0' : 'relative'}`}
+      className={`w-full flex flex-nowrap justify-between p-[20px] z-30 ${absolute ? 'absolute top-0 left-0' : 'relative'}`}
     >
       <h1
         style={{color: txtColor ? txtColor: 'black'}}
@@ -23,6 +24,7 @@ const Header: React.FC<HeaderProps> = ({ WebsiteName, txtColor, absolute = false
       <p
         style={{color: txtColor ? txtColor: 'black'}}
         className="text-[20px] font-bold"
+        onClick={openMenu}
       >
         Menu
       </p>
