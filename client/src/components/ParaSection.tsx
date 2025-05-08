@@ -9,7 +9,7 @@ type ParaSecProps = {
 
 const ParaSection: React.FC<ParaSecProps> = ({ title, paragraph1, paragraph2, paragraph3, imageUrl }) => {
   return (
-    <div className="mx-[30px] mb-[50px]">
+    <div className="mx-[30px] mb-[60px]">
       <h3 className="text-[24px] font-medium text-left mb-[22px]">
         { title }
       </h3>
