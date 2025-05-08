@@ -19,7 +19,11 @@ const ParaSection: React.FC<ParaSecProps> = ({ title, paragraph1, paragraph2, pa
         </p>
       }
       { imageUrl &&
-        <div className="max-w-[400px] w-full h-[200px] bg-neutral-500 mt-[30px] mb-[30px]"></div>
+        <img 
+          src={imageUrl}
+          alt={`${title} image`}
+          className="w-full h-auto ovject-cover"
+        />
       }
       { paragraph2 &&
         <p className="text-[14px] text-left mb-[22px]">
