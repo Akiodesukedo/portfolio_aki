@@ -23,6 +23,7 @@ const Menu: React.FC<MenuProps> = ({ isOpen, closeMenu }) => {
         </p>
       </button>
       <MenuItem itemName="Home" pagePath="/" closeMenu={closeMenu}/>
+      <MenuItem itemName="About" pagePath="/about" closeMenu={closeMenu}/>
       <MenuItem itemName="Test" pagePath="/test" closeMenu={closeMenu}/>
     </div>
   )
