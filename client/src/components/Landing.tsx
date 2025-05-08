@@ -1,5 +1,5 @@
 import Marquee from 'react-fast-marquee'
-import selfImg from '../assets/imgs/self_img.jpg'
+import selfImg from '/images/self_img.jpg'
 import { useEffect, useRef, useState } from 'react';
 
 type LandingProps = {
