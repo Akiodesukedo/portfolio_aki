@@ -5,6 +5,7 @@ import Menu from "../components/Menu";
 import Footer from "../components/Footer";
 import TopMessage from "../components/TopMessage";
 import ParaSection from "../components/ParaSection";
+import Expertise from "../components/Expertise";
 
 const About = () => {
 
@@ -25,6 +26,7 @@ const About = () => {
         title="Experience"
         paragraph1="I'm a front-end web & mobile app developer with 1 year of hands-on experience across multiple agile projects. I mainly focused on projects that provide solutions to real-life problems like blood sugar level tracking for diabetes patients, streamlining inventory management for coconut middle buyers in Philippines, and so on. Please check out Work page for details!"
       />
+      <Expertise />
       <ParaSection 
         title="Strength"
         paragraph1={`・Problem solving\n・Logical thinking\n・Agile project experience\n・Public speaking\n・Curiosity\n・Long term planning ability\n・Punctuality\n`}

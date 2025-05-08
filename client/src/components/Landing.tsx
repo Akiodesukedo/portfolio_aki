@@ -1,5 +1,4 @@
 import Marquee from 'react-fast-marquee'
-import selfImg from '/images/self_img.jpg'
 import { useEffect, useRef, useState } from 'react';
 
 type LandingProps = {
@@ -43,7 +42,7 @@ const Landing: React.FC<LandingProps> = ({}) => {
   return (
     <div className="h-screen bg-amber-200 w-full">
       <img 
-        src={selfImg}
+        src="/images/self_img.jpg"
         alt="Aki presenting"
         className="object-cover h-full"
       />
