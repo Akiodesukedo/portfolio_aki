@@ -14,7 +14,7 @@ const Home = () => {
   // 🚨 THIS IS FAKE DATA (needs to be replaced with actual data from mongoDB)
   const majorWorks = [
     {
-      title: "GlucoseMate",
+      title: "GlucoFit",
       year: "2024",
       tags: ["React Native", "TypeScript", "GraphQL", "MongoDB", "AWS"],
       description: "A blood glucose monitoring app for people managing diabetes and PCOS. Includes real-time syncing with glucose devices, nutrition tracking, and predictive analytics."

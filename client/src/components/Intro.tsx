@@ -1,9 +1,12 @@
+import { useNavigate } from "react-router-dom"
 import RightTriangleBtn from "../atoms/RightTriangleBtn"
 
 type IntroProps = {
 }
 
 const Intro: React.FC<IntroProps> = () => {
+  const navigate = useNavigate()
+
   return (
     <div className="relative mx-[30px] mt-[100px] mb-[260px]">
       <p className="text-left text-[18px] font-bold mb-[50px]">
@@ -13,7 +16,7 @@ const Intro: React.FC<IntroProps> = () => {
         Excel in React.js, React Native, JavaScript, TypeScript, and MongoDB, with a growing focus on GraphQL, backend technologies, and third-party integrations.
       </p>
       <div className="absolute bottom-[-170px] right-0">
-        <RightTriangleBtn line1='More' line2='About Aki'/>
+        <RightTriangleBtn line1='More' line2='About Aki' passedFunc={() => navigate('/about')}/>
       </div>
     </div>
   )
