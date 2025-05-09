@@ -3,10 +3,12 @@ import Home from './pages/Home'
 import Test from './pages/Test'
 import About from './pages/About'
 import Works from './pages/Works'
+import ScrollToTop from './components/ScrollToTop'
 
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/test" element={<Test />} />
