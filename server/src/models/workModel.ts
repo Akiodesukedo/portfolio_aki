@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
 const workSchema = new mongoose.Schema({
   // Info for list view
