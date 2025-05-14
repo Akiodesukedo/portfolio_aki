@@ -1,5 +1,6 @@
 import React from 'react'
 import Tag from '../atoms/Tag'
+import { useNavigate } from 'react-router-dom'
 
 type ProjectCardProps = {
   projectData: {
@@ -12,8 +13,16 @@ type ProjectCardProps = {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ projectData }) => {
+  const navigate = useNavigate();
+
   return (
-    <div className='w-full'>
+    <div 
+      className='w-full'
+      onClick={() => {
+        const projectUrl = projectData.title.toLowerCase().replace(/\s+/g, '-');
+        navigate(`/work/${projectUrl}`)
+      }}
+    >
       <div className='flex flex-nowrap justify-between items-center mb-[12px]'>
         <h3 className='text-[30px]'>{ projectData.title }</h3>
         <p className='text-[14px] text-neutral-700'>{ projectData.year }</p>

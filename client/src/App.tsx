@@ -4,6 +4,7 @@ import Test from './pages/Test'
 import About from './pages/About'
 import Works from './pages/Works'
 import ScrollToTop from './components/ScrollToTop'
+import Individual from './pages/Individual'
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/test" element={<Test />} />
         <Route path="/about" element={<About />} />
         <Route path="/works" element={<Works />} />
+        <Route path='/work/:id' element={<Individual />} />
       </Routes>
     </Router>
   )

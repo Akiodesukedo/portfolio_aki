@@ -7,7 +7,7 @@ import TopMessage from "../components/TopMessage";
 import ParaSection from "../components/ParaSection";
 import Expertise from "../components/Expertise";
 
-const About = () => {
+const About: React.FC = ({}) => {
 
   // const navigate = useNavigate();
   const {isOpen, setIsOpen} = useMenu();
