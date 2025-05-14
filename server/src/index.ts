@@ -2,6 +2,7 @@ import express from 'express'
 import mongoose from "mongoose";
 import cors from 'cors'
 import dotenv from 'dotenv';
+import workRoute from './routes/WorkRoute'
 
 // Load .env file to use process.env.*
 dotenv.config();
@@ -31,6 +32,8 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
+
+app.use("/api/works", workRoute);
 
 // connection to DB
 const mongoUri = process.env.MONGO_URI;
