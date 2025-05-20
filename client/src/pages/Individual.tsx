@@ -19,7 +19,7 @@ const Individual: React.FC = ({}) => {
       />
       <ParaSection 
         title="Tech Stack" 
-        imageUrl="/images/TechStack.png"
+        imageUrl="/images/glucofit_techstack.png"
       />
       <ParaSection 
         title="Strength"
