@@ -33,7 +33,7 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
 
-app.use("/api/works", workRoute);
+app.use("/works", workRoute);
 
 // connection to DB
 const mongoUri = process.env.MONGO_URI;
