@@ -11,6 +11,23 @@ export const getAllWorks = async (req: Request, res: Response) => {
   }
 };
 
+export const getAllWorksForHome = async (req: Request, res: Response) => {
+  try {
+    const works = await Work.find();
+
+    const WorksForHome = works.map(work => ({
+      title: work.title,
+      year: work.year,
+      tags: work.tags,
+      description: work.description
+    }));
+
+    res.status(200).json(WorksForHome);
+  } catch (err) {
+    res.status(500).json({ message: "Server error"});
+  }
+};
+
 // Get single work by ID
 export const getWorkById = async (req: Request, res: Response) => {
   try {

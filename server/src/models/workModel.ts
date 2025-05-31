@@ -16,7 +16,8 @@ const workSchema = new mongoose.Schema({
   btns: [{
     btnName: { type: String },
     url: {type: String}
-  }]
+  }],
+  screenImageUrl: [{ type: String }]
 });
 
 export const Work = mongoose.model("Work", workSchema);
