@@ -51,9 +51,9 @@ const Footer: React.FC<FooterProps> = ({ imgUrl, email, github, linkedIn }) => {
         }
         <p className="text-white ml-[14px] mr-[10px] text-[30px] text-left">Let's Collaborate!</p>
       </div>
-      <CtaBtn btnMsg={email} bgColor="black" borderColor="white" txtColor="white" />
-      <CtaBtn btnMsg={github} bgColor="black" borderColor="white" txtColor="white"/>
-      <CtaBtn btnMsg={linkedIn} bgColor="black" borderColor="white" txtColor="white" />
+      <CtaBtn btnMsg="Email" bgColor="black" borderColor="white" txtColor="white" />
+      <CtaBtn btnMsg="Github" bgColor="black" borderColor="white" txtColor="white"/>
+      <CtaBtn btnMsg="LinkedIn" bgColor="black" borderColor="white" txtColor="white" />
       <LineDivider color="white" mTop="60px"/>
       <div className='flex flex-nowrap justify-between'>
         <div>

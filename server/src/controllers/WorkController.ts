@@ -20,7 +20,8 @@ export const getAllWorksForWork = async (req: Request, res: Response) => {
       title: work.title,
       year: work.year,
       tags: work.tags,
-      description: work.description
+      description: work.description,
+      projectImageUrl: work.projectImageUrl
     }));
 
     res.status(200).json(WorksForWorks);

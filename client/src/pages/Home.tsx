@@ -48,7 +48,7 @@ const Home = () => {
       {
         majorWorks == undefined ? <p>Loading...</p> : <MajorWork majorWorks={majorWorks}/>
       }
-      <Footer email="abtai0227aki@gmail.com" github="github link" linkedIn="linedIn link" />
+      <Footer email="abtai0227aki@gmail.com" github="Github Link" linkedIn="LinkedIn Link" />
     </div>
   )
 }
