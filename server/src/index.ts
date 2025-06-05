@@ -13,10 +13,10 @@ const PORT = process.env.PORT || 3001;
 
 app.use(cors({
   origin: [
-    "http://localhost:5173/",
-    "http://localhost:5174/",
+    "http://localhost:5173",
+    "http://localhost:5174",
     "https://akisroom.com",
-    "https://www.akisroom.com/"
+    "https://www.akisroom.com"
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
 }));

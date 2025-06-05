@@ -4,13 +4,10 @@ import CtaBtn from "../atoms/CtaBtn"
 import LineDivider from "../atoms/LineDivider"
 
 type FooterProps = {
-  imgUrl?: string,
-  email: string,
-  github: string,
-  linkedIn: string
+  imgUrl?: string
 }
 
-const Footer: React.FC<FooterProps> = ({ imgUrl, email, github, linkedIn }) => {
+const Footer: React.FC<FooterProps> = ({ imgUrl }) => {
   // Change this in a way that let clicking each button opens a new browser with the link.
   // If possible show modal like "Jumping to this page. yes?" type of thing.
 
@@ -41,6 +38,23 @@ const Footer: React.FC<FooterProps> = ({ imgUrl, email, github, linkedIn }) => {
     updateTime()
   }, [location])
 
+  // const openGmailWithTitleAndContent = () => {
+  //   const email="abtai0227aki@gmail.com"
+  //   const subject = encodeURIComponent("Hi from your portfolio! Let's collaborate!");
+  //   const body = encodeURIComponent("Hi Aki,\n\nI would love to work with you!")
+
+  //   const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`
+  //   window.open(gmailUrl, "_blank")
+  // }
+
+  const openGithub = () => {
+    window.open("https://github.com/Akiodesukedo");
+  }
+
+  const openLinkedIn = () => {
+    window.open("https://www.linkedin.com/in/akifumi-hayashi");
+  }
+
   return (
     <div className="bg-black px-[20px] pt-[60px] pb-[40px]">
       <div className="flex items-center mb-[40px]">
@@ -51,9 +65,9 @@ const Footer: React.FC<FooterProps> = ({ imgUrl, email, github, linkedIn }) => {
         }
         <p className="text-white ml-[14px] mr-[10px] text-[30px] text-left">Let's Collaborate!</p>
       </div>
-      <CtaBtn btnMsg={email} bgColor="black" borderColor="white" txtColor="white" />
-      <CtaBtn btnMsg={github} bgColor="black" borderColor="white" txtColor="white"/>
-      <CtaBtn btnMsg={linkedIn} bgColor="black" borderColor="white" txtColor="white" />
+      {/* <CtaBtn btnMsg="Email" bgColor="black" borderColor="white" txtColor="white" passedFunc={openGmailWithTitleAndContent}/> */}
+      <CtaBtn btnMsg="Github" bgColor="black" borderColor="white" txtColor="white" passedFunc={openGithub}/>
+      <CtaBtn btnMsg="LinkedIn" bgColor="black" borderColor="white" txtColor="white" passedFunc={openLinkedIn}/>
       <LineDivider color="white" mTop="60px"/>
       <div className='flex flex-nowrap justify-between'>
         <div>

@@ -1,5 +1,6 @@
 import { Work } from "../models/workModel";
 import { Request, Response } from "express";
+import mongoose from "mongoose";
 
 // Get all works
 export const getAllWorks = async (req: Request, res: Response) => {
@@ -11,18 +12,19 @@ export const getAllWorks = async (req: Request, res: Response) => {
   }
 };
 
-export const getAllWorksForHome = async (req: Request, res: Response) => {
+export const getAllWorksForWork = async (req: Request, res: Response) => {
   try {
     const works = await Work.find();
 
-    const WorksForHome = works.map(work => ({
+    const WorksForWorks = works.map(work => ({
       title: work.title,
       year: work.year,
       tags: work.tags,
-      description: work.description
+      description: work.description,
+      projectImageUrl: work.projectImageUrl
     }));
 
-    res.status(200).json(WorksForHome);
+    res.status(200).json(WorksForWorks);
   } catch (err) {
     res.status(500).json({ message: "Server error"});
   }
@@ -41,6 +43,36 @@ export const getWorkById = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+export const getWorksByIdsForHome = async (req: Request, res: Response) => {
+  try{
+    const { ids } = req.query;
+
+    const rawIds = Array.isArray(ids) ? ids : [ids];
+    const idArray = rawIds.map(id => String(id));
+
+    const validIds = idArray.filter((id) => mongoose.Types.ObjectId.isValid(id));
+
+    if (validIds.length === 0 ) {
+      res.status(400).json({ message: "No valid IDs provided." });
+      return
+    }
+
+    const works = await Work.find({ _id: { $in: validIds } });
+    const WorksForHome = works.map(work => ({
+      title: work.title,
+      year: work.year,
+      tags: work.tags,
+      description: work.description,
+      projectImageUrl: work.projectImageUrl
+    }));
+
+    res.status(200).json(WorksForHome);
+
+  } catch (err) {
+    res.status(500).json({ message: "Server error" });
+  }
+}
 
 // Create a new work
 export const createWork = async (req: Request, res: Response) => {

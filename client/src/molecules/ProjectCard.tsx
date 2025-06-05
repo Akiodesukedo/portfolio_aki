@@ -6,7 +6,7 @@ type ProjectCardProps = {
   projectData: {
     title: string,
     year: string,
-    imageUrl?: string,
+    projectImageUrl?: string,
     tags: string[],
     description: string
   }
@@ -27,8 +27,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ projectData }) => {
         <h3 className='text-[30px]'>{ projectData.title }</h3>
         <p className='text-[14px] text-neutral-700'>{ projectData.year }</p>
       </div>
-      { projectData.imageUrl ?
-          <img src={projectData.imageUrl} alt={projectData.title} />
+      { projectData.projectImageUrl ?
+          <img src={projectData.projectImageUrl} alt={projectData.title} />
         :
           <div className="h-[180px] w-full bg-neutral-300"></div>
       }
