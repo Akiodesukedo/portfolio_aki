@@ -38,14 +38,14 @@ const Footer: React.FC<FooterProps> = ({ imgUrl }) => {
     updateTime()
   }, [location])
 
-  const openGmailWithTitleAndContent = () => {
-    const email="abtai0227aki@gmail.com"
-    const subject = encodeURIComponent("Hi from your portfolio! Let's collaborate!");
-    const body = encodeURIComponent("Hi Aki,\n\nI would love to work with you!")
+  // const openGmailWithTitleAndContent = () => {
+  //   const email="abtai0227aki@gmail.com"
+  //   const subject = encodeURIComponent("Hi from your portfolio! Let's collaborate!");
+  //   const body = encodeURIComponent("Hi Aki,\n\nI would love to work with you!")
 
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`
-    window.open(gmailUrl, "_blank")
-  }
+  //   const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`
+  //   window.open(gmailUrl, "_blank")
+  // }
 
   const openGithub = () => {
     window.open("https://github.com/Akiodesukedo");
