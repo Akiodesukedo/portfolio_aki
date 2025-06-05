@@ -6,32 +6,38 @@ import MajorWork from '../components/MajorWork';
 import Intro from '../components/Intro';
 import Menu from '../components/Menu';
 import { useMenu } from '../context/MenuContext';
+import { useEffect, useState } from 'react';
+
+type Work = {
+  title: string,
+  year: string,
+  projectImageUrl?: string,
+  tags: string[],
+  description: string
+}
 
 const Home = () => {
 
+  const fetchUrl = import.meta.env.VITE_BACKEND_URL;
   const {isOpen, setIsOpen} = useMenu();
+  const [majorWorks, setMajorWorks] = useState<Work[]>();
 
-  // 🚨 THIS IS FAKE DATA (needs to be replaced with actual data from mongoDB)
-  const majorWorks = [
-    {
-      title: "GlucoFit",
-      year: "2024",
-      tags: ["React Native", "TypeScript", "GraphQL", "MongoDB", "AWS"],
-      description: "A blood glucose monitoring app for people managing diabetes and PCOS. Includes real-time syncing with glucose devices, nutrition tracking, and predictive analytics."
-    },
-    {
-      title: "DrinkScale PWA",
-      year: "2024",
-      tags: ["React", "PWA", "Firebase Auth", "MongoDB", "Express"],
-      description: "A progressive web app to store, scale, and customize drink recipes. Users can log in, view scaled ingredient quantities, and share recipes with friends."
-    },
-    {
-      title: "Aki's Room",
-      year: "2025",
-      tags: ["Vite", "TailwindCSS", "TypeScript", "Render", "Vercel"],
-      description: "My personal portfolio website showcasing my projects and development journey. Fully responsive and deployed using Vercel with backend on Render."
-    }
+  const ids = [
+    "682f8c0d572177bcf8d85c37",
+    "682fa1da05ef77fe27e804e3",
+    "683b449ceb5429988bd66e9a"
   ]
+
+  useEffect(() => {
+    const query = ids.map(id => `ids=${id}`).join("&");
+    // console.log(query);
+
+    fetch(`${fetchUrl}/works/by-ids?${query}`)
+      .then(res => res.json())
+      .then(data => setMajorWorks(data))
+      .catch(err => console.error(err));
+  }, []);
+
 
   return (
     <div>
@@ -39,7 +45,9 @@ const Home = () => {
       <Header WebsiteName="Aki's Room" txtColor='white' absolute={true} openMenu={() => setIsOpen(true)}/>
       <Landing />
       <Intro />
-      <MajorWork majorWorks={majorWorks}/>
+      {
+        majorWorks == undefined ? <p>Loading...</p> : <MajorWork majorWorks={majorWorks}/>
+      }
       <Footer email="abtai0227aki@gmail.com" github="github link" linkedIn="linedIn link" />
     </div>
   )
