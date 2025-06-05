@@ -18,7 +18,7 @@ const AllWorks: React.FC<AllWorkProps> = ({ allWorks }) => {
   return (
     <div className='mx-[30px] mt-[100px] mb-[60px]'>
       {allWorks.map((work) => (
-        <div>
+        <div key={work.title}>
           <ProjectCard projectData={work}/>
           <LineDivider mTop='50px' mBottom='40px'/>
         </div>

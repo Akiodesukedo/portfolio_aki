@@ -31,7 +31,7 @@ const About: React.FC = ({}) => {
         title="Strength"
         paragraph1={`・Problem solving\n・Logical thinking\n・Agile project experience\n・Public speaking\n・Curiosity\n・Long term planning ability\n・Punctuality\n`}
       />
-      <Footer email="abtai0227aki@gmail.com" github="github link" linkedIn="linedIn link" />
+      <Footer />
     </div>
   )
 }

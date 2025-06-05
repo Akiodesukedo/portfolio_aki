@@ -35,7 +35,7 @@ const Works = () => {
       {
         allWorks == undefined ? <p>loading...</p> : <AllWorks allWorks={allWorks}/>
       }
-      <Footer email="abtai0227aki@gmail.com" github="github link" linkedIn="linedIn link" />
+      <Footer />
     </div>
   )
 }
