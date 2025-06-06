@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 type ProjectCardProps = {
   projectData: {
+    _id: string,
     title: string,
     year: string,
     projectImageUrl?: string,
@@ -19,8 +20,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ projectData }) => {
     <div 
       className='w-full'
       onClick={() => {
-        const projectUrl = projectData.title.toLowerCase().replace(/\s+/g, '-');
-        navigate(`/work/${projectUrl}`)
+        navigate(`/work/${projectData._id}`)
       }}
     >
       <div className='flex flex-nowrap justify-between items-center mb-[12px]'>

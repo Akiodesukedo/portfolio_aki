@@ -7,6 +7,7 @@ import AllWorks from "../components/AllWorks";
 import { useEffect, useState } from "react";
 
 type Work = {
+  _id: string,
   title: string,
   year: string,
   projectImageUrl?: string,
@@ -23,7 +24,10 @@ const Works = () => {
   useEffect(() => {
     fetch(`${fetchUrl}/works/Works`)
     .then(res => res.json())
-    .then(data => setAllWorks(data))
+    .then(data => {
+      console.log(data);
+      setAllWorks(data);
+    })
     .catch(err => console.error(err));
   }, [])
 

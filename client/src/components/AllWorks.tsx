@@ -3,6 +3,7 @@ import ProjectCard from '../molecules/ProjectCard'
 import LineDivider from '../atoms/LineDivider'
 
 type Work = {
+  _id: string,
   title: string,
   year: string,
   imageUrl?: string,
@@ -18,7 +19,7 @@ const AllWorks: React.FC<AllWorkProps> = ({ allWorks }) => {
   return (
     <div className='mx-[30px] mt-[100px] mb-[60px]'>
       {allWorks.map((work) => (
-        <div key={work.title}>
+        <div key={work._id}>
           <ProjectCard projectData={work}/>
           <LineDivider mTop='50px' mBottom='40px'/>
         </div>

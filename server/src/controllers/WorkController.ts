@@ -17,6 +17,7 @@ export const getAllWorksForWork = async (req: Request, res: Response) => {
     const works = await Work.find();
 
     const WorksForWorks = works.map(work => ({
+      _id: work._id,
       title: work.title,
       year: work.year,
       tags: work.tags,
@@ -60,6 +61,7 @@ export const getWorksByIdsForHome = async (req: Request, res: Response) => {
 
     const works = await Work.find({ _id: { $in: validIds } });
     const WorksForHome = works.map(work => ({
+      _id: work._id,
       title: work.title,
       year: work.year,
       tags: work.tags,
