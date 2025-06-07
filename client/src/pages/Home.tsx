@@ -36,7 +36,7 @@ const Home = () => {
     fetch(`${fetchUrl}/works/by-ids?${query}`)
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        // console.log(data);
         setMajorWorks(data);
       })
       .catch(err => console.error(err));

@@ -25,7 +25,7 @@ const Works = () => {
     fetch(`${fetchUrl}/works/Works`)
     .then(res => res.json())
     .then(data => {
-      console.log(data);
+      // console.log(data);
       setAllWorks(data);
     })
     .catch(err => console.error(err));
