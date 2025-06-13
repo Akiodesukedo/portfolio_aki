@@ -4,17 +4,19 @@ type CtaBtnProps = {
   bgColor: string,
   txtColor: string,
   passedFunc?: () => void
+  marginTop?: string,
 }
 
-const CtaBtn: React.FC<CtaBtnProps> = ({btnMsg, borderColor, bgColor, txtColor, passedFunc}) => {
+const CtaBtn: React.FC<CtaBtnProps> = ({btnMsg, borderColor, bgColor, txtColor, passedFunc, marginTop = "24px"}) => {
   return (
     <button
       onClick={passedFunc}
-      className="!rounded-full border h-[64px] w-full mt-[24px]"
+      className="!rounded-full border h-[64px] w-full"
       style={{ 
         backgroundColor: bgColor, 
         borderColor: borderColor, 
         color: txtColor,
+        marginTop: marginTop
       }}
     >
       {btnMsg}
