@@ -9,6 +9,7 @@ import { useMenu } from '../context/MenuContext';
 import { useEffect, useState } from 'react';
 
 type Work = {
+  _id: string,
   title: string,
   year: string,
   projectImageUrl?: string,
@@ -34,7 +35,10 @@ const Home = () => {
 
     fetch(`${fetchUrl}/works/by-ids?${query}`)
       .then(res => res.json())
-      .then(data => setMajorWorks(data))
+      .then(data => {
+        // console.log(data);
+        setMajorWorks(data);
+      })
       .catch(err => console.error(err));
   }, []);
 

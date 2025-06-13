@@ -4,28 +4,105 @@ import Menu from "../components/Menu";
 import Footer from "../components/Footer";
 import ParaSection from "../components/ParaSection";
 import WorkTop from "../components/WorkTop";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import CtaBtn from "../atoms/CtaBtn";
+
+type Work = {
+  _id: string,
+  title: string,
+  year: string,
+  projectImageUrl?: string,
+  tags: string[],
+  description: string,
+  detailedDesc: string,
+  techStackImageUrl: string,
+  techStackExps: string[],
+  contributionImageUrl: string,
+  contributionExps: string[],
+  btns: [{
+    btnName: string,
+    url: string
+  }],
+  screenImageUrl: string[]
+}
 
 const Individual: React.FC = ({}) => {
+  const { id } = useParams();
+  const fetchUrl = import.meta.env.VITE_BACKEND_URL;
   const {isOpen, setIsOpen} = useMenu();
+  const [project, setProject] = useState<Work>();
+
+  useEffect(() => {
+    fetch(`${fetchUrl}/works/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setProject(data);
+      })
+      .catch(err => console.error(err));
+  }, [id])
 
   return (
     <div>
       <Menu isOpen={isOpen} closeMenu={() => setIsOpen(false)}/>
       <Header WebsiteName="Aki's Room" openMenu={() => setIsOpen(true)}/>
-      <div className="h-[600px] m-[30px] bg-amber-200"></div>
-      <WorkTop 
-        title="GlucoFit"
-        paragraph1="Brief introduction of this app here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vestibulum pellentesque libero vel tristique. Aliquam at ligula pharetra, tincidunt magna sit amet, blandit magna. Cras sed turpis congue sem porttitor tincidunt.Aliquam at ligula pharetra, tincidunt magna sit amet, blandit magna."
-      />
-      <ParaSection 
-        title="Tech Stack" 
-        imageUrl="/images/glucofit_techstack.png"
-      />
-      <ParaSection 
-        title="Strength"
-        paragraph1={`・Problem solving\n・Logical thinking\n・Agile project experience\n・Public speaking\n・Curiosity\n・Long term planning ability\n・Punctuality\n`}
-      />
-      <Footer />
+      {
+        project == undefined ? <p>loading...</p> : 
+        <div>
+          <div className="h-[600px] m-[30px] bg-amber-200"></div>
+          <WorkTop 
+            title={project.title}
+            paragraph1={project.detailedDesc}
+          />
+          <ParaSection 
+            title="Tech Stack" 
+            imageUrl={project.techStackImageUrl}
+            paragraph2={project.techStackExps[0] && project.techStackExps[0]}
+            paragraph3={project.techStackExps[1] && project.techStackExps[1]}
+            paragraph4={project.techStackExps[2] && project.techStackExps[2]}
+
+          />
+          <ParaSection 
+            title="Contribution"
+            imageUrl={project.contributionImageUrl}
+            paragraph1={project.contributionExps[0] && project.contributionExps[0]}
+            paragraph2={project.contributionExps[1] && project.contributionExps[1]}
+            paragraph3={project.contributionExps[2] && project.contributionExps[2]}
+          />
+          <div className="mx-[24px] mb-[60px]">
+            <h3 className="text-[24px] font-medium text-left mb-[22px]">
+              Screenshots
+            </h3>
+            {
+              project.screenImageUrl.map((url) => (
+                <img
+                  src={url}
+                  className="w-full mb-[22px] px-[6px]"
+                />
+              ))
+            }
+          </div>
+          <div className="mx-[24px] mb-[60px]">
+            <h3 className="text-[24px] font-medium text-left mb-[22px]">
+              Links
+            </h3>  
+            {
+              project.btns.map((btn) => (
+                <CtaBtn 
+                  btnMsg={btn.btnName}
+                  passedFunc={() => window.open(btn.url)}
+                  borderColor="#747474"
+                  bgColor="white"
+                  txtColor="black"
+                  marginTop="16px"
+                />
+              ))
+            }         
+          </div>
+          <Footer />
+        </div>
+      }
     </div>
   )
 }
