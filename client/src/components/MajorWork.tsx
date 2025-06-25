@@ -1,7 +1,7 @@
 import React from 'react'
 import ProjectCard from '../molecules/ProjectCard'
 import LineDivider from '../atoms/LineDivider'
-import { useNavigate } from 'react-router-dom'
+import { usePageTransition } from '../context/PageTransitionContext'
 
 type Work = {
   _id: string,
@@ -17,7 +17,7 @@ type MajorWorkProps = {
 }
 
 const MajorWork: React.FC<MajorWorkProps> = ({ majorWorks }) => {
-  const navigate = useNavigate();
+  const { triggerTransition } = usePageTransition();
 
   return (
     <div className='mx-[30px] mt-[100px] mb-[60px]'>
@@ -30,7 +30,7 @@ const MajorWork: React.FC<MajorWorkProps> = ({ majorWorks }) => {
       ))}
       <button
         className='border border-neutral-600 rounded-full h-[64px] px-[40px]'
-        onClick={() => navigate("/works")}
+        onClick={() => triggerTransition("/works")}
       >
         More Work
       </button>

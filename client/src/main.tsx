@@ -3,11 +3,14 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import { MenuProvider } from './context/MenuContext.tsx'
+import { PageTransitionProvider } from './context/PageTransitionContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <MenuProvider>
-      <App />
-    </MenuProvider>
+    <PageTransitionProvider>
+      <MenuProvider>
+        <App />
+      </MenuProvider>
+    </PageTransitionProvider>
   </StrictMode>
 )

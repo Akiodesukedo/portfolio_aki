@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { usePageTransition } from "../context/PageTransitionContext";
 
 type MenuItemProps = {
   itemName: string,
@@ -8,11 +8,12 @@ type MenuItemProps = {
 
 const MenuItem: React.FC<MenuItemProps> = ({ itemName, pagePath, closeMenu }) => {
 
-  const navigate = useNavigate()
+  const { triggerTransition } = usePageTransition();
     
   const moveToPage = () => {
-    navigate(pagePath)
+    triggerTransition(pagePath)
     closeMenu()
+    
   }
 
   return (

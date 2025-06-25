@@ -5,10 +5,12 @@ import About from './pages/About'
 import Works from './pages/Works'
 import ScrollToTop from './components/ScrollToTop'
 import Individual from './pages/Individual'
+import FlashScreen from './components/FlashScreen'
 
 const App = () => {
   return (
     <Router>
+      <FlashScreen />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
