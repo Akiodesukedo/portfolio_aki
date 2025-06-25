@@ -8,16 +8,22 @@ const FlashScreen = () => {
   const { isTransitioning, targetRoute, endTransition } = usePageTransition();
   const [shouldRender, setShouldRender] = useState(false);
   const navigate = useNavigate();
-  const pageName = targetRoute.replace('/', '').toUpperCase();
+  const pageName = targetRoute == "/" ? "HOME" : targetRoute.includes("/work/") ? "  Loading..." : targetRoute.replace('/', '').toUpperCase();
 
   useEffect(()=> {
     if (isTransitioning) {
+      // Start rendering
       setShouldRender(true)
       setTimeout(() => {
+        // Wait for .5 sec to let the flash screen ease in.
         navigate(targetRoute);
+
+        // After extra .5 sec of showing page name, start ease out.
         setTimeout(() => {
           endTransition();
         }, 1000)
+
+        // Finally after ease out, unmount the flashscreen.
         setTimeout(() => {
           setShouldRender(false)
         }, 1500);

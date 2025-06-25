@@ -1,6 +1,6 @@
 import React from 'react'
 import Tag from '../atoms/Tag'
-import { useNavigate } from 'react-router-dom'
+import { usePageTransition } from '../context/PageTransitionContext'
 
 type ProjectCardProps = {
   projectData: {
@@ -14,13 +14,13 @@ type ProjectCardProps = {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ projectData }) => {
-  const navigate = useNavigate();
+  const { triggerTransition } = usePageTransition();
 
   return (
     <div 
       className='w-full'
       onClick={() => {
-        navigate(`/work/${projectData._id}`)
+        triggerTransition(`/work/${projectData._id}`)
       }}
     >
       <div className='flex flex-nowrap justify-between items-center mb-[12px]'>

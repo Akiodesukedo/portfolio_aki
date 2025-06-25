@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { usePageTransition } from "../context/PageTransitionContext";
 
 type HeaderProps = {
   WebsiteName: string
@@ -8,7 +8,7 @@ type HeaderProps = {
 }
 
 const Header: React.FC<HeaderProps> = ({ WebsiteName, txtColor, absolute = false, openMenu }) => {
-  const navigate = useNavigate();
+  const { triggerTransition } = usePageTransition();
 
   return (
     <div 
@@ -17,7 +17,7 @@ const Header: React.FC<HeaderProps> = ({ WebsiteName, txtColor, absolute = false
       <h1
         style={{color: txtColor ? txtColor: 'black'}}
         className="text-[20px]"
-        onClick={() => navigate('/')}
+        onClick={() => triggerTransition('/')}
       >
         { WebsiteName }
       </h1>
