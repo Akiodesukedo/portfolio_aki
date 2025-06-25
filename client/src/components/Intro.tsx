@@ -1,11 +1,13 @@
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 import RightTriangleBtn from "../atoms/RightTriangleBtn"
+import { usePageTransition } from "../context/PageTransitionContext"
 
 type IntroProps = {
 }
 
 const Intro: React.FC<IntroProps> = () => {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
+  const { triggerTransition } = usePageTransition();
 
   return (
     <div className="relative mx-[30px] mt-[100px] mb-[260px]">
@@ -16,7 +18,7 @@ const Intro: React.FC<IntroProps> = () => {
         Excel in React.js, React Native, JavaScript, TypeScript, and MongoDB, with a growing focus on GraphQL, backend technologies, and third-party integrations.
       </p>
       <div className="absolute bottom-[-170px] right-0">
-        <RightTriangleBtn line1='More' line2='About Aki' passedFunc={() => navigate('/about')}/>
+        <RightTriangleBtn line1='More' line2='About Aki' passedFunc={() => triggerTransition('/about')}/>
       </div>
     </div>
   )

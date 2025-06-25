@@ -4,13 +4,15 @@ type PageTransitionType = {
   isTransitioning: boolean
   targetRoute: string
   triggerTransition:  (route: string) => void
+  endTransition: () => void
 }
 
 // Creates context object with default value here for global use. 
 const PageTransitionContext = createContext<PageTransitionType>({
-  isTransitioning:false,
+  isTransitioning: false,
   targetRoute: '',
-  triggerTransition: () => {}
+  triggerTransition: () => {},
+  endTransition: () => {}
 })
 
 // Store states here and update route and stuff here
@@ -23,8 +25,10 @@ export const PageTransitionProvider: React.FC<{ children: React.ReactNode }> = (
     setTargetRoute(route);
   }
 
+  const endTransition = () => setIsTransitioning(false);
+
   return (
-    <PageTransitionContext.Provider value={{ isTransitioning, targetRoute, triggerTransition }}>
+    <PageTransitionContext.Provider value={{ isTransitioning, targetRoute, triggerTransition, endTransition }}>
       {children}
     </PageTransitionContext.Provider>
   )
