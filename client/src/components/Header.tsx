@@ -16,18 +16,38 @@ const Header: React.FC<HeaderProps> = ({ WebsiteName, txtColor, absolute = false
     >
       <h1
         style={{color: txtColor ? txtColor: 'black'}}
-        className="text-[20px]"
+        className="text-[20px] md:text-[26px] md:font-bold"
         onClick={() => triggerTransition('/')}
       >
         { WebsiteName }
       </h1>
       <p
         style={{color: txtColor ? txtColor: 'black'}}
-        className="text-[20px] font-bold"
+        className="text-[20px] font-bold md:hidden"
         onClick={openMenu}
       >
         Menu
       </p>
+      <div
+        style={{color: txtColor ? txtColor: 'black'}}
+        className="text-[20px] hidden md:flex md:gap-[20px] items-center"
+      >
+        <p
+          onClick={() => triggerTransition('/')}
+        >
+          Home
+        </p>
+        <p
+          onClick={() => triggerTransition('about')}
+        >
+          About
+        </p>
+        <p
+          onClick={() => triggerTransition('works')}
+        >
+          Works
+        </p>
+      </div>
     </div>
   )
 }
