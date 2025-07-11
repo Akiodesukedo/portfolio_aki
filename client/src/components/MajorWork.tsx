@@ -29,7 +29,7 @@ const MajorWork: React.FC<MajorWorkProps> = ({ majorWorks }) => {
         </div>
       ))}
       <button
-        className='border border-neutral-600 rounded-full h-[64px] px-[40px]'
+        className='border border-neutral-600 rounded-full h-[64px] px-[40px] md:px-[80px]'
         onClick={() => triggerTransition("/works")}
       >
         More Work
