@@ -5,16 +5,17 @@ type ParaSecProps = {
   paragraph3?: string,
   paragraph4?: string,
   imageUrl?: string,
+  colDiv?: boolean
 }
 
-const ParaSection: React.FC<ParaSecProps> = ({ title, paragraph1, paragraph2, paragraph3, paragraph4, imageUrl }) => {
+const ParaSection: React.FC<ParaSecProps> = ({ title, paragraph1, paragraph2, paragraph3, paragraph4, imageUrl, colDiv }) => {
   return (
-    <div className="mx-[24px] mb-[60px]">
-      <h3 className="text-[24px] font-medium text-left mb-[22px]">
+    <div className={`mx-[24px] mb-[60px] ${colDiv ? "md:grid md:grid-cols-2 gap-[12px]" : ""} `}>
+      <h3 className={`text-[24px] font-medium text-left mb-[22px] ${colDiv ? "md:col-span-2 md:col-start-1 md:row-start-1" : ""}`}>
         { title }
       </h3>
       { paragraph1 &&
-        <p className="text-[14px] text-left mb-[22px] whitespace-pre-line">
+        <p className={`text-[14px] text-left mb-[22px] whitespace-pre-line ${colDiv ? "md:col-span-1 md:col-start-2 md:row-start-2" : ""}`}>
           {paragraph1}
         </p>
       }
@@ -22,21 +23,21 @@ const ParaSection: React.FC<ParaSecProps> = ({ title, paragraph1, paragraph2, pa
         <img 
           src={imageUrl}
           alt={`${title} image`}
-          className="w-full h-auto ovject-cover mb-[22px]"
+          className={`w-full h-auto ovject-cover mb-[22px] ${colDiv ? "md:col-span-1 md:col-start-1 md:row-start-2" : ""} `}
         />
       }
       { paragraph2 &&
-        <p className="text-[14px] text-left mb-[22px]">
+        <p className={`text-[14px] text-left mb-[22px] ${colDiv ? paragraph1 ? "md:col-span-2" : "md:col-span-1 md:col-start-2 md:row-start-2" : ""}`}>
           {paragraph2}
         </p>
       }
       { paragraph3 &&
-        <p className="text-[14px] text-left mb-[22px]">
+        <p className={`text-[14px] text-left mb-[22px] ${colDiv ? paragraph1 || paragraph2 ? "md:col-span-2" : "md:col-span-1 md:col-start-2 md:row-start-2" : ""}`}>
           {paragraph3}
         </p>
       }
       { paragraph4 &&
-        <p className="text-[14px] text-left mb-[22px]">
+        <p className={`text-[14px] text-left mb-[22px] ${colDiv ? paragraph1 || paragraph2 || paragraph3 ? "md:col-span-2" : "md:col-span-1 md:col-start-2 md:row-start-2" : ""}`}>
           {paragraph4}
         </p>
       }

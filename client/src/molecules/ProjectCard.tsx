@@ -18,26 +18,26 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ projectData }) => {
 
   return (
     <div 
-      className='w-full'
+      className='w-full md:grid md:grid-cols-2 gap-[12px] md:grid-rows-[auto_auto_1fr]'
       onClick={() => {
         triggerTransition(`/work/${projectData._id}`)
       }}
     >
-      <div className='flex flex-nowrap justify-between items-center mb-[12px]'>
+      <div className='flex flex-nowrap justify-between items-center mb-[12px] md:col-span-1 md:col-start-2 md:mb-0'>
         <h3 className='text-[30px]'>{ projectData.title }</h3>
         <p className='text-[14px] text-neutral-700'>{ projectData.year }</p>
       </div>
       { projectData.projectImageUrl ?
-          <img src={projectData.projectImageUrl} alt={projectData.title} />
+          <img src={projectData.projectImageUrl} alt={projectData.title} className='md:col-span-1 md:col-start-1 md:row-span-3 md:row-start-1'/>
         :
-          <div className="h-[180px] w-full bg-neutral-300"></div>
+          <div className="h-[180px] w-full bg-neutral-300 md:col-span-1 md:col-start-1"></div>
       }
-      <div className='flex flex-wrap gap-x-[6px] gap-y-[5px] mt-[26px] mb-[20px]'>
+      <div className='flex flex-wrap gap-x-[6px] gap-y-[5px] mt-[26px] mb-[20px] md:col-span-1 md:col-start-2 md:m-auto'>
         {projectData.tags.map((tag, index) => (
           <Tag tagName={tag} key={index}/>
         ))}
       </div>
-      <p className='leading-[18px] text-[14px] text-left'>{ projectData.description }</p>
+      <p className='leading-[18px] text-[14px] text-left md:col-span-1 md:col-start-2'>{ projectData.description }</p>
     </div>
   )
 }

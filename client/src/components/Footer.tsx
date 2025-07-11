@@ -38,15 +38,6 @@ const Footer: React.FC<FooterProps> = ({ imgUrl }) => {
     updateTime()
   }, [location])
 
-  // const openGmailWithTitleAndContent = () => {
-  //   const email="abtai0227aki@gmail.com"
-  //   const subject = encodeURIComponent("Hi from your portfolio! Let's collaborate!");
-  //   const body = encodeURIComponent("Hi Aki,\n\nI would love to work with you!")
-
-  //   const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`
-  //   window.open(gmailUrl, "_blank")
-  // }
-
   const openGithub = () => {
     window.open("https://github.com/Akiodesukedo");
   }
@@ -56,19 +47,22 @@ const Footer: React.FC<FooterProps> = ({ imgUrl }) => {
   }
 
   return (
-    <div className="bg-black px-[20px] pt-[60px] pb-[40px]">
-      <div className="flex items-center mb-[40px]">
-        { imgUrl ?
-            <img src={imgUrl} alt="Aki's face" />
-          :
-            <div className="h-[60px] min-w-[60px] rounded-full bg-neutral-300"></div>
-        }
-        <p className="text-white ml-[14px] mr-[10px] text-[30px] text-left">Let's Collaborate!</p>
+    <div className="bg-black px-[20px] pt-[60px] pb-[40px] md:pt-[40px]">
+      <div className='md:grid md:grid-cols-[380px_1fr]'>
+        <div className="flex items-center mb-[40px] md:grid md:grid-rows-2 md:pt-[24px]">
+          { imgUrl ?
+              <img src={imgUrl} alt="Aki's face" />
+            :
+              <div className="h-[60px] min-w-[60px] w-[60px] rounded-full bg-neutral-300"></div>
+          }
+          <p className="text-white ml-[14px] mr-[10px] text-[30px] text-left">Let's Collaborate!</p>
+        </div>
+        <div>
+          <CtaBtn btnMsg="Github" bgColor="black" borderColor="white" txtColor="white" passedFunc={openGithub}/>
+          <CtaBtn btnMsg="LinkedIn" bgColor="black" borderColor="white" txtColor="white" passedFunc={openLinkedIn}/>
+        </div>
       </div>
-      {/* <CtaBtn btnMsg="Email" bgColor="black" borderColor="white" txtColor="white" passedFunc={openGmailWithTitleAndContent}/> */}
-      <CtaBtn btnMsg="Github" bgColor="black" borderColor="white" txtColor="white" passedFunc={openGithub}/>
-      <CtaBtn btnMsg="LinkedIn" bgColor="black" borderColor="white" txtColor="white" passedFunc={openLinkedIn}/>
-      <LineDivider color="white" mTop="60px"/>
+      <LineDivider color="white" mTop="50px"/>
       <div className='flex flex-nowrap justify-between'>
         <div>
           <p className="text-white text-[14px] text-left">Version:</p>
