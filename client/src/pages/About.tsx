@@ -21,6 +21,7 @@ const About: React.FC = ({}) => {
         title="Value" 
         paragraph1="I'll think about this later haha. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vestibulum pellentesque libero vel tristique. Aliquam at ligula pharetra, tincidunt magna sit amet, blandit magna. Cras sed turpis congue sem porttitor tincidunt.Aliquam at ligula pharetra, tincidunt magna sit amet, blandit magna."
         imageUrl="/images/portrait.JPEG"
+        colDiv={true}
       />
       <ParaSection 
         title="Experience"
