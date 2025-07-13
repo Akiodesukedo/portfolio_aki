@@ -12,7 +12,8 @@ type Work = {
   year: string,
   projectImageUrl?: string,
   tags: string[],
-  description: string
+  description: string,
+  detailedDesc: string,
 }
 
 const Works = () => {

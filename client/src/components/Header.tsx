@@ -12,7 +12,7 @@ const Header: React.FC<HeaderProps> = ({ WebsiteName, txtColor, absolute = false
 
   return (
     <div 
-      className={`w-full flex flex-nowrap justify-between p-[20px] z-30 ${absolute ? 'absolute top-0 left-0' : 'relative'}`}
+      className={`w-full flex flex-nowrap justify-between p-[20px] md:p-[40px] z-30 ${absolute ? 'absolute top-0 left-0' : 'relative'}`}
     >
       <h1
         style={{color: txtColor ? txtColor: 'black'}}
