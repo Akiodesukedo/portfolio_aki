@@ -22,7 +22,8 @@ export const getAllWorksForWork = async (req: Request, res: Response) => {
       year: work.year,
       tags: work.tags,
       description: work.description,
-      projectImageUrl: work.projectImageUrl
+      projectImageUrl: work.projectImageUrl,
+      detailedDesc: work.detailedDesc
     }));
 
     res.status(200).json(WorksForWorks);
@@ -66,7 +67,8 @@ export const getWorksByIdsForHome = async (req: Request, res: Response) => {
       year: work.year,
       tags: work.tags,
       description: work.description,
-      projectImageUrl: work.projectImageUrl
+      projectImageUrl: work.projectImageUrl,
+      detailedDesc: work.detailedDesc
     }));
 
     res.status(200).json(WorksForHome);
