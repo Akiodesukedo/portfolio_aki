@@ -59,12 +59,12 @@ const Landing: React.FC<LandingProps> = ({}) => {
             </p>
           </Marquee>
           <p
-            className={`text-left text-white text-[26px] ml-[10px] transition-opacity duration-500 ease-in-out ${isVisible ? 'opacity-100': 'opacity-0'}`}
+            className={`text-left text-white text-[26px] ml-[10px] md:ml-[40px] transition-opacity duration-500 ease-in-out ${isVisible ? 'opacity-100': 'opacity-0'}`}
           >
             { title }
           </p>
         </div>
-        <p className='text-right text-[30px] text-white font-medium mr-[10px] mb-[14px]'>Explore {"\u2193"}</p>
+        <p className='text-right text-[30px] text-white font-medium mr-[10px] md:mr-[40px] mb-[14px] md:mb-[30px]'>Explore {"\u2193"}</p>
       </div>
 
     </div>

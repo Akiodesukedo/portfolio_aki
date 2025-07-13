@@ -8,7 +8,8 @@ type Work = {
   year: string,
   imageUrl?: string,
   tags: string[],
-  description: string
+  description: string,
+  detailedDesc: string,
 }
 
 type AllWorkProps = {
@@ -17,7 +18,7 @@ type AllWorkProps = {
 
 const AllWorks: React.FC<AllWorkProps> = ({ allWorks }) => {
   return (
-    <div className='mx-[30px] mt-[100px] mb-[60px]'>
+    <div className='mx-[30px] md:mx-[60px] mt-[100px] mb-[60px]'>
       {allWorks.map((work) => (
         <div key={work._id}>
           <ProjectCard projectData={work}/>

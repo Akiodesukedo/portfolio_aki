@@ -47,7 +47,7 @@ const Footer: React.FC<FooterProps> = ({ imgUrl }) => {
   }
 
   return (
-    <div className="bg-black px-[20px] pt-[60px] pb-[40px] md:pt-[40px]">
+    <div className="bg-black px-[20px] md:px-[40px] pt-[60px] pb-[40px] md:pt-[40px]">
       <div className='md:grid md:grid-cols-[380px_1fr]'>
         <div className="flex items-center mb-[40px] md:grid md:grid-rows-2 md:pt-[24px]">
           { imgUrl ?
