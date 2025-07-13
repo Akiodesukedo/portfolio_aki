@@ -48,8 +48,8 @@ const Footer: React.FC<FooterProps> = ({ imgUrl }) => {
 
   return (
     <div className="bg-black px-[20px] md:px-[40px] pt-[60px] pb-[40px] md:pt-[40px]">
-      <div className='md:grid md:grid-cols-[380px_1fr]'>
-        <div className="flex items-center mb-[40px] md:grid md:grid-rows-2 md:pt-[24px]">
+      <div className='md:grid md:grid-cols-[380px_1fr] lg:grid-cols-[380px_1fr_1fr]'>
+        <div className="flex items-center mb-[40px] md:grid md:grid-rows-2 md:pt-[24px] lg:col-start-1 lg:col-span-1">
           { imgUrl ?
               <img src={imgUrl} alt="Aki's face" />
             :
@@ -57,7 +57,7 @@ const Footer: React.FC<FooterProps> = ({ imgUrl }) => {
           }
           <p className="text-white ml-[14px] mr-[10px] text-[30px] text-left">Let's Collaborate!</p>
         </div>
-        <div>
+        <div className='lg:col-start-3 lg:col-span-1'>
           <CtaBtn btnMsg="Github" bgColor="black" borderColor="white" txtColor="white" passedFunc={openGithub}/>
           <CtaBtn btnMsg="LinkedIn" bgColor="black" borderColor="white" txtColor="white" passedFunc={openLinkedIn}/>
         </div>
