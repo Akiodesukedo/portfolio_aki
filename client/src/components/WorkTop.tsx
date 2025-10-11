@@ -9,7 +9,7 @@ type WorkTopProps = {
 
 const WorkTop: React.FC<WorkTopProps> = ({ title, paragraph1, paragraph2, paragraph3, imageUrl }) => {
   return (
-    <div className="mx-[24px] mb-[60px]">
+    <div className="mx-[24px] mb-[60px] md:mx-[60px] max-w-[1160px] xl:mx-auto">
       <h3 className="text-[40px] font-medium text-left mb-[22px]">
         { title }
       </h3>

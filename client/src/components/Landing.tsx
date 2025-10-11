@@ -46,7 +46,7 @@ const Landing: React.FC<LandingProps> = ({}) => {
       <img 
         src="/images/self_img.jpg"
         alt="Aki presenting"
-        className="object-cover h-full w-full"
+        className="object-cover object-top h-full w-full"
       />
       <div className='absolute inset-0 bg-neutral-700 opacity-70'></div>
       <div className='relative bottom-[280px] h-[280px] flex flex-col justify-between'>

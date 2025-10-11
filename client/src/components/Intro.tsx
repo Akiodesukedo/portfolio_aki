@@ -10,7 +10,7 @@ const Intro: React.FC<IntroProps> = () => {
   const { triggerTransition } = usePageTransition();
 
   return (
-    <div className="relative mx-[30px] mt-[100px] mb-[260px] md:mb-[140px] md:mx-[60px]">
+    <div className="relative mx-[30px] mt-[100px] mb-[260px] md:mb-[140px] md:mx-[60px] max-w-[1160px] xl:mx-auto">
       <p className="text-left text-[18px] font-bold mb-[50px]">
         Front-end web & mobile app developer with hands-on experience across multiple agile projects.
       </p>

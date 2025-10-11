@@ -50,7 +50,7 @@ const Individual: React.FC = ({}) => {
       {
         project == undefined ? <p>loading...</p> : 
         <div>
-          <div className="h-[600px] m-[30px] bg-amber-200"></div>
+          <div className="h-[600px] m-[30px] md:mx-[60px] bg-amber-200 max-w-[1160px] xl:mx-auto"></div>
           <WorkTop 
             title={project.title}
             paragraph1={project.detailedDesc}
@@ -70,8 +70,8 @@ const Individual: React.FC = ({}) => {
             paragraph2={project.contributionExps[1] && project.contributionExps[1]}
             paragraph3={project.contributionExps[2] && project.contributionExps[2]}
           />
-          <div className="mx-[24px] mb-[60px] md:grid md:grid-cols-2">
-            <h3 className="text-[24px] font-medium text-left mb-[22px] md:col-span-2">
+          <div className="mx-[24px] mb-[60px] md:mx-[60px] sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-[1160px] xl:mx-auto">
+            <h3 className="text-[24px] font-medium text-left mb-[22px] sm:col-span-2 md:col-span-3 lg:col-span-4">
               Screenshots
             </h3>
             {
@@ -83,7 +83,7 @@ const Individual: React.FC = ({}) => {
               ))
             }
           </div>
-          <div className="mx-[24px] mb-[60px]">
+          <div className="mx-[24px] md:mx-[60px] mb-[60px] max-w-[1160px] xl:mx-auto">
             <h3 className="text-[24px] font-medium text-left mb-[22px]">
               Links
             </h3>  
