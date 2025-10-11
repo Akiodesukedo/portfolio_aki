@@ -10,7 +10,7 @@ type ParaSecProps = {
 
 const ParaSection: React.FC<ParaSecProps> = ({ title, paragraph1, paragraph2, paragraph3, paragraph4, imageUrl, colDiv }) => {
   return (
-    <div className={`mx-[24px] md:mx-[60px] mb-[60px] ${colDiv ? "md:grid md:grid-cols-2 gap-[12px]" : ""} `}>
+    <div className={`mx-[24px] md:mx-[60px] mb-[60px] max-w-[1160px] xl:mx-auto ${colDiv ? "md:grid md:grid-cols-2 gap-[12px]" : ""} `}>
       <h3 className={`text-[24px] font-medium text-left mb-[22px] ${colDiv ? "md:col-span-2 md:col-start-1 md:row-start-1" : ""}`}>
         { title }
       </h3>

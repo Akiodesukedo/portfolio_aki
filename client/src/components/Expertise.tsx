@@ -21,7 +21,7 @@ const Expertise: React.FC<ExpertiseProps> = ({}) => {
   ]
 
   return (
-    <div className="mx-[30px] md:mx-[60px] mb-[60px]">
+    <div className="mx-[30px] md:mx-[60px] mb-[60px] max-w-[1160px] xl:mx-auto">
       <h3 className="text-[24px] font-medium text-left mb-[22px]">Expertise</h3>
       <div className="grid grid-cols-2 gap-[20px] sm:grid-cols-3 md:grid-cols-5">
         { imagePaths.map((src, index) => {
