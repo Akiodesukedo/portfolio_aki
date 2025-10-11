@@ -23,7 +23,7 @@ const Expertise: React.FC<ExpertiseProps> = ({}) => {
   return (
     <div className="mx-[30px] md:mx-[60px] mb-[60px]">
       <h3 className="text-[24px] font-medium text-left mb-[22px]">Expertise</h3>
-      <div className="grid grid-cols-2 gap-[20px] md:grid-cols-5">
+      <div className="grid grid-cols-2 gap-[20px] sm:grid-cols-3 md:grid-cols-5">
         { imagePaths.map((src, index) => {
           const fileName = src.split('/').pop();
           const altText = fileName?.split('.')[0].replace(/[-_]/g, '');
