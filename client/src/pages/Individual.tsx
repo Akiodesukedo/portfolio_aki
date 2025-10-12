@@ -50,7 +50,13 @@ const Individual: React.FC = ({}) => {
       {
         project == undefined ? <p>loading...</p> : 
         <div>
-          <div className="h-[600px] m-[30px] md:mx-[60px] bg-amber-200 max-w-[1160px] xl:mx-auto"></div>
+          {/* 🚨🚨🚨🚨 Change this video section so that the page shows a proper video 🚨🚨🚨🚨 */}
+          <div className="m-[30px] md:mx-[60px] max-w-[1160px] xl:mx-auto">
+            <video autoPlay loop muted playsInline className="w-full rounded-xl">
+              <source src="/videos/glucofitshort.mp4" type="video/mp4"/>
+            </video>
+          </div>
+
           <WorkTop 
             title={project.title}
             paragraph1={project.detailedDesc}
