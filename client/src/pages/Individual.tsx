@@ -100,9 +100,12 @@ const Individual: React.FC = ({}) => {
                   btnMsg={btn.btnName}
                   passedFunc={() => window.open(btn.url)}
                   borderColor="#747474"
-                  bgColor="white"
-                  txtColor="black"
-                  marginTop="16px"
+                  bgColor="bg-white"
+                  txtColor="text-black"
+                  marginTop="mt-[16px]"
+                  hoverBgColor="hover:bg-black"
+                  hovertxtColor="hover:text-white"
+
                 />
               ))
             }         
