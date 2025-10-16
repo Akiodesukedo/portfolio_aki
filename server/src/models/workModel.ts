@@ -8,6 +8,7 @@ const workSchema = new mongoose.Schema({
   description: { type: String, required: true },
   projectImageUrl: { type: String },
   // Info for detailed individual page
+  videoLoc: { type:String, required: true },
   detailedDesc: { type: String, required: true },
   techStackImageUrl: { type: String },
   techStackExps:  [{ type: String }],

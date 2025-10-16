@@ -13,6 +13,7 @@ type Work = {
   title: string,
   year: string,
   projectImageUrl?: string,
+  videoLoc: string,
   tags: string[],
   description: string,
   detailedDesc: string,
@@ -53,7 +54,7 @@ const Individual: React.FC = ({}) => {
           {/* 🚨🚨🚨🚨 Change this video section so that the page shows a proper video 🚨🚨🚨🚨 */}
           <div className="m-[30px] md:mx-[60px] max-w-[1160px] xl:mx-auto">
             <video autoPlay loop muted playsInline className="w-full rounded-xl">
-              <source src="/videos/glucofitshort.mp4" type="video/mp4"/>
+              <source src={project.videoLoc} type="video/mp4"/>
             </video>
           </div>
 
