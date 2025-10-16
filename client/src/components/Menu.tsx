@@ -18,7 +18,7 @@ const Menu: React.FC<MenuProps> = ({ isOpen, closeMenu }) => {
       onClick={closeMenu}
     >
       <button onClick={closeMenu}>
-        <p className="text-right text-white text-[30px]">
+        <p className="text-right text-white text-[30px] cursor-pointer">
           ×
         </p>
       </button>

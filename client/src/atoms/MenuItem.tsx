@@ -18,10 +18,10 @@ const MenuItem: React.FC<MenuItemProps> = ({ itemName, pagePath, closeMenu }) =>
 
   return (
     <button 
-      className="border-b-1 border-b-white m-x-30 h-[100px]"
+      className="border-b-1 border-b-white m-x-30 h-[100px] cursor-pointer hover:bg-white duration-200 ease-in text-white text-[26px] hover:text-black"
       onClick={moveToPage}
     >
-      <p className="text-white text-[26px]">{ itemName }</p>
+      { itemName }
     </button>
   )
 }

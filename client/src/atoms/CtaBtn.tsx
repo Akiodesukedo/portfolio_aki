@@ -13,7 +13,7 @@ const CtaBtn: React.FC<CtaBtnProps> = ({btnMsg, borderColor, bgColor, txtColor, 
   return (
     <button
       onClick={passedFunc}
-      className={`!rounded-full border h-[64px] w-full cursor-pointer ${marginTop} ${bgColor} ${borderColor} ${txtColor} ${hoverBgColor} ${hovertxtColor}`}
+      className={`!rounded-full border h-[64px] w-full cursor-pointer ${marginTop} ${bgColor} ${borderColor} ${txtColor} ${hoverBgColor} ${hovertxtColor} duration-200 ease-in`}
     >
       {btnMsg}
     </button>
