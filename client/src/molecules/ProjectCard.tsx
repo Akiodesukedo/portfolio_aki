@@ -21,7 +21,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ projectData }) => {
 
   return (
     <div 
-      className='w-full md:grid md:grid-cols-2 lg:grid-cols-[500px_auto] gap-[12px] md:gap-x-[24px] lg:gap-x-[36px] md:grid-rows-[auto_auto_1fr] '
+      className='w-full md:grid md:grid-cols-2 lg:grid-cols-[500px_auto] gap-[12px] md:gap-x-[24px] lg:gap-x-[36px] md:grid-rows-[auto_auto_1fr] cursor-pointer'
       onClick={() => {
         triggerTransition(`/work/${projectData._id}`)
       }}

@@ -16,33 +16,33 @@ const Header: React.FC<HeaderProps> = ({ WebsiteName, txtColor, absolute = false
     >
       <h1
         style={{color: txtColor ? txtColor: 'black'}}
-        className="text-[20px] md:text-[26px] md:font-bold"
+        className="text-[20px] md:text-[26px] md:font-bold cursor-pointer hover:font-bold  duration-200 ease-in"
         onClick={() => triggerTransition('/')}
       >
         { WebsiteName }
       </h1>
       <p
         style={{color: txtColor ? txtColor: 'black'}}
-        className="text-[20px] font-bold md:hidden"
+        className="text-[20px] md:hidden cursor-pointer hover:font-bold"
         onClick={openMenu}
       >
         Menu
       </p>
       <div
         style={{color: txtColor ? txtColor: 'black'}}
-        className="text-[20px] hidden md:flex md:gap-[20px] items-center"
+        className="text-[20px] hidden md:flex md:gap-[12px] items-center"
       >
-        <p
+        <p className="cursor-pointer p-[8px] hover:font-bold duration-200 ease-in"
           onClick={() => triggerTransition('/')}
         >
           Home
         </p>
-        <p
+        <p className="cursor-pointer p-[8px] hover:font-bold duration-200 ease-in"
           onClick={() => triggerTransition('about')}
         >
           About
         </p>
-        <p
+        <p className="cursor-pointer p-[8px] hover:font-bold duration-200 ease-in"
           onClick={() => triggerTransition('works')}
         >
           Works

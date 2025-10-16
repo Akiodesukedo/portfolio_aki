@@ -58,8 +58,8 @@ const Footer: React.FC<FooterProps> = ({ imgUrl }) => {
           <p className="text-white ml-[14px] mr-[10px] text-[30px] text-left">Let's Collaborate!</p>
         </div>
         <div className='lg:col-start-3 lg:col-span-1'>
-          <CtaBtn btnMsg="Github" bgColor="black" borderColor="white" txtColor="white" passedFunc={openGithub}/>
-          <CtaBtn btnMsg="LinkedIn" bgColor="black" borderColor="white" txtColor="white" passedFunc={openLinkedIn}/>
+          <CtaBtn btnMsg="Github" bgColor="bg-black" borderColor="border-white" txtColor="text-white" hoverBgColor='hover:bg-white' hovertxtColor='hover:text-black' passedFunc={openGithub}/>
+          <CtaBtn btnMsg="LinkedIn" bgColor="bg-black" borderColor="border-white" txtColor="text-white" hoverBgColor='hover:bg-white' hovertxtColor='hover:text-black' passedFunc={openLinkedIn}/>
         </div>
       </div>
       <LineDivider color="white" mTop="50px"/>
