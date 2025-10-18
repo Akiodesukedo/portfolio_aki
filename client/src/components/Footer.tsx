@@ -4,13 +4,10 @@ import CtaBtn from "../atoms/CtaBtn"
 import LineDivider from "../atoms/LineDivider"
 
 type FooterProps = {
-  imgUrl?: string,
-  email: string,
-  github: string,
-  linkedIn: string
+  imgUrl?: string
 }
 
-const Footer: React.FC<FooterProps> = ({ imgUrl, email, github, linkedIn }) => {
+const Footer: React.FC<FooterProps> = ({ imgUrl }) => {
   // Change this in a way that let clicking each button opens a new browser with the link.
   // If possible show modal like "Jumping to this page. yes?" type of thing.
 
@@ -41,20 +38,31 @@ const Footer: React.FC<FooterProps> = ({ imgUrl, email, github, linkedIn }) => {
     updateTime()
   }, [location])
 
+  const openGithub = () => {
+    window.open("https://github.com/Akiodesukedo");
+  }
+
+  const openLinkedIn = () => {
+    window.open("https://www.linkedin.com/in/akifumi-hayashi");
+  }
+
   return (
-    <div className="bg-black px-[20px] pt-[60px] pb-[40px]">
-      <div className="flex items-center mb-[40px]">
-        { imgUrl ?
-            <img src={imgUrl} alt="Aki's face" />
-          :
-            <div className="h-[60px] w-[60px] rounded-full bg-neutral-300"></div>
-        }
-        <p className="text-white ml-[14px] mr-[10px] text-[30px] text-left">Let's Collaborate!</p>
+    <div className="bg-black px-[20px] md:px-[40px] pt-[60px] pb-[40px] md:pt-[40px]">
+      <div className='md:grid md:grid-cols-[380px_1fr] lg:grid-cols-[380px_1fr_1fr]'>
+        <div className="flex items-center mb-[40px] md:grid md:grid-rows-2 md:pt-[24px] lg:col-start-1 lg:col-span-1">
+          { imgUrl ?
+              <img src={imgUrl} alt="Aki's face" />
+            :
+              <img src="/images/just_face.png" alt="Aki's face" className="h-[60px] min-w-[60px] w-[60px] rounded-full" />
+          }
+          <p className="text-white ml-[14px] mr-[10px] text-[30px] text-left">Let's Collaborate!</p>
+        </div>
+        <div className='lg:col-start-3 lg:col-span-1'>
+          <CtaBtn btnMsg="Github" bgColor="bg-black" borderColor="border-white" txtColor="text-white" hoverBgColor='hover:bg-white' hovertxtColor='hover:text-black' passedFunc={openGithub}/>
+          <CtaBtn btnMsg="LinkedIn" bgColor="bg-black" borderColor="border-white" txtColor="text-white" hoverBgColor='hover:bg-white' hovertxtColor='hover:text-black' passedFunc={openLinkedIn}/>
+        </div>
       </div>
-      <CtaBtn btnMsg={email} bgColor="black" borderColor="white" txtColor="white" />
-      <CtaBtn btnMsg={github} bgColor="black" borderColor="white" txtColor="white"/>
-      <CtaBtn btnMsg={linkedIn} bgColor="black" borderColor="white" txtColor="white" />
-      <LineDivider color="white" mTop="60px"/>
+      <LineDivider color="white" mTop="50px"/>
       <div className='flex flex-nowrap justify-between'>
         <div>
           <p className="text-white text-[14px] text-left">Version:</p>
