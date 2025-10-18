@@ -46,9 +46,8 @@ const Landing: React.FC<LandingProps> = ({}) => {
       <img 
         src="/images/self_img.jpg"
         alt="Aki presenting"
-        className="object-cover object-top h-screen w-full"
+        className="object-cover object-top h-screen w-full brightness-50"
       />
-      <div className='absolute inset-0 h-sceen w-full bg-neutral-700 opacity-70'></div>
       <div className='relative bottom-[280px] h-[280px] flex flex-col justify-between'>
         <div>
           <Marquee
