@@ -23,21 +23,12 @@ const Home = () => {
   const fetchUrl = import.meta.env.VITE_BACKEND_URL;
   const {isOpen, setIsOpen} = useMenu();
   const [majorWorks, setMajorWorks] = useState<Work[]>();
-  const [loading, setLoading] = useState<boolean>(true);
 
   const ids = [
     "682f8c0d572177bcf8d85c37",
     "682fa1da05ef77fe27e804e3",
     "683b449ceb5429988bd66e9a"
   ]
-
-  useEffect(() => {
-    const loadingTimer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(loadingTimer);
-  }, [])
 
   useEffect(() => {
     const query = ids.map(id => `ids=${id}`).join("&");
@@ -51,14 +42,6 @@ const Home = () => {
       })
       .catch(err => console.error(err));
   }, []);
-
-  if (loading) {
-    return (
-      <div className='fixed inset-0 bg-black flex items-center justify-center z-50 transition-opacity duration-700 ease-in-out opacity-100'>
-        <h1 className="text-white text-[36px] font-bold animate-fade-in">Welcome to Aki's Room</h1>
-      </div>
-    )
-  }
 
   return (
     <div>
