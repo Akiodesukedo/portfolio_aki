@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 type PageTransitionType = {
   isTransitioning: boolean
@@ -17,8 +17,13 @@ const PageTransitionContext = createContext<PageTransitionType>({
 
 // Store states here and update route and stuff here
 export const PageTransitionProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [targetRoute, setTargetRoute] = useState('');
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const [targetRoute, setTargetRoute] = useState(window.location.pathname);
+
+  useEffect(() => {
+    const loadingTimer = setTimeout(() => setIsTransitioning(false), 1500)
+    return () => clearTimeout(loadingTimer);
+  }, []);
 
   const triggerTransition = (route: string) => {
     setIsTransitioning(true);
