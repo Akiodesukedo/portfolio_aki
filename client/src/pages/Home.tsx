@@ -7,7 +7,6 @@ import Intro from '../components/Intro';
 import Menu from '../components/Menu';
 import { useMenu } from '../context/MenuContext';
 import { useEffect, useState } from 'react';
-import { usePageTransition } from '../context/PageTransitionContext';
 
 type Work = {
   _id: string,
@@ -24,7 +23,6 @@ const Home = () => {
   const fetchUrl = import.meta.env.VITE_BACKEND_URL;
   const {isOpen, setIsOpen} = useMenu();
   const [majorWorks, setMajorWorks] = useState<Work[]>();
-  const { completeInitialLoad } = usePageTransition();
 
   const ids = [
     "682f8c0d572177bcf8d85c37",
@@ -41,7 +39,6 @@ const Home = () => {
       .then(data => {
         // console.log(data);
         setMajorWorks(data);
-        completeInitialLoad();
       })
       .catch(err => console.error(err));
   }, []);
