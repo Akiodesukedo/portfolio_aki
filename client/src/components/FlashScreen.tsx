@@ -18,8 +18,10 @@ const FlashScreen = () => {
       if (isFirstVisit) {
         const firstVisitTimer = setTimeout(() => {
           endTransition();
-          setShouldRender(false);
-        }, 1500);
+          setTimeout(() => {
+            setShouldRender(false);
+          }, 1500)
+        }, 1000);
         return () => clearTimeout(firstVisitTimer);
       } else {
         const otherTimer = setTimeout(() => {
