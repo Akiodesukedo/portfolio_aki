@@ -32,13 +32,13 @@ const Landing: React.FC<LandingProps> = ({}) => {
   }, [title]);
 
   const titles: string[] = [
-    "Frontend Developer",
+    "Full-stack Developer",
     "React Enthusiast",
     "Software Engineer",
     "Tennis Lover",
     "Web App Developer",
     "Snowboarder",
-    "Full-Stack Developer"
+    "Frontend Developer"
   ]
 
   return (
