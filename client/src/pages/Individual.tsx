@@ -5,8 +5,9 @@ import Footer from "../components/Footer";
 import ParaSection from "../components/ParaSection";
 import WorkTop from "../components/WorkTop";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import CtaBtn from "../atoms/CtaBtn";
+import { usePageTransition } from '../context/PageTransitionContext';
 
 type Work = {
   _id: string,
@@ -33,16 +34,26 @@ const Individual: React.FC = ({}) => {
   const fetchUrl = import.meta.env.VITE_BACKEND_URL;
   const {isOpen, setIsOpen} = useMenu();
   const [project, setProject] = useState<Work>();
+  const { isTransitioning } = usePageTransition();
+  const hasFetched = useRef(false);
 
   useEffect(() => {
-    fetch(`${fetchUrl}/works/${id}`)
+    if (!isTransitioning && !hasFetched.current) {
+      hasFetched.current = true;
+    
+      fetch(`${fetchUrl}/works/${id}`)
       .then(res => res.json())
       .then(data => {
         console.log(data);
         setProject(data);
       })
       .catch(err => console.error(err));
-  }, [id])
+    }
+
+    if (isTransitioning) {
+      hasFetched.current = false;
+    }
+  }, [id, isTransitioning])
 
   return (
     <div>
