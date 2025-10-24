@@ -6,7 +6,8 @@ import MajorWork from '../components/MajorWork';
 import Intro from '../components/Intro';
 import Menu from '../components/Menu';
 import { useMenu } from '../context/MenuContext';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { usePageTransition } from '../context/PageTransitionContext';
 
 type Work = {
   _id: string,
@@ -23,7 +24,9 @@ const Home = () => {
   const fetchUrl = import.meta.env.VITE_BACKEND_URL;
   const {isOpen, setIsOpen} = useMenu();
   const [majorWorks, setMajorWorks] = useState<Work[]>();
-
+  const { isTransitioning } = usePageTransition();
+  const hasFetched = useRef(false);
+ 
   const ids = [
     "682f8c0d572177bcf8d85c37",
     "682fa1da05ef77fe27e804e3",
@@ -31,17 +34,26 @@ const Home = () => {
   ]
 
   useEffect(() => {
-    const query = ids.map(id => `ids=${id}`).join("&");
-    // console.log(query);
+    if (!isTransitioning && !hasFetched.current) {
+      hasFetched.current = true;
 
-    fetch(`${fetchUrl}/works/by-ids?${query}`)
-      .then(res => res.json())
-      .then(data => {
-        // console.log(data);
-        setMajorWorks(data);
-      })
-      .catch(err => console.error(err));
-  }, []);
+      const query = ids.map(id => `ids=${id}`).join("&");
+      // console.log(query);
+
+      fetch(`${fetchUrl}/works/by-ids?${query}`)
+        .then(res => res.json())
+        .then(data => {
+          // console.log(data);
+          setMajorWorks(data);
+        })
+        .catch(err => console.error(err));
+    }
+
+    if (isTransitioning) {
+      hasFetched.current = false;
+    }
+
+  }, [isTransitioning]);
 
   return (
     <div>
