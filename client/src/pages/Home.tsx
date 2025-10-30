@@ -29,8 +29,8 @@ const Home = () => {
  
   const ids = [
     "682f8c0d572177bcf8d85c37",
-    "682fa1da05ef77fe27e804e3",
-    "683b449ceb5429988bd66e9a"
+    "68fbc6a443ea53a0d6099440",
+    "682fa1da05ef77fe27e804e3"
   ]
 
   useEffect(() => {
