@@ -19,18 +19,18 @@
     <th>footer</th>
   </thead>
   <tr>
-    <td valign="top"><img src="public/images/akisroom_screen1.webp" width=150/></td>
-    <td valign="top"><img src="public/images/akisroom_screen2.webp" width=150/></td>
-    <td valign="top"><img src="public/images/akisroom_screen3.webp" width=150/></td>
-    <td valign="top"><img src="public/images/akisroom_screen4.webp" width=150/></td>
-    <td valign="top"><img src="public/images/akisroom_screen5.webp" width=150/></td>
+    <td valign="top"><img src="client/public/images/akisroom_screen1.webp" width=150/></td>
+    <td valign="top"><img src="client/public/images/akisroom_screen2.webp" width=150/></td>
+    <td valign="top"><img src="client/public/images/akisroom_screen3.webp" width=150/></td>
+    <td valign="top"><img src="client/public/images/akisroom_screen4.webp" width=150/></td>
+    <td valign="top"><img src="client/public/images/akisroom_screen5.webp" width=150/></td>
   </tr>
 </table>
 
 ## Teck Stack
 <p>This website is developed with React on frontend and node.js & Express.js on backend.</p>
 <p>
-  <img src="public/images/akisroom_techstack.webp" alt="Tech stack" width="600"/>
+  <img src="client/public/images/akisroom_techstack.webp" alt="Tech stack" width="600"/>
 </p>
 
 ## Authors
@@ -42,7 +42,7 @@
     <th>Role</th>
   </thead>
     <tr>
-      <td><img src="public/images/just_face.webp" width=50></td>
+      <td><img src="client/public/images/just_face.webp" width=50></td>
       <td>Akifumi Hayashi</td>
       <td><a target="_blank" href=https://github.com/Akiodesukedo>@Akiodesukedo</td>
       <td>Full-stack developer<br>Start from design and coded all the contents, then deployed the website online.</td>
