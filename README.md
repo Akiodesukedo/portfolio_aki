@@ -4,7 +4,7 @@
   <p><strong>My own portfolio website</strong></p>
 </p>
 
-<p>A A personal portfolio website designed to showcase coding skills and projects, with an intuitive and easy-to-navigate user experience for potential collaborators.</p>
+<p>A personal portfolio website designed to showcase coding skills and projects, with an intuitive and easy-to-navigate user experience for potential collaborators.</p>
 
 ### Live website
   <p><a target="_blank" href=https://www.akisroom.com/>Aki's Room</p>
