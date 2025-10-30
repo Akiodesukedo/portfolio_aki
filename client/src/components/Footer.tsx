@@ -53,7 +53,7 @@ const Footer: React.FC<FooterProps> = ({ imgUrl }) => {
           { imgUrl ?
               <img src={imgUrl} alt="Aki's face" />
             :
-              <img src="/images/just_face.png" alt="Aki's face" className="h-[60px] min-w-[60px] w-[60px] rounded-full" />
+              <img src="/images/just_face.webp" alt="Aki's face" className="h-[60px] min-w-[60px] w-[60px] rounded-full" />
           }
           <p className="text-white ml-[14px] mr-[10px] text-[30px] text-left">Let's Collaborate!</p>
         </div>

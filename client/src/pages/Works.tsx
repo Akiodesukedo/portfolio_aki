@@ -4,7 +4,8 @@ import Menu from "../components/Menu";
 import Footer from "../components/Footer";
 import TopMessage from "../components/TopMessage";
 import AllWorks from "../components/AllWorks";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { usePageTransition } from '../context/PageTransitionContext';
 
 type Work = {
   _id: string,
@@ -21,16 +22,26 @@ const Works = () => {
   const fetchUrl = import.meta.env.VITE_BACKEND_URL;
   const {isOpen, setIsOpen} = useMenu();
   const [allWorks, setAllWorks] = useState<Work[]>();
+  const { isTransitioning } = usePageTransition();
+  const hasFetched = useRef(false);
 
   useEffect(() => {
-    fetch(`${fetchUrl}/works/Works`)
-    .then(res => res.json())
-    .then(data => {
-      // console.log(data);
-      setAllWorks(data);
-    })
-    .catch(err => console.error(err));
-  }, [])
+    if (!isTransitioning && !hasFetched.current) {
+      hasFetched.current = true;
+
+      fetch(`${fetchUrl}/works/Works`)
+      .then(res => res.json())
+      .then(data => {
+        // console.log(data);
+        setAllWorks(data);
+      })
+      .catch(err => console.error(err));    
+    }
+
+    if (isTransitioning) {
+      hasFetched.current = false;
+    }
+  }, [isTransitioning])
 
   return (
     <div>

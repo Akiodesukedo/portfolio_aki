@@ -32,23 +32,22 @@ const Landing: React.FC<LandingProps> = ({}) => {
   }, [title]);
 
   const titles: string[] = [
-    "Frontend Developer",
+    "Full-stack Developer",
     "React Enthusiast",
     "Software Engineer",
     "Tennis Lover",
     "Web App Developer",
     "Snowboarder",
-    "Full-Stack Developer"
+    "Frontend Developer"
   ]
 
   return (
     <div className="h-screen bg-amber-200 w-full">
       <img 
-        src="/images/self_img.jpg"
+        src="/images/self_img.webp"
         alt="Aki presenting"
-        className="object-cover object-top h-full w-full"
+        className="object-cover object-top h-screen w-full brightness-50 bg-black"
       />
-      <div className='absolute inset-0 bg-neutral-700 opacity-70'></div>
       <div className='relative bottom-[280px] h-[280px] flex flex-col justify-between'>
         <div>
           <Marquee

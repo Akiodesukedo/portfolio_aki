@@ -31,7 +31,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ projectData }) => {
         <p className='text-[14px] text-neutral-700'>{ projectData.year }</p>
       </div>
       { projectData.projectImageUrl ?
-          <img src={projectData.projectImageUrl} alt={projectData.title} className='object-cover h-full md:col-span-1 md:col-start-1 md:row-span-3 md:row-start-1'/>
+          <img src={projectData.projectImageUrl} alt={projectData.title} className='object-cover w-full md:col-span-1 md:col-start-1 md:row-span-3 md:row-start-1'/>
         :
           <div className="h-[180px] w-full bg-neutral-300 md:col-span-1 md:col-start-1"></div>
       }
