@@ -20,7 +20,7 @@ const About: React.FC = ({}) => {
       <ParaSection 
         title="Value" 
         paragraph1="One of the qualities I'm most proud of is my commitment to contributing to my community. I genuinely enjoy supporting the people around me, and that energy always comes back in meaningful ways. My curiosity is what drives this — I love learning new things because every new skill or perspective opens doors I didn't even know existed. I also enjoy seeing others grow through what I share, and learning alongside them. That's why I never stop asking questions, meeting new people, and challenging myself. Even when I face obstacles, my curiosity and the support of my community help me push through. If you also value learning, growth, and teamwork, I'm sure we can do great things together."
-        imageUrl="/images/portrait.JPEG"
+        imageUrl="/images/portrait.webp"
         colDiv={true}
       />
       <ParaSection 

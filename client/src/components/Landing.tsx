@@ -44,7 +44,7 @@ const Landing: React.FC<LandingProps> = ({}) => {
   return (
     <div className="h-screen bg-amber-200 w-full">
       <img 
-        src="/images/self_img.jpg"
+        src="/images/self_img.webp"
         alt="Aki presenting"
         className="object-cover object-top h-screen w-full brightness-50 bg-black"
       />
