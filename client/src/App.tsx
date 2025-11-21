@@ -6,6 +6,7 @@ import Works from './pages/Works'
 import ScrollToTop from './components/ScrollToTop'
 import Individual from './pages/Individual'
 import FlashScreen from './components/FlashScreen'
+import NotFound from './pages/NotFound'
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/works" element={<Works />} />
         <Route path='/work/:id' element={<Individual />} />
+        <Route path='*' element={<NotFound/>}/>
       </Routes>
     </Router>
   )
