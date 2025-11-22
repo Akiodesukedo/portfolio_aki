@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import CtaBtn from "../atoms/CtaBtn";
 import { usePageTransition } from '../context/PageTransitionContext';
+import TopMessage from "../components/TopMessage";
 
 type Work = {
   _id: string,
@@ -36,24 +37,57 @@ const Individual: React.FC = ({}) => {
   const [project, setProject] = useState<Work>();
   const { isTransitioning } = usePageTransition();
   const hasFetched = useRef(false);
+  const [isValid, setIsValid] = useState<boolean | null>(null);
+  const { triggerTransition } = usePageTransition();
 
   useEffect(() => {
     if (!isTransitioning && !hasFetched.current) {
       hasFetched.current = true;
     
       fetch(`${fetchUrl}/works/${id}`)
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
+      .then(async res => {
+        if (!res.ok) {
+          setIsValid(false);
+          return null;
+        }
+
+        const data = await res.json();
+        setIsValid(true);
         setProject(data);
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        setIsValid(false);
+      })
     }
 
     if (isTransitioning) {
       hasFetched.current = false;
     }
   }, [id, isTransitioning])
+
+  if (isValid === false) {
+    return (
+      <div>
+        <Menu isOpen={isOpen} closeMenu={() => setIsOpen(false)}/>
+        <Header WebsiteName="Aki's Room" openMenu={() => setIsOpen(true)}/>
+        <div className="p-[24px] sm:py-[64px]">
+          <TopMessage line1="Oops! The project you're" line2="looking for doesn't exist."/>
+          <CtaBtn 
+            btnMsg="Check Other Works" 
+            passedFunc={() => triggerTransition('/works')}
+            borderColor="#747474"
+            bgColor="bg-white"
+            txtColor="text-black"
+            marginTop="mt-[64px]"
+            hoverBgColor="hover:bg-black"
+            hovertxtColor="hover:text-white"
+          />
+        </div>
+        <Footer />
+      </div>      
+    )
+  }
 
   return (
     <div>
