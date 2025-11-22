@@ -41,8 +41,8 @@ const Home = () => {
       // console.log(query);
 
       fetch(`${fetchUrl}/works/by-ids?${query}`)
-        .then(res => res.json())
-        .then(data => {
+        .then(async res => {
+          const data = await res.json();
           // console.log(data);
           setMajorWorks(data);
         })

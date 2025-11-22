@@ -30,12 +30,12 @@ const Works = () => {
       hasFetched.current = true;
 
       fetch(`${fetchUrl}/works/Works`)
-      .then(res => res.json())
-      .then(data => {
-        // console.log(data);
-        setAllWorks(data);
-      })
-      .catch(err => console.error(err));    
+        .then(async res => {
+          const data = await res.json();
+          // console.log(data);
+          setAllWorks(data);
+        })
+        .catch(err => console.error(err));    
     }
 
     if (isTransitioning) {
