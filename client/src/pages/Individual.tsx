@@ -94,9 +94,18 @@ const Individual: React.FC = ({}) => {
       <Menu isOpen={isOpen} closeMenu={() => setIsOpen(false)}/>
       <Header WebsiteName="Aki's Room" openMenu={() => setIsOpen(true)}/>
       {
-        project == undefined ? <p>loading...</p> : 
+        project == undefined ? 
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-[200px] h-[200px] m-auto mb-[120px]"
+        >
+          <source src="/animations/loading.webm" type="video/webm" />
+        </video> 
+        : 
         <div>
-          {/* 🚨🚨🚨🚨 Change this video section so that the page shows a proper video 🚨🚨🚨🚨 */}
           <div className="m-[30px] md:mx-[60px] max-w-[1160px] xl:mx-auto">
             <video autoPlay loop muted playsInline className="w-full rounded-xl">
               <source src={project.videoLoc} type="video/mp4"/>

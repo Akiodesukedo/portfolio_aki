@@ -49,7 +49,18 @@ const Works = () => {
       <Header WebsiteName="Aki's Room" openMenu={() => setIsOpen(true)}/>
       <TopMessage line1="Here is what" line2="Akifumi created"/>
       {
-        allWorks == undefined ? <p>loading...</p> : <AllWorks allWorks={allWorks}/>
+        allWorks == undefined ? 
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-[200px] h-[200px] m-auto mb-[120px]"
+        >
+          <source src="/animations/loading.webm" type="video/webm" />
+        </video> 
+        : 
+        <AllWorks allWorks={allWorks}/>
       }
       <Footer />
     </div>

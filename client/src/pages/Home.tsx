@@ -62,7 +62,21 @@ const Home = () => {
       <Landing />
       <Intro />
       {
-        majorWorks == undefined ? <p>Loading...</p> : <MajorWork majorWorks={majorWorks}/>
+        majorWorks == undefined ? 
+        <div className='mx-[30px] md:mx-[60px] max-w-[1160px] xl:mx-auto'>
+          <h2 className='font-bold text-[36px] text-left mb-[32px]'>MAJOR WORKS</h2>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-[200px] h-[200px] m-auto mb-[80px]"
+          >
+            <source src="/animations/loading.webm" type="video/webm" />
+          </video> 
+        </div>
+        : 
+        <MajorWork majorWorks={majorWorks}/>
       }
       <Footer />
     </div>
