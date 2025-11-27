@@ -58,7 +58,7 @@ const Home = () => {
   return (
     <div>
       <Menu isOpen={isOpen} closeMenu={() => setIsOpen(false)}/>
-      <Header WebsiteName="Aki's Room" txtColor='white' absolute={true} openMenu={() => setIsOpen(true)}/>
+      <Header WebsiteName="Aki's Room" txtColor='black' absolute={true} openMenu={() => setIsOpen(true)}/>
       <Landing />
       <Intro />
       {

@@ -42,28 +42,28 @@ const Landing: React.FC<LandingProps> = ({}) => {
   ]
 
   return (
-    <div className="h-screen bg-amber-200 w-full">
+    <div className="h-screen bg-white w-full">
       <img 
-        src="/images/self_img.webp"
-        alt="Aki presenting"
-        className="object-cover object-top h-screen w-full brightness-50 bg-black"
+        src="/images/aki_2.webp"
+        alt="Aki portrait photo"
+        className="object-cover object-[47%_20%] h-screen w-full bg-white mask-b-from-50% mask-b-to-80% "
       />
       <div className='relative bottom-[280px] h-[280px] flex flex-col justify-between'>
         <div>
           <Marquee
             speed={isLarge ? 140 : 60}
           >
-            <p className='text-[110px] lg:text-[130px] font-medium text-white leading-[150px] lg:leading-[180px]'>
+            <p className='text-[110px] lg:text-[130px] font-medium text-black leading-[150px] lg:leading-[180px]'>
               Akifumi Hayashi&nbsp;
             </p>
           </Marquee>
           <p
-            className={`text-left text-white text-[26px] ml-[10px] md:ml-[40px] transition-opacity duration-500 ease-in-out ${isVisible ? 'opacity-100': 'opacity-0'}`}
+            className={`text-left text-black text-[26px] ml-[10px] md:ml-[40px] transition-opacity duration-500 ease-in-out ${isVisible ? 'opacity-100': 'opacity-0'}`}
           >
             { title }
           </p>
         </div>
-        <p className='text-right text-[30px] text-white font-medium mr-[10px] md:mr-[40px] mb-[14px] md:mb-[30px]'>Explore {"\u2193"}</p>
+        <p className='text-right text-[30px] text-black font-medium mr-[10px] md:mr-[40px] mb-[14px] md:mb-[30px]'>Explore {"\u2193"}</p>
       </div>
 
     </div>
