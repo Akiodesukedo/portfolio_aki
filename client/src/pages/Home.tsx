@@ -8,6 +8,7 @@ import Menu from '../components/Menu';
 import { useMenu } from '../context/MenuContext';
 import { useEffect, useRef, useState } from 'react';
 import { usePageTransition } from '../context/PageTransitionContext';
+import { motion, Variants } from "motion/react"
 
 type Work = {
   _id: string,
@@ -55,6 +56,17 @@ const Home = () => {
 
   }, [isTransitioning]);
 
+  const dotLoading: Variants = {
+    pulse: {
+      scale: [1, 1.5, 1],
+      transition: {
+        duration: 1.2,
+        repeat: Infinity,
+        ease: "easeInOut",
+      },
+    },
+  }
+
   return (
     <div>
       <Menu isOpen={isOpen} closeMenu={() => setIsOpen(false)}/>
@@ -65,15 +77,15 @@ const Home = () => {
         majorWorks == undefined ? 
         <div className='mx-[30px] md:mx-[60px] max-w-[1160px] xl:mx-auto'>
           <h2 className='font-bold text-[36px] text-left mb-[32px]'>MAJOR WORKS</h2>
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-[200px] h-[200px] m-auto mb-[80px]"
+          <motion.div
+            animate="pulse"
+            transition={{ staggerChildren: -0.2, staggerDirection: -1 }}
+            className="flex justify-center items-center gap-[20px] my-[80px] md:my-[160px]"
           >
-            <source src="/animations/loading.webm" type="video/webm" />
-          </video> 
+            <motion.div className="w-[20px] h-[20px] rounded-2xl bg-black will-change-transform" variants={dotLoading} />
+            <motion.div className="w-[20px] h-[20px] rounded-2xl bg-black will-change-transform" variants={dotLoading} />
+            <motion.div className="w-[20px] h-[20px] rounded-2xl bg-black will-change-transform" variants={dotLoading} />
+          </motion.div>
         </div>
         : 
         <MajorWork majorWorks={majorWorks}/>
