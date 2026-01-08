@@ -9,6 +9,7 @@ import { useState, useRef, useEffect } from "react";
 import CtaBtn from "../atoms/CtaBtn";
 import { usePageTransition } from '../context/PageTransitionContext';
 import TopMessage from "../components/TopMessage";
+import { motion, Variants } from "motion/react"
 
 type Work = {
   _id: string,
@@ -66,6 +67,17 @@ const Individual: React.FC = ({}) => {
     }
   }, [id, isTransitioning])
 
+  const dotLoading: Variants = {
+    pulse: {
+      scale: [1, 1.5, 1],
+      transition: {
+        duration: 1.2,
+        repeat: Infinity,
+        ease: "easeInOut",
+      },
+    },
+  }
+
   if (isValid === false) {
     return (
       <div>
@@ -95,15 +107,15 @@ const Individual: React.FC = ({}) => {
       <Header WebsiteName="Aki's Room" openMenu={() => setIsOpen(true)}/>
       {
         project == undefined ? 
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-[200px] h-[200px] m-auto mb-[120px]"
+        <motion.div
+        animate="pulse"
+        transition={{ staggerChildren: -0.2, staggerDirection: -1 }}
+        className="flex justify-center items-center gap-[20px] my-[80px] md:my-[160px]"
         >
-          <source src="/animations/loading.webm" type="video/webm" />
-        </video> 
+          <motion.div className="w-[20px] h-[20px] rounded-2xl bg-black will-change-transform" variants={dotLoading} />
+          <motion.div className="w-[20px] h-[20px] rounded-2xl bg-black will-change-transform" variants={dotLoading} />
+          <motion.div className="w-[20px] h-[20px] rounded-2xl bg-black will-change-transform" variants={dotLoading} />
+        </motion.div>
         : 
         <div>
           <div className="m-[30px] md:mx-[60px] max-w-[1160px] xl:mx-auto">
