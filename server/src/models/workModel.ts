@@ -18,7 +18,9 @@ const workSchema = new mongoose.Schema({
     btnName: { type: String },
     url: {type: String}
   }],
-  screenImageUrl: [{ type: String }]
+  screenImageUrl: [{ type: String }],
+  modalMsg: { type: String },
+  modalCtaUrl: { type: String }
 });
 
 export const Work = mongoose.model("Work", workSchema);

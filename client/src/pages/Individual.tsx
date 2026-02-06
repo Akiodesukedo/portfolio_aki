@@ -10,6 +10,7 @@ import CtaBtn from "../atoms/CtaBtn";
 import { usePageTransition } from '../context/PageTransitionContext';
 import TopMessage from "../components/TopMessage";
 import { motion, Variants } from "motion/react"
+import Modal from "../components/Modal";
 
 type Work = {
   _id: string,
@@ -28,7 +29,9 @@ type Work = {
     btnName: string,
     url: string
   }],
-  screenImageUrl: string[]
+  screenImageUrl: string[],
+  modalMsg: string,
+  modalCtaUrl: string
 }
 
 const Individual: React.FC = ({}) => {
@@ -40,6 +43,8 @@ const Individual: React.FC = ({}) => {
   const hasFetched = useRef(false);
   const [isValid, setIsValid] = useState<boolean | null>(null);
   const { triggerTransition } = usePageTransition();
+  const timerRef = useRef<number | null>(null);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   useEffect(() => {
     if (!isTransitioning && !hasFetched.current) {
@@ -66,6 +71,21 @@ const Individual: React.FC = ({}) => {
       hasFetched.current = false;
     }
   }, [id, isTransitioning])
+
+  useEffect(() => {
+    if (sessionStorage.getItem("modalShown")) return;
+
+    timerRef.current = window.setTimeout(() => {
+      setShowModal(true);
+      sessionStorage.setItem("modalShown", "true")
+    }, 30_000);
+
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current)
+      }
+    }
+  }, [])
 
   const dotLoading: Variants = {
     pulse: {
@@ -179,6 +199,15 @@ const Individual: React.FC = ({}) => {
           <Footer />
         </div>
       }
+      {showModal && project !== undefined && (
+        <Modal 
+          modalMsg={project?.modalMsg}
+          onClose={() => setShowModal(false)}
+          onCta={() => 
+            window.open(project.modalCtaUrl)
+          }
+        />
+      )}
     </div>
   )
 }
