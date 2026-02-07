@@ -7,6 +7,8 @@ import ScrollToTop from './components/ScrollToTop'
 import Individual from './pages/Individual'
 import FlashScreen from './components/FlashScreen'
 import NotFound from './pages/NotFound'
+import Room from './pages/Room'
+import Basic from './pages/Basic'
 
 const App = () => {
   return (
@@ -19,6 +21,8 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/works" element={<Works />} />
         <Route path='/work/:id' element={<Individual />} />
+        <Route path='/cela-demo-room' element={<Room />}/>
+        <Route path='/cela-demo-basic' element={<Basic />}/>
         <Route path='*' element={<NotFound/>}/>
       </Routes>
     </Router>
