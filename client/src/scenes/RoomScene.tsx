@@ -81,7 +81,7 @@ export const Camera = () => {
 export const Cactus = () => {
   const { nodes, materials } = useGLTF('/models/level-react-draco.glb')
   const cactusNodes = nodes.Cactus as THREE.Mesh
-  const cactusMaterials = materials.Cactus as THREE.Material
+  const cactusMaterials = materials.Cactus as THREE.MeshStandardMaterial
   return (
     <mesh geometry={cactusNodes.geometry} position={[-0.42, 0.51, -0.62]} rotation={[Math.PI / 2, 0, 0]}>
       <MeshWobbleMaterial factor={0.4} map={cactusMaterials.map} />
@@ -104,7 +104,7 @@ export const Box = ({ scale = 1, ...props }) => {
       scale={(clicked ? 1.5 : 1) * scale}
       onClick={() => click(!clicked)}
       onPointerOver={(event) => (event.stopPropagation(), hover(true))}
-      onPointerOut={(event) => hover(false)}>
+      onPointerOut={() => hover(false)}>
       <boxGeometry />
       <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
     </mesh>

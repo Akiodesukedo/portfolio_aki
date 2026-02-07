@@ -4,7 +4,7 @@ import type { Mesh } from "three";
 import Header from "../components/Header";
 import { useMenu } from "../context/MenuContext";
 import Menu from "../components/Menu";
-import { CameraControls, Environment, Fisheye, PerspectiveCamera } from "@react-three/drei";
+import { CameraControls, Environment,  PerspectiveCamera } from "@react-three/drei";
 // We need this type definition because I'm using TypeScript
 
 // 🚨 This is a React component that will render a 3D cube mesh (object) inside the scene (here Canvas React Component includes the scene)
