@@ -4,7 +4,7 @@ const Experience: React.FC = () => {
   return (
     <div className="mx-[24px] md:mx-[60px] mb-[60px] max-w-[1160px] xl:mx-auto">
       <h3 className="text-[26px] font-medium text-left mb-[22px]">
-        Education
+        Experience
       </h3>
       <div className="flex flex-col gap-[24px]">
         <ExpEduSection 
