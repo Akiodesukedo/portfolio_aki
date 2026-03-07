@@ -5,6 +5,7 @@ import { Canvas } from '@react-three/fiber';
 import Avatar from '../atoms/Avatar';
 import { CameraControls } from '@react-three/drei';
 import FloatingShape from '../atoms/FloatingShape';
+import FloatingObj from '../atoms/floatingObj';
 
 type ThreeDLandingProps = {
 }
@@ -70,9 +71,21 @@ const ThreeDLanding: React.FC<ThreeDLandingProps> = ({}) => {
 
         <Avatar />
 
-        <FloatingShape position={[1.8, 0, 1]}/>
-        <FloatingShape position={[-2, 0, 0]}/>
-        <FloatingShape position={[-.3, 0, -2]}/>
+        <FloatingObj 
+          url='/models/react_logo.glb'
+          position={[1.8, 0, 1]}
+          scale={.5}
+        />
+        <FloatingObj 
+          url='/models/typescript_logo.glb'
+          position={[-2, 0, 0]}
+          scale={.4}
+        />
+        <FloatingObj 
+          url='/models/racket.glb'
+          position={[-.3, 0, -2]}
+          scale={.6}
+        />
       </Canvas>
       <div className='relative bottom-[280px] h-[280px] flex flex-col justify-between'>
         <div>
