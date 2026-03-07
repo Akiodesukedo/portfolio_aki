@@ -12,13 +12,13 @@ const Intro: React.FC<IntroProps> = () => {
   return (
     <div className="relative mx-[30px] mt-[100px] mb-[260px] md:mb-[140px] md:mx-[60px] max-w-[1160px] xl:mx-auto">
       <p className="text-left text-[18px] font-bold mb-[50px]">
-        Full-stack web & mobile app developer with hands-on experience across multiple agile projects.
+        Full-stack developer building modern web and mobile applications with React, TypeScript, and cloud technologies.
       </p>
       <p className="text-left text-[16px] w-7/9 md:hidden">
-        Excel in React.js, React Native, JavaScript, TypeScript, and MongoDB, with a growing focus on GraphQL, backend technologies, and third-party integrations.
+        Akifumi works across frontend systems, backend APIs, and cloud infrastructure such as AWS. Recently he has been exploring interactive technologies like React Three Fiber and motion libraries to create more immersive web experiences.
       </p>
       <p className="text-left text-[16px] w-2/3 hidden md:block">
-        Akifumi specializes in React.js, React Native, JavaScript, TypeScript, MongoDB, and the MERN stack, with a growing passion for GraphQL, backend development, and third-party integrations. Known for his curiosity and disciplined mindset, he learns quickly and takes initiative to bring ideas to life.
+        Akifumi works across frontend interfaces, backend APIs, and cloud infrastructure such as AWS. He enjoys designing clean architectures that connect UX-focused frontend with reliable backend systems, from responsive web interfaces to mobile platforms. Recently he has been exploring interactive web technologies such as React Three Fiber and motion libraries to create more engaging and immersive digital experiences while continuing to strengthen his knowledge of modern frontend framework and cloud infrastructure.
       </p>
       <div className="absolute bottom-[-170px] md:bottom-[-60px] right-0">
         <RightTriangleBtn line1='More' line2='About Aki' passedFunc={() => triggerTransition('/about')}/>
