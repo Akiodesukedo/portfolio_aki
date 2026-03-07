@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import { Canvas } from '@react-three/fiber';
 import Avatar from '../atoms/Avatar';
 import { CameraControls } from '@react-three/drei';
-import FloatingObj from '../atoms/floatingObj';
+import FloatingObj from '../atoms/FloatingObj';
 
 type ThreeDLandingProps = {
 }
