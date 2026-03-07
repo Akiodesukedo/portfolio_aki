@@ -1,8 +1,8 @@
 import '../App.css'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Landing from '../components/Landing';
 import MajorWork from '../components/MajorWork';
+import ThreeDLanding from '../components/ThreeDLanding';
 import Intro from '../components/Intro';
 import Menu from '../components/Menu';
 import { useMenu } from '../context/MenuContext';
@@ -71,7 +71,7 @@ const Home = () => {
     <div>
       <Menu isOpen={isOpen} closeMenu={() => setIsOpen(false)}/>
       <Header WebsiteName="Aki's Room" txtColor='black' absolute={true} openMenu={() => setIsOpen(true)}/>
-      <Landing />
+      <ThreeDLanding />
       <Intro />
       {
         majorWorks == undefined ? 
