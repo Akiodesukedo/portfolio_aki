@@ -5,6 +5,7 @@ import { Canvas } from '@react-three/fiber';
 import Avatar from '../atoms/Avatar';
 import { CameraControls } from '@react-three/drei';
 import FloatingObj from '../atoms/FloatingObj';
+import ResponsiveCamera from '../atoms/ResponsiveCamera';
 
 type ThreeDLandingProps = {
 }
@@ -48,9 +49,10 @@ const ThreeDLanding: React.FC<ThreeDLandingProps> = ({}) => {
   return (
     <div className="h-screen bg-white w-full">
       <Canvas 
-        camera={{ position: [0, 1.5, 4], fov: 60}}
+        camera={{ position: [0, 1.5, 4], fov: 40}}
         className='bg-white mask-b-from-50% mask-b-to-80%'
       >
+        <ResponsiveCamera />
         <CameraControls 
           minPolarAngle={0} 
           maxPolarAngle={Math.PI / 1.6} 
