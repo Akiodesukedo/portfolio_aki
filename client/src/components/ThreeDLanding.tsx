@@ -4,7 +4,6 @@ import { useMediaQuery } from 'react-responsive';
 import { Canvas } from '@react-three/fiber';
 import Avatar from '../atoms/Avatar';
 import { CameraControls } from '@react-three/drei';
-import FloatingShape from '../atoms/FloatingShape';
 import FloatingObj from '../atoms/floatingObj';
 
 type ThreeDLandingProps = {
@@ -49,7 +48,7 @@ const ThreeDLanding: React.FC<ThreeDLandingProps> = ({}) => {
   return (
     <div className="h-screen bg-white w-full">
       <Canvas 
-        camera={{ position: [0, 1.5, 4], fov: 80}}
+        camera={{ position: [0, 1.5, 4], fov: 60}}
         className='bg-white mask-b-from-50% mask-b-to-80%'
       >
         <CameraControls 
@@ -72,19 +71,39 @@ const ThreeDLanding: React.FC<ThreeDLandingProps> = ({}) => {
         <Avatar />
 
         <FloatingObj 
-          url='/models/react_logo.glb'
-          position={[1.8, 0, 1]}
+          url='/models/iphone.glb'
+          orbitRadius={2}
+          orbitSpeed={.3}
+          startAngle={0}
           scale={.5}
         />
         <FloatingObj 
           url='/models/typescript_logo.glb'
-          position={[-2, 0, 0]}
+          orbitRadius={2}
+          orbitSpeed={.3}
+          startAngle={(Math.PI * 2) / 5}
           scale={.4}
         />
         <FloatingObj 
           url='/models/racket.glb'
-          position={[-.3, 0, -2]}
+          orbitRadius={2}
+          orbitSpeed={.3}
+          startAngle={(Math.PI * 4) / 5}
           scale={.6}
+        />
+        <FloatingObj 
+          url='/models/macbook.glb'
+          orbitRadius={2}
+          orbitSpeed={.3}
+          startAngle={(Math.PI * 6) / 5}
+          scale={.4}
+        />
+        <FloatingObj 
+          url='/models/react_logo.glb'
+          orbitRadius={2}
+          orbitSpeed={.3}
+          startAngle={(Math.PI * 8) / 5}
+          scale={.4}
         />
       </Canvas>
       <div className='relative bottom-[280px] h-[280px] flex flex-col justify-between'>
