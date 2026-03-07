@@ -55,7 +55,8 @@ const ThreeDLanding: React.FC<ThreeDLandingProps> = ({}) => {
           minPolarAngle={0} 
           maxPolarAngle={Math.PI / 1.6} 
           minDistance={1.5}
-          maxDistance={8}
+          maxDistance={6}
+          truckSpeed={0}
         />
         <ambientLight intensity={1}/>
         <directionalLight
