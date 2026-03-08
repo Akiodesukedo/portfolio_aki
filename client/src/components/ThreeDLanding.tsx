@@ -25,6 +25,30 @@ const ThreeDLanding: React.FC<ThreeDLandingProps> = ({}) => {
 
   const [titleIndex, setTitleIndex] = useState(0);
   const isLarge = useMediaQuery({ minWidth: 1024 })
+  // const [isVisible, setIsVisible] = useState<boolean>(true);
+
+  // 🚨 This useEffect was replaced by Framer Motion as 
+  // useEffect(() => {
+  //   let timeoutToSetNewTitleAndMakeItVisible: ReturnType<typeof setTimeout>
+
+  //   // Every 4 seconds, this fires. First ease out the prev title, then switch to a new one. keeps happening.
+  //   const intervalToSwitchTitle = setInterval(() => {
+  //     setIsVisible(false)
+
+  //     // This waits for .5 second while the prev title is disappearing.
+  //     // Once the prev is gone, quickly switch to the next title and set it back to visible.
+  //     timeoutToSetNewTitleAndMakeItVisible = setTimeout(() => {
+  //       setTitleIndex((prev) => (prev + 1) % TITLES.length);
+  //       setIsVisible(true);
+  //     }, 500)
+
+  //   }, 4000)
+
+  //   return () => {
+  //     clearInterval(intervalToSwitchTitle);
+  //     clearTimeout(timeoutToSetNewTitleAndMakeItVisible);
+  //   }
+  // }, []);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
