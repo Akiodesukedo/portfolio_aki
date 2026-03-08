@@ -27,7 +27,7 @@ const ThreeDLanding: React.FC<ThreeDLandingProps> = ({}) => {
   const isLarge = useMediaQuery({ minWidth: 1024 })
   // const [isVisible, setIsVisible] = useState<boolean>(true);
 
-  // 🚨 This useEffect was replaced by Framer Motion as 
+  // 🚨 This useEffect was replaced by Framer Motion as this logic couldn't make the ideal animation on mobile screen due to the landing screen's heavy 3d object expense. But to remember what I did initially, I'll keep the old code here.
   // useEffect(() => {
   //   let timeoutToSetNewTitleAndMakeItVisible: ReturnType<typeof setTimeout>
 
