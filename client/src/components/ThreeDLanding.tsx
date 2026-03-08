@@ -66,7 +66,6 @@ const ThreeDLanding: React.FC<ThreeDLandingProps> = ({}) => {
         <directionalLight
           position={[2, 4, 4]}
           intensity={.7}
-          castShadow
         />
         <directionalLight
           position={[-2, 2, 3]}
