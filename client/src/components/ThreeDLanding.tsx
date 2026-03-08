@@ -1,5 +1,5 @@
 import Marquee from 'react-fast-marquee'
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Canvas } from '@react-three/fiber';
 import Avatar from '../atoms/Avatar';
@@ -7,44 +7,46 @@ import { CameraControls } from '@react-three/drei';
 import FloatingObj from '../atoms/FloatingObj';
 import ResponsiveCamera from '../atoms/ResponsiveCamera';
 
+const TITLES: string[] = [
+  "Full-stack Developer",
+  "React Enthusiast",
+  "Software Engineer",
+  "Tennis Lover",
+  "Web App Developer",
+  "Snowboarder",
+  "Frontend Developer"
+]
+
 type ThreeDLandingProps = {
 }
 
 const ThreeDLanding: React.FC<ThreeDLandingProps> = ({}) => {
 
-  const [title, setTitle] = useState<string>("Frontend Developer");
-  const titleNum = useRef(0);
+  const [titleIndex, setTitleIndex] = useState(0);
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const isLarge = useMediaQuery({ minWidth: 1024 })
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIsVisible(false);
+    let timeoutToSetNewTitleAndMakeItVisible: ReturnType<typeof setTimeout>
 
-      // Basically this setTimeout waits for the fade out before switching a title to another.
-      setTimeout(() => {
-        titleNum.current += 1;
-        if (titleNum.current === titles.length) {
-          titleNum.current = 0;
-        }
-  
-        setTitle(titles[titleNum.current])
+    // Every 4 seconds, this fires. First ease out the prev title, then switch to a new one. keeps happening.
+    const intervalToSwitchTitle = setInterval(() => {
+      setIsVisible(false)
+
+      // This waits for .5 second while the prev title is disappearing.
+      // Once the prev is gone, quickly switch to the next title and set it back to visible.
+      timeoutToSetNewTitleAndMakeItVisible = setTimeout(() => {
+        setTitleIndex((prev) => (prev + 1) % TITLES.length);
         setIsVisible(true);
       }, 500)
-    }, 4000);
 
-    return () => clearInterval(interval);
-  }, [title]);
+    }, 4000)
 
-  const titles: string[] = [
-    "Full-stack Developer",
-    "React Enthusiast",
-    "Software Engineer",
-    "Tennis Lover",
-    "Web App Developer",
-    "Snowboarder",
-    "Frontend Developer"
-  ]
+    return () => {
+      clearInterval(intervalToSwitchTitle);
+      clearTimeout(timeoutToSetNewTitleAndMakeItVisible);
+    }
+  }, []);
 
   return (
     <div className="h-screen bg-white w-full">
@@ -121,7 +123,7 @@ const ThreeDLanding: React.FC<ThreeDLandingProps> = ({}) => {
           <p
             className={`text-left text-black text-[26px] ml-[10px] md:ml-[40px] transition-opacity duration-500 ease-in-out ${isVisible ? 'opacity-100': 'opacity-0'}`}
           >
-            { title }
+            { TITLES[titleIndex] }
           </p>
         </div>
         <p className='text-right text-[30px] text-black font-medium mr-[10px] md:mr-[40px] mb-[14px] md:mb-[30px]'>Explore {"\u2193"}</p>
