@@ -6,6 +6,7 @@ import Avatar from '../atoms/Avatar';
 import { CameraControls } from '@react-three/drei';
 import FloatingObj from '../atoms/FloatingObj';
 import ResponsiveCamera from '../atoms/ResponsiveCamera';
+import { AnimatePresence, motion } from "framer-motion";
 
 const TITLES: string[] = [
   "Full-stack Developer",
@@ -23,29 +24,14 @@ type ThreeDLandingProps = {
 const ThreeDLanding: React.FC<ThreeDLandingProps> = ({}) => {
 
   const [titleIndex, setTitleIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState<boolean>(true);
   const isLarge = useMediaQuery({ minWidth: 1024 })
 
   useEffect(() => {
-    let timeoutToSetNewTitleAndMakeItVisible: ReturnType<typeof setTimeout>
-
-    // Every 4 seconds, this fires. First ease out the prev title, then switch to a new one. keeps happening.
-    const intervalToSwitchTitle = setInterval(() => {
-      setIsVisible(false)
-
-      // This waits for .5 second while the prev title is disappearing.
-      // Once the prev is gone, quickly switch to the next title and set it back to visible.
-      timeoutToSetNewTitleAndMakeItVisible = setTimeout(() => {
-        setTitleIndex((prev) => (prev + 1) % TITLES.length);
-        setIsVisible(true);
-      }, 500)
-
-    }, 4000)
-
-    return () => {
-      clearInterval(intervalToSwitchTitle);
-      clearTimeout(timeoutToSetNewTitleAndMakeItVisible);
-    }
+    const intervalId = setInterval(() => {
+      setTitleIndex((prev) => (prev + 1) % TITLES.length);
+    }, 4000);
+  
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
@@ -119,11 +105,18 @@ const ThreeDLanding: React.FC<ThreeDLandingProps> = ({}) => {
               Akifumi Hayashi&nbsp;
             </p>
           </Marquee>
-          <p
-            className={`text-left text-black text-[26px] ml-[10px] md:ml-[40px] transition-opacity duration-500 ease-in-out ${isVisible ? 'opacity-100': 'opacity-0'}`}
-          >
-            { TITLES[titleIndex] }
-          </p>
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={TITLES[titleIndex]}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.5 }}
+              className="text-left text-black text-[26px] ml-[10px] md:ml-[40px]"
+            >
+              {TITLES[titleIndex]}
+            </motion.p>
+          </AnimatePresence>
         </div>
         <p className='text-right text-[30px] text-black font-medium mr-[10px] md:mr-[40px] mb-[14px] md:mb-[30px]'>Explore {"\u2193"}</p>
       </div>
