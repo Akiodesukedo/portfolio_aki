@@ -31,7 +31,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ projectData }) => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className='w-full md:grid md:grid-cols-2 lg:grid-cols-[500px_auto] gap-[12px] md:gap-x-[24px] lg:gap-x-[36px] md:grid-rows-[auto_auto_1fr] cursor-pointer'
+        className='w-full md:grid md:grid-cols-2 lg:grid-cols-[500px_auto] gap-[12px] md:gap-x-[24px] lg:gap-x-[36px] md:grid-rows-[auto_auto_1fr] cursor-pointer pt-[50px] pb-[40px] border-b-1 border-black'
       >
         <div className='flex flex-nowrap justify-between items-center mb-[12px] md:col-span-1 md:col-start-2 md:mb-0'>
           <h3 className='text-[30px]'>{ projectData.title }</h3>

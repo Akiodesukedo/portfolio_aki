@@ -1,6 +1,5 @@
 import React from 'react'
 import ProjectCard from '../molecules/ProjectCard'
-import LineDivider from '../atoms/LineDivider'
 
 type Work = {
   _id: string,
@@ -18,11 +17,10 @@ type AllWorkProps = {
 
 const AllWorks: React.FC<AllWorkProps> = ({ allWorks }) => {
   return (
-    <div className='mx-[30px] md:mx-[60px] mt-[100px] mb-[60px] max-w-[1160px] xl:mx-auto'>
+    <div className='mx-[30px] md:mx-[60px] mt-[100px] pb-[60px] max-w-[1160px] xl:mx-auto'>
       {allWorks.map((work) => (
         <div key={work._id}>
           <ProjectCard projectData={work}/>
-          <LineDivider mTop='50px' mBottom='40px'/>
         </div>
       ))}
     </div>
