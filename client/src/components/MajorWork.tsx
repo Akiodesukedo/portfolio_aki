@@ -31,7 +31,7 @@ const MajorWork: React.FC<MajorWorkProps> = ({ majorWorks }) => {
         className='border border-neutral-600 rounded-full h-[64px] px-[40px] mt-[60px] md:px-[80px] hover:border-black hover:text-white hover:bg-black cursor-pointer duration-200 ease-in'
         onClick={() => triggerTransition("/works")}
       >
-        More Work
+        More Works
       </button>
     </div>
   )
