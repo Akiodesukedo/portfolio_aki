@@ -1,5 +1,5 @@
 import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import type { Mesh } from "three";
 // We need this type definition because I'm using TypeScript
 import { useControls } from "leva";
@@ -9,6 +9,10 @@ const SpinningBox = () => {
   const boxRef = useRef<Mesh>(null!);
   // No rerendering everytime Mesh (3D object) Object updates.
   // But keep track of the latest version of Mesh by making a reference here so Canvas can render the 3D object continuously without re-rendering the entire page.
+  const [wireFrame, setWireFrame] = useState<boolean>(false);
+
+  const handleClick = () => setWireFrame(!wireFrame)
+
   const { color, speed } = useControls({
     color: "blue",
     speed: {
@@ -28,7 +32,7 @@ const SpinningBox = () => {
   // And "delta" means "Time passed since the last frame". This makes animation consistent even on slower computer.
 
   return (
-    <mesh ref={boxRef}>
+    <mesh ref={boxRef} castShadow onClick={() => handleClick()}>
     {/* 
       This is a React Three Fiber <mesh> component
       Under the hood, it creates a Three.js THREE.Mesh
@@ -40,7 +44,7 @@ const SpinningBox = () => {
         BoxGeometry creates a cube/recutangular prism. 
         args are [width, height, depth] 
       */}
-      <meshStandardMaterial color={ color } />
+      <meshStandardMaterial color={ color } wireframe={wireFrame}/>
       {/* Material = the skin/paint of the object. */}
     </mesh>
   );

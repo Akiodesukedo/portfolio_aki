@@ -3,6 +3,7 @@ const Knot:React.FC = () => {
     <mesh 
       position={[-2.5, 2, -1.5]} 
       rotation={[0, 0, Math.PI]} 
+      castShadow
     >
     {/* 
       position is [x, y, z]

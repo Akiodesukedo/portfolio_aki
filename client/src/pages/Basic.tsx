@@ -6,6 +6,8 @@ import { CameraControls, Environment, GizmoHelper, GizmoViewport, PerspectiveCam
 import SpinningBox from "../atoms/SpinningBox";
 import Sphere from "../atoms/Sphere";
 import Knot from "../atoms/Knot";
+import SpotLightWithHelper from "../atoms/SpotLightWithHelper";
+import BigRectToCastShadow from "../atoms/BigRectToCastShadow";
 
 const Basic = () => {
   const {isOpen, setIsOpen} = useMenu();
@@ -14,7 +16,7 @@ const Basic = () => {
     <div style={{ height: "100vh" }}>
       <Menu isOpen={isOpen} closeMenu={() => setIsOpen(false)} />
       <Header WebsiteName="Aki's Room" txtColor='black' absolute={true} openMenu={() => setIsOpen(true)}/>
-      <Canvas camera={{ fov: 60 }}>
+      <Canvas camera={{ fov: 60 }} shadows>
       {/* 
       Creates 3D canvas here
       Camera position is [x(horizontal), y(vertical), z(depth)] axis. So in this case, the camera backs away from origin
@@ -41,9 +43,10 @@ const Basic = () => {
         <SpinningBox />
         <Sphere />
         <Knot />
+        <BigRectToCastShadow />
+        <SpotLightWithHelper />
         <PerspectiveCamera makeDefault position={[0, 0, 15]} />
         {/* Set default camera position */}
-
       </Canvas>
     </div>
   )
