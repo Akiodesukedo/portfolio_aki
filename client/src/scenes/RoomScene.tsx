@@ -4,6 +4,22 @@ import { useFrame } from '@react-three/fiber'
 import { MeshWobbleMaterial, useGLTF } from '@react-three/drei'
 import { useSpring, a } from '@react-spring/three'
 
+export const Avatar: React.FC = () => {
+  const { scene } = useGLTF('/models/avatar.glb')
+  const meshRef = useRef<THREE.Group>(null!);
+  
+  return (
+    <primitive 
+      ref={meshRef} 
+      object={ scene }
+      castShadow
+      scale={.5}
+      position={[.1, .63, .5]}
+      rotation={[0, Math.PI / 4, 0]}
+    />
+  )
+}
+
 // 👇 Take this "level" piece out of the model and place it as a component.
 export const Level:React.FC = () => {
   const { nodes } = useGLTF('/models/level-react-draco.glb')

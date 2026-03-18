@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber'
 import { Fisheye, CameraControls, PerspectiveCamera, Environment } from '@react-three/drei'
-import { Level, Sudo, Camera, Cactus, Box } from '../scenes/RoomScene'
+import { Level, Sudo, Camera, Cactus, Box, Avatar } from '../scenes/RoomScene'
 import Menu from '../components/Menu'
 import Header from '../components/Header'
 import { useMenu } from '../context/MenuContext'
@@ -17,6 +17,7 @@ const Room = () => {
           <CameraControls minPolarAngle={0} maxPolarAngle={Math.PI / 1.6} />
           <ambientLight intensity={Math.PI / 2} />
           <group scale={20} position={[5, -11, -5]}>
+            <Avatar />
             <Level />
             <Sudo />
             <Camera />
