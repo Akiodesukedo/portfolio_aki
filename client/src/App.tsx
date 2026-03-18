@@ -21,8 +21,8 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/works" element={<Works />} />
         <Route path='/work/:id' element={<Individual />} />
-        <Route path='/cela-demo-room' element={<Room />}/>
-        <Route path='/cela-demo-basic' element={<Basic />}/>
+        <Route path='/r3f-room' element={<Room />}/>
+        <Route path='/r3f-basic' element={<Basic />}/>
         <Route path='*' element={<NotFound/>}/>
       </Routes>
     </Router>
