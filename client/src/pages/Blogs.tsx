@@ -5,6 +5,7 @@ import Menu from "../components/Menu";
 import { useMenu } from "../context/MenuContext";
 import { usePageTransition } from "../context/PageTransitionContext";
 import { motion, Variants } from "motion/react"
+import TopMessage from "../components/TopMessage";
 
 type Blog = {
   _id: string,
@@ -55,6 +56,7 @@ const Blogs:React.FC = () => {
     <div>
       <Menu isOpen={isOpen} closeMenu={() => setIsOpen(false)}/>
       <Header WebsiteName="Aki's Room" openMenu={() => setIsOpen(true)}/>
+      <TopMessage line1="Here is what" line2="Akifumi thought"/>
       {
         allBlogs == undefined ? 
         <motion.div
