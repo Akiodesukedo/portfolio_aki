@@ -8,6 +8,7 @@ export const getAllWorks = async (req: Request, res: Response) => {
     const works = await Work.find();
     res.status(200).json(works);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "Server error"});
   }
 };
@@ -28,6 +29,7 @@ export const getAllWorksForWork = async (req: Request, res: Response) => {
 
     res.status(200).json(WorksForWorks);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "Server error"});
   }
 };
@@ -42,10 +44,12 @@ export const getWorkById = async (req: Request, res: Response) => {
     };
     res.status(200).json(work);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "Server error" });
   }
 };
 
+// Get all the works for home page
 export const getWorksByIdsForHome = async (req: Request, res: Response) => {
   try{
     const { ids } = req.query;
@@ -74,6 +78,7 @@ export const getWorksByIdsForHome = async (req: Request, res: Response) => {
     res.status(200).json(WorksForHome);
 
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "Server error" });
   }
 }
@@ -85,6 +90,7 @@ export const createWork = async (req: Request, res: Response) => {
     const saved = await newWork.save();
     res.status(201).json(saved);
   } catch (err) {
+    console.error(err);
     res.status(400).json({ message: "Invalid data" });
   }
 };
