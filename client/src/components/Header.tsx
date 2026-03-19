@@ -47,6 +47,11 @@ const Header: React.FC<HeaderProps> = ({ WebsiteName, txtColor, absolute = false
         >
           Works
         </p>
+        <p className="cursor-pointer p-[8px] hover:font-bold duration-200 ease-in"
+          onClick={() => triggerTransition('blogs')}
+        >
+          Blogs
+        </p>
       </div>
     </div>
   )
