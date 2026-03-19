@@ -66,7 +66,7 @@ const Footer: React.FC<FooterProps> = ({ imgUrl }) => {
       <div className='flex flex-nowrap justify-between'>
         <div>
           <p className="text-white text-[14px] text-left">Version:</p>
-          <p className="text-white text-[14px] text-left">2025@edition</p>
+          <p className="text-white text-[14px] text-left">2026.05</p>
         </div>
         <div>
           <p className="text-white text-[14px] text-left">Timezone:</p>

@@ -1,13 +1,14 @@
 import '../App.css'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Landing from '../components/Landing';
 import MajorWork from '../components/MajorWork';
+import ThreeDLanding from '../components/ThreeDLanding';
 import Intro from '../components/Intro';
 import Menu from '../components/Menu';
 import { useMenu } from '../context/MenuContext';
 import { useEffect, useRef, useState } from 'react';
 import { usePageTransition } from '../context/PageTransitionContext';
+import { motion, Variants } from "motion/react"
 
 type Work = {
   _id: string,
@@ -41,8 +42,8 @@ const Home = () => {
       // console.log(query);
 
       fetch(`${fetchUrl}/works/by-ids?${query}`)
-        .then(res => res.json())
-        .then(data => {
+        .then(async res => {
+          const data = await res.json();
           // console.log(data);
           setMajorWorks(data);
         })
@@ -55,14 +56,39 @@ const Home = () => {
 
   }, [isTransitioning]);
 
+  const dotLoading: Variants = {
+    pulse: {
+      scale: [1, 1.5, 1],
+      transition: {
+        duration: 1.2,
+        repeat: Infinity,
+        ease: "easeInOut",
+      },
+    },
+  }
+
   return (
     <div>
       <Menu isOpen={isOpen} closeMenu={() => setIsOpen(false)}/>
-      <Header WebsiteName="Aki's Room" txtColor='white' absolute={true} openMenu={() => setIsOpen(true)}/>
-      <Landing />
+      <Header WebsiteName="Aki's Room" txtColor='black' absolute={true} openMenu={() => setIsOpen(true)}/>
+      <ThreeDLanding />
       <Intro />
       {
-        majorWorks == undefined ? <p>Loading...</p> : <MajorWork majorWorks={majorWorks}/>
+        majorWorks == undefined ? 
+        <div className='mx-[30px] md:mx-[60px] max-w-[1160px] xl:mx-auto'>
+          <h2 className='font-bold text-[36px] text-left mb-[32px]'>MAJOR WORKS</h2>
+          <motion.div
+            animate="pulse"
+            transition={{ staggerChildren: -0.2, staggerDirection: -1 }}
+            className="flex justify-center items-center gap-[20px] my-[80px] md:my-[160px]"
+          >
+            <motion.div className="w-[20px] h-[20px] rounded-2xl bg-black will-change-transform" variants={dotLoading} />
+            <motion.div className="w-[20px] h-[20px] rounded-2xl bg-black will-change-transform" variants={dotLoading} />
+            <motion.div className="w-[20px] h-[20px] rounded-2xl bg-black will-change-transform" variants={dotLoading} />
+          </motion.div>
+        </div>
+        : 
+        <MajorWork majorWorks={majorWorks}/>
       }
       <Footer />
     </div>

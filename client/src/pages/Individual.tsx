@@ -8,6 +8,9 @@ import { useParams } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import CtaBtn from "../atoms/CtaBtn";
 import { usePageTransition } from '../context/PageTransitionContext';
+import TopMessage from "../components/TopMessage";
+import { motion, Variants } from "motion/react"
+import Modal from "../components/Modal";
 
 type Work = {
   _id: string,
@@ -26,7 +29,9 @@ type Work = {
     btnName: string,
     url: string
   }],
-  screenImageUrl: string[]
+  screenImageUrl: string[],
+  modalMsg: string,
+  modalCtaUrl: string
 }
 
 const Individual: React.FC = ({}) => {
@@ -36,18 +41,30 @@ const Individual: React.FC = ({}) => {
   const [project, setProject] = useState<Work>();
   const { isTransitioning } = usePageTransition();
   const hasFetched = useRef(false);
+  const [isValid, setIsValid] = useState<boolean | null>(null);
+  const { triggerTransition } = usePageTransition();
+  const timerRef = useRef<number | null>(null);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   useEffect(() => {
     if (!isTransitioning && !hasFetched.current) {
       hasFetched.current = true;
     
       fetch(`${fetchUrl}/works/${id}`)
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
+      .then(async res => {
+        if (!res.ok) {
+          setIsValid(false);
+          return null;
+        }
+
+        const data = await res.json();
+        setIsValid(true);
         setProject(data);
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        setIsValid(false);
+      })
     }
 
     if (isTransitioning) {
@@ -55,14 +72,72 @@ const Individual: React.FC = ({}) => {
     }
   }, [id, isTransitioning])
 
+  useEffect(() => {
+    if (sessionStorage.getItem("modalShown")) return;
+
+    timerRef.current = window.setTimeout(() => {
+      setShowModal(true);
+      sessionStorage.setItem("modalShown", "true")
+    }, 30_000);
+
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current)
+      }
+    }
+  }, [])
+
+  const dotLoading: Variants = {
+    pulse: {
+      scale: [1, 1.5, 1],
+      transition: {
+        duration: 1.2,
+        repeat: Infinity,
+        ease: "easeInOut",
+      },
+    },
+  }
+
+  if (isValid === false) {
+    return (
+      <div>
+        <Menu isOpen={isOpen} closeMenu={() => setIsOpen(false)}/>
+        <Header WebsiteName="Aki's Room" openMenu={() => setIsOpen(true)}/>
+        <div className="p-[24px] sm:py-[64px]">
+          <TopMessage line1="Oops! The project you're" line2="looking for doesn't exist."/>
+          <CtaBtn 
+            btnMsg="Check Other Works" 
+            passedFunc={() => triggerTransition('/works')}
+            borderColor="#747474"
+            bgColor="bg-white"
+            txtColor="text-black"
+            marginTop="mt-[64px]"
+            hoverBgColor="hover:bg-black"
+            hovertxtColor="hover:text-white"
+          />
+        </div>
+        <Footer />
+      </div>      
+    )
+  }
+
   return (
     <div>
       <Menu isOpen={isOpen} closeMenu={() => setIsOpen(false)}/>
       <Header WebsiteName="Aki's Room" openMenu={() => setIsOpen(true)}/>
       {
-        project == undefined ? <p>loading...</p> : 
+        project == undefined ? 
+        <motion.div
+        animate="pulse"
+        transition={{ staggerChildren: -0.2, staggerDirection: -1 }}
+        className="flex justify-center items-center gap-[20px] my-[80px] md:my-[160px]"
+        >
+          <motion.div className="w-[20px] h-[20px] rounded-2xl bg-black will-change-transform" variants={dotLoading} />
+          <motion.div className="w-[20px] h-[20px] rounded-2xl bg-black will-change-transform" variants={dotLoading} />
+          <motion.div className="w-[20px] h-[20px] rounded-2xl bg-black will-change-transform" variants={dotLoading} />
+        </motion.div>
+        : 
         <div>
-          {/* 🚨🚨🚨🚨 Change this video section so that the page shows a proper video 🚨🚨🚨🚨 */}
           <div className="m-[30px] md:mx-[60px] max-w-[1160px] xl:mx-auto">
             <video autoPlay loop muted playsInline className="w-full rounded-xl">
               <source src={project.videoLoc} type="video/mp4"/>
@@ -124,6 +199,15 @@ const Individual: React.FC = ({}) => {
           <Footer />
         </div>
       }
+      {showModal && project !== undefined && (
+        <Modal 
+          modalMsg={project?.modalMsg}
+          onClose={() => setShowModal(false)}
+          onCta={() => 
+            window.open(project.modalCtaUrl)
+          }
+        />
+      )}
     </div>
   )
 }

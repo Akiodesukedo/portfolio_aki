@@ -6,6 +6,8 @@ import Footer from "../components/Footer";
 import TopMessage from "../components/TopMessage";
 import ParaSection from "../components/ParaSection";
 import Expertise from "../components/Expertise";
+import Experience from "../components/Experience";
+import Education from "../components/Education";
 
 const About: React.FC = ({}) => {
 
@@ -24,14 +26,12 @@ const About: React.FC = ({}) => {
         colDiv={true}
       />
       <ParaSection 
-        title="Experience"
+        title="Introduction"
         paragraph1="I'm a full-stack web and mobile app developer with two years of hands-on experience working on agile projects, primarily using the React ecosystem, the MERN stack, and occasionally GraphQL. My focus has been on creating solutions to real-world problems — from developing a blood sugar tracking app for diabetes management to building an inventory management system for coconut middle buyers in the Philippines. These experiences have given me a holistic understanding of how to design and develop web and mobile applications efficiently, both on the frontend and backend. If you are curious about what my team and I have built, feel free to check out the Works page for more details!"
       />
       <Expertise />
-      <ParaSection 
-        title="Strength"
-        paragraph1={`・Problem solving and analytical thinking\n・Logical and structured approach to challenges\n・Hands-on agile project experience\n・Strong public speaking and communication skills\n・Natural curiosity and love for continuous learning\n・Long-term planning and strategic mindset\n・Punctual and reliable under deadlines\n・Team-oriented mindset with a collaborative spirit\n・Adaptability when facing new tools or technologies\n・Empathy and drive to contribute to community growth`}
-      />
+      <Experience />
+      <Education />
       <Footer />
     </div>
   )
