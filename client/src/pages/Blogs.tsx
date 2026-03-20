@@ -6,6 +6,7 @@ import { useMenu } from "../context/MenuContext";
 import { usePageTransition } from "../context/PageTransitionContext";
 import { motion, Variants } from "motion/react"
 import TopMessage from "../components/TopMessage";
+import AllBlogs from "../components/AllBlogs";
 
 type Blog = {
   _id: string,
@@ -69,26 +70,7 @@ const Blogs:React.FC = () => {
           <motion.div className="w-[20px] h-[20px] rounded-2xl bg-black will-change-transform" variants={dotLoading} />
         </motion.div>
         : 
-        <div>
-          {allBlogs.map((blog) => {
-            return (
-              <div key={blog._id}>
-                <h2>
-                  {blog.title}
-                </h2>
-                <p>
-                  {blog.thumbnailImageUrl}
-                </p>
-                <p>
-                  {blog.slug}
-                </p>
-                <p>
-                  {blog.description}
-                </p>
-              </div>
-            )
-          })}
-        </div>
+        <AllBlogs allBlogs={allBlogs} />
       }
       <Footer />
     </div>

@@ -161,7 +161,6 @@ const IndivBlog:React.FC = () => {
               ))
             }         
           </div>
-          <Footer />
         </div>
       }
       <Footer />
