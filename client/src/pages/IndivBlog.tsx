@@ -147,8 +147,92 @@ const IndivBlog:React.FC = () => {
         </motion.div>
         : 
         <div>
-          <h1>{blog.title}</h1>
+          <img 
+            src='/images/akisroom_thumbnail.webp'
+            alt='tentative image here for test'
+            className='object-cover h-[120px] md:h-[200px] w-full self-center mb-[32px]'
+          />
+          {/* 👇 Turn this back on once data and blogs are ready */}
+          {/* {blog.thumbnailImageUrl && (
+            <img
+              src={blog.thumbnailImageUrl}
+              alt={blog.title}
+              className="object-cover md:h-[200px] w-full mb-[32px]"
+            />
+          )} */}
           <div className="mx-[24px] md:mx-[60px] mb-[60px] max-w-[1160px] xl:mx-auto">
+            <div className="flex flex-col md:flex-row flex-nowrap justify-between">
+              <p className="text-gray-600">Posted on: {blog.createdAt}</p>
+              <div className="flex flex-nowrap">
+                {blog.tags.map((tag, index) => {
+                  return blog.tags.length - 1 === index ? (
+                    <p key={tag} className="text-gray-600">
+                      { tag }
+                    </p>
+                  ) :
+                  (
+                    <p key={tag} className="text-gray-600">
+                      { tag }/
+                    </p>
+                  )
+                })}
+              </div>
+            </div>
+            <h1 className="text-[36px] md:text-[48px] font-bold text-left mb-[16px]">{blog.title}</h1>
+            <div className="flex flex-col gap-[24px] mb-[60px]">
+              {blog.blocks.map((block, index) => {
+                switch (block.type) {
+                  case "heading":
+                    return (
+                      <h2
+                        key={index}
+                        className="text-[28px] md:text-[32px] font-semibold text-left mt-[20px]"
+                      >
+                        {block.text}
+                      </h2>
+                    );
+
+                  case "paragraph":
+                    return (
+                      <p
+                        key={index}
+                        className="text-left text-[17px] leading-[1.9] text-neutral-800"
+                      >
+                        {block.text}
+                      </p>
+                    );
+
+                  case "quote":
+                    return (
+                      <blockquote
+                        key={index}
+                        className="border-l-4 border-neutral-400 pl-[16px] italic text-left text-[18px] text-neutral-700"
+                      >
+                        {block.text}
+                      </blockquote>
+                    );
+
+                  case "image":
+                    return (
+                      <figure key={index} className="w-full">
+                        <img
+                          src={block.imageUrl}
+                          alt={block.alt || "Blog image"}
+                          className="w-full rounded-xl"
+                        />
+                        {block.caption && (
+                          <figcaption className="text-[14px] text-neutral-500 mt-[8px] text-center">
+                            {block.caption}
+                          </figcaption>
+                        )}
+                      </figure>
+                    );
+
+                  default:
+                    return null;
+                }
+              })}
+            </div>
             <h3 className="text-[24px] font-medium text-left mb-[22px]">
               Links
             </h3>  
