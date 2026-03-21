@@ -23,7 +23,7 @@ const ParaSection: React.FC<ParaSecProps> = ({ title, paragraph1, paragraph2, pa
         <img 
           src={imageUrl}
           alt={`${title} image`}
-          className={`w-full h-auto ovject-cover mb-[22px] ${colDiv ? "md:col-span-1 md:col-start-1 md:row-start-2" : ""} `}
+          className={`w-full h-auto ovject-cover mb-[22px] rounded-xl md:rounded-2xl ${colDiv ? "md:col-span-1 md:col-start-1 md:row-start-2" : ""} `}
         />
       }
       { paragraph2 &&

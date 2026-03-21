@@ -12,7 +12,7 @@ const Header: React.FC<HeaderProps> = ({ WebsiteName, txtColor, absolute = false
 
   return (
     <div 
-      className={`w-full flex flex-nowrap justify-between p-[20px] md:p-[40px] z-30 ${absolute ? 'absolute top-0 left-0' : 'relative'}`}
+      className={`w-full flex flex-nowrap justify-between p-[20px] md:p-[40px] z-30 ${absolute ? 'absolute top-0 left-0' : 'relative'}`} 
     >
       <h1
         style={{color: txtColor ? txtColor: 'black'}}
@@ -46,6 +46,11 @@ const Header: React.FC<HeaderProps> = ({ WebsiteName, txtColor, absolute = false
           onClick={() => triggerTransition('works')}
         >
           Works
+        </p>
+        <p className="cursor-pointer p-[8px] hover:font-bold duration-200 ease-in"
+          onClick={() => triggerTransition('blogs')}
+        >
+          Blogs
         </p>
       </div>
     </div>

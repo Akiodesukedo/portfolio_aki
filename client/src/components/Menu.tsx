@@ -25,6 +25,7 @@ const Menu: React.FC<MenuProps> = ({ isOpen, closeMenu }) => {
       <MenuItem itemName="Home" pagePath="/" closeMenu={closeMenu}/>
       <MenuItem itemName="About" pagePath="/about" closeMenu={closeMenu}/>
       <MenuItem itemName="Works" pagePath="/works" closeMenu={closeMenu} />
+      <MenuItem itemName="Blogs" pagePath="/blogs" closeMenu={closeMenu} />
       {/* <MenuItem itemName="Test" pagePath="/test" closeMenu={closeMenu}/> */}
     </div>
   )
