@@ -11,6 +11,8 @@ type BlogCardProps = {
     tags: string[],
     description: string,
     thumbnailImageUrl: string,
+    createdAt: string;
+    published: boolean;
   }
 }
 
@@ -28,34 +30,29 @@ const BlogCard: React.FC<BlogCardProps> = ({ blogData }) => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className='w-full md:grid md:grid-cols-2 lg:grid-cols-[500px_auto] gap-[12px] md:gap-x-[24px] lg:gap-x-[36px] md:grid-rows-[auto_auto_1fr_auto] cursor-pointer pt-[50px] pb-[40px]'
+        className='w-full cursor-pointer mb-[60px] md:mb-0'
       >
-        <div className='flex flex-nowrap justify-between items-center mb-[12px] md:col-span-1 md:col-start-2 md:mb-0'>
-          <h3 className='text-[30px] text-left'>{ blogData.title }</h3>
-          <p className='text-[14px] text-neutral-700'>Posted on: </p>
-        </div>
         <img 
           src='/images/akisroom_thumbnail.webp'
           alt='tentative image here for test'
-          className='object-cover w-full md:col-span-1 md:col-start-1 md:row-span-4 md:row-start-1 self-center rounded-xl md:rounded-2xl'
+          className='object-cover w-full self-center rounded-xl md:rounded-2xl'
         />
         {/* 👇 Turn this back on once data and blogs are ready */}
         {/* { blogData.thumbnailImageUrl ?
-            <img src={blogData.thumbnailImageUrl} alt={blogData.title} className='object-cover w-full md:col-span-1 md:col-start-1 md:row-span-4 md:row-start-1 self-center rounded-xl md:rounded-2xl'/>
+            <img src={blogData.thumbnailImageUrl} alt={blogData.title} className='object-cover w-full self-center rounded-xl md:rounded-2xl'/>
           :
             <div className="h-[180px] w-full bg-neutral-300 md:col-span-1 md:col-start-1"></div>
         } */}
-        <div className='flex flex-wrap gap-x-[6px] gap-y-[5px] mt-[26px] mb-[20px] md:col-span-1 md:col-start-2 md:my-auto '>
+        <h3 className='text-[30px] text-left'>{ blogData.title }</h3>
+        <div className='flex flex-wrap gap-x-[6px] gap-y-[5px] md:my-auto '>
           {blogData.tags.map((tag, index) => (
             <Tag tagName={tag} key={index}/>
           ))}
         </div>
-        <p className='leading-[18px] text-[14px] text-left md:col-span-1 md:col-start-2'>
+        <p className='leading-[18px] text-[14px] text-left line-clamp-3 '>
           { blogData.description }
         </p>
-        <p className='text-[18px] text-right font-semibold md:col-span-1 md:col-start-2 pt-[16px] md:pt-0'>
-          Read more &gt;&gt;
-        </p>
+        <p className='text-[14px] text-neutral-700 text-left'>Posted on: {blogData.createdAt}</p>
       </motion.div>
     </div>
   )

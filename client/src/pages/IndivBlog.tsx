@@ -19,6 +19,11 @@ type BlogParagraphBlock = {
   text: string;
 };
 
+type BlogQuoteBlock = {
+  type: "quote";
+  text: string;
+};
+
 type BlogImageBlock = {
   type: "image";
   imageUrl: string;
@@ -29,6 +34,7 @@ type BlogImageBlock = {
 type BlogContentBlock =
   | BlogHeadingBlock
   | BlogParagraphBlock
+  | BlogQuoteBlock
   | BlogImageBlock;
 
 type BlogButton = {
@@ -48,6 +54,8 @@ type Blog = {
 
   btns?: BlogButton[];
 
+  createdAt?: string;
+  modifiedAt?: string;
   published?: boolean;
 }
 

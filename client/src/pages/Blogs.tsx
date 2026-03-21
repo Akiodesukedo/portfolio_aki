@@ -15,6 +15,8 @@ type Blog = {
   tags: string[],
   description: string,
   thumbnailImageUrl: string,
+  createdAt: string;
+  published: boolean;
 }
 
 const Blogs:React.FC = () => {

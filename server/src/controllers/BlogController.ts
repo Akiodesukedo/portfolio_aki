@@ -51,6 +51,8 @@ export const getMultipleBlogsBySlugs = async (req: Request, res: Response) => {
       tags: blog.tags,
       description: blog.description,
       thumbnailImageUrl: blog.thumbnailImageUrl,
+      createdAt: blog.createdAt,
+      published: blog.published
     }));
 
     res.status(200).json(blogsBySlugs);
