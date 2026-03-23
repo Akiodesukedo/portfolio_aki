@@ -35,7 +35,9 @@ const PostPage:React.FC = () => {
     { type: "heading", text: "" },
     { type: "paragraph", text: "" }
   ])
-
+  const [blogButtons, setBlogButtons] = useState<BtnItem[]>([
+    { btnName: "", url: "" }
+  ])
 
   const addBlogBlock = () => {
     setBlogBlocks((prev) => [...prev, { type: "heading", text: "" }])
@@ -57,6 +59,26 @@ const PostPage:React.FC = () => {
       )
     );
   };
+
+  const addBlogButton = () => {
+    setBlogButtons((prev) => [...prev, { btnName: "", url: "" }])
+  }
+
+  const removeBlogButton = (index: number) => {
+    setBlogButtons((prep) => prep.filter((_, i) => i !== index))
+  }
+
+  const updateBlogButton = (
+    index: number,
+    field: keyof BtnItem,
+    value: string
+  ) => {
+    setBlogButtons((prev) =>
+      prev.map((button, i) =>
+        i === index ? { ...button, [field]: value } : button
+      )
+    )
+  }
 
   const handleSubmit = async (e: React.SubmitEvent) => {
     e.preventDefault();
@@ -236,7 +258,68 @@ const PostPage:React.FC = () => {
                   </div>
                 ))}                
               </div>
+            </section>
 
+            {/* Button section */}
+            <section >
+              <div className="flex justify-between items-center">
+                <h2 className="text-xl font-semibold">
+                  Links if any
+                </h2>
+                <CtaBtn 
+                  btnMsg="Add Btn"
+                  passedFunc={() => addBlogButton()}
+                  width="w-[300px]"
+                  className="hover:bg-black hover:text-white"
+                />     
+              </div>
+              <div className="flex flex-col gap-[24px] mt-[24px]">
+                {blogButtons.map((button, index) => (
+                  <div 
+                    key={index}
+                    className="bg-gray-200 rounded p-[24px] flex flex-col gap-[12px]"
+                  >
+                    <div className="flex justify-between items-center">
+                      <p className="font-semibold">
+                        Button #{index + 1}
+                      </p>
+                      <CtaBtn 
+                        btnMsg="Remove Button"
+                        passedFunc={() => removeBlogButton(index)}
+                        width="w-[300px]"
+                        txtColor="text-red-600"
+                        marginTop="mt-0"
+                        className="border-red-500 hover:bg-red-500 hover:border-red-500 hover:text-white"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-[8px]">
+                      <input
+                        type="text"
+                        placeholder="Button Name"
+                        value={button.btnName || ""}
+                        onChange={(e) => updateBlogButton(
+                          index,
+                          "btnName",
+                          e.target.value
+                        )}
+                        className="border rounded px-[12px] py-[8px] bg-white"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Button URL"
+                        value={button.url || ""}
+                        onChange={(e) => updateBlogButton(
+                          index,
+                          "url",
+                          e.target.value
+                        )}
+                        className="border rounded px-[12px] py-[8px] bg-white"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+         
             </section>
           </div>
         )}
