@@ -326,6 +326,7 @@ const PostPage:React.FC = () => {
       <h1 className="text-3xl font-bold mb-[24px]">Post Page</h1>
       <div className="flex gap-[12px] mb-[32px]">
         <CtaBtn 
+          type="button"
           btnMsg="Blog"
           borderColor="border-black"
           bgColor={postType === "blog" ? "bg-black" : "bg-white"}
@@ -334,6 +335,7 @@ const PostPage:React.FC = () => {
           passedFunc={() => setPostType("blog")}
         />
         <CtaBtn 
+          type="button"
           btnMsg="Work"
           borderColor="border-black"
           bgColor={postType === "work" ? "bg-black" : "bg-white"}
@@ -401,6 +403,7 @@ const PostPage:React.FC = () => {
                   Blog Blocks
                 </h2>
                 <CtaBtn 
+                  type="button"
                   btnMsg="Add Block"
                   passedFunc={() => addBlogBlock()}
                   width="w-[300px]"
@@ -418,6 +421,7 @@ const PostPage:React.FC = () => {
                         Block #{index + 1}
                       </p>
                       <CtaBtn 
+                        type="button"
                         btnMsg="Remove Block"
                         passedFunc={() => removeBlogBlock(index)}
                         width="w-[300px]"
@@ -502,6 +506,7 @@ const PostPage:React.FC = () => {
                   Links if any
                 </h2>
                 <CtaBtn 
+                  type="button"
                   btnMsg="Add Btn"
                   passedFunc={() => addBlogButton()}
                   width="w-[300px]"
@@ -519,6 +524,7 @@ const PostPage:React.FC = () => {
                         Button #{index + 1}
                       </p>
                       <CtaBtn 
+                        type="button"
                         btnMsg="Remove Button"
                         passedFunc={() => removeBlogButton(index)}
                         width="w-[300px]"
@@ -666,6 +672,7 @@ const PostPage:React.FC = () => {
                   Links
                 </h2>
                 <CtaBtn 
+                  type="button"
                   btnMsg="Add Btn"
                   passedFunc={() => addWorkButton()}
                   width="w-[300px]"
@@ -683,6 +690,7 @@ const PostPage:React.FC = () => {
                         Button #{index + 1}
                       </p>
                       <CtaBtn 
+                        type="button"
                         btnMsg="Remove Button"
                         passedFunc={() => removeWorkButton(index)}
                         width="w-[300px]"
