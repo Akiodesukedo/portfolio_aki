@@ -23,6 +23,8 @@ const PostPage:React.FC = () => {
 
   const [postType, setPostType] = useState<PostType>("blog")
   const [loading, setLoading] = useState<boolean>(false)
+  const [message, setMessage] = useState<string>("")
+
   // -------------------------------
   // Blog post state management
   // -------------------------------
@@ -122,8 +124,199 @@ const PostPage:React.FC = () => {
     )
   }
 
+  const parseCommaSeparated = (value: string) =>
+    value
+      .split(",")
+      .map((item) => item.trim())
+      .filter(Boolean);
+
+  const parseLineSeparated = (value: string) =>
+    value
+      .split("\n")
+      .map((item) => item.trim())
+      .filter(Boolean);
+
+  const buildBlogContents = () => {
+    return {
+      title: blogTitle,
+      slug: blogSlug,
+      tags: parseCommaSeparated(blogTags),
+      description: blogDescription,
+      thumbnailImageUrl: blogThumbnailImageUrl,
+      blocks: blogBlocks.map((block) => {
+        if (block.type === "image") {
+          return {
+            type: block.type,
+            imageUrl: block.imageUrl || "",
+            alt: block.alt || "",
+            caption: block.caption || ""
+          };
+        }
+
+        return {
+          type: block.type,
+          text: block.text || ""
+        };
+      }),
+      btns: blogButtons.filter((btn) => btn.btnName.trim() && btn.url.trim()),
+      published: blogPublished
+    };
+  }
+
+  const buildWorkContents = () => {
+    return {
+      title: workTitle,
+      year: workYear,
+      tags: parseCommaSeparated(workTags),
+      description: workDescription,
+      projectImageUrl: workProjectImageUrl,
+      videoLoc: workVideoLoc,
+      detailedDesc: workDetailedDesc,
+      techStackImageUrl: workTechStackImageUrl,
+      techStackExps: parseLineSeparated(workTechStackExps),
+      contributionImageUrl: workContributionImageUrl,
+      contributionExps: parseLineSeparated(workContributionExps),
+      btns: workButtons.filter((btn) => btn.btnName.trim() && btn.url.trim()),
+      screenImageUrl: parseLineSeparated(workScreenImageUrl),
+      modalMsg: workModalMsg,
+      modalCtaUrl: workModalCtaUrl
+    };
+  }
+
+  const isBlogValid = () => {
+    // Basic fields
+    if (!blogTitle.trim()) return false;
+    if (!blogSlug.trim()) return false;
+    if (!blogDescription.trim()) return false;
+    if (!blogThumbnailImageUrl.trim()) return false;
+  
+    // Tags
+    if (parseCommaSeparated(blogTags).length === 0) return false;
+  
+    // Blocks
+    if (blogBlocks.length === 0) return false;
+  
+    for (const block of blogBlocks) {
+      if (!block.type) return false;
+  
+      if (block.type === "image") {
+        if (!block.imageUrl?.trim()) return false;
+        if (!block.alt?.trim()) return false;
+        if (!block.caption?.trim()) return false;
+      } else {
+        if (!block.text?.trim()) return false;
+      }
+    }
+  
+    return true;
+  };
+
+  const isWorkValid = () => {
+    if (!workTitle.trim()) return false;
+    if (!workYear.trim()) return false;
+    if (!workDescription.trim()) return false;
+    if (!workProjectImageUrl.trim()) return false;
+    if (!workVideoLoc.trim()) return false;
+    if (!workDetailedDesc.trim()) return false;
+    if (!workTechStackImageUrl.trim()) return false;
+    if (!workContributionImageUrl.trim()) return false;
+    if (!workModalMsg.trim()) return false;
+    if (!workModalCtaUrl.trim()) return false;
+  
+    // Tags (comma separated input)
+    if (parseCommaSeparated(workTags).length === 0) return false;
+  
+    // Arrays (line separated inputs)
+    if (parseLineSeparated(workTechStackExps).length === 0) return false;
+    if (parseLineSeparated(workContributionExps).length === 0) return false;
+    if (parseLineSeparated(workScreenImageUrl).length === 0) return false;
+  
+    // Buttons
+    if (workButtons.length === 0) return false;
+  
+    for (const btn of workButtons) {
+      if (!btn.btnName.trim()) return false;
+      if (!btn.url.trim()) return false;
+    }
+  
+    return true;
+  };
+
+  const isFormValid =
+  postType === "blog" ? isBlogValid() : isWorkValid();
+
+  const resetBlogForm = () => {
+    setBlogTitle("")
+    setBlogSlug("")
+    setBlogTags("")
+    setBlogDescription("")
+    setBlogThumbnailImageUrl("")
+    setBlogPublished(true)
+    setBlogBlocks([
+      { type: "heading", text: "" },
+      { type: "paragraph", text: "" }
+    ])
+    setBlogButtons([{ btnName: "", url: "" }])
+  };
+
+  const resetWorkForm = () => {
+    setWorkTitle("")
+    setWorkYear("")
+    setWorkTags("")
+    setWorkDescription("")
+    setWorkProjectImageUrl("")
+    setWorkVideoLoc("")
+    setWorkDetailedDesc("")
+    setWorkTechStackImageUrl("")
+    setWorkTechStackExps("")
+    setWorkContributionImageUrl("")
+    setWorkContributionExps("")
+    setWorkScreenImageUrl("")
+    setWorkModalMsg("")
+    setWorkModalCtaUrl("")
+    setWorkButtons([{ btnName: "", url: "" }])
+  };
+
   const handleSubmit = async (e: React.SubmitEvent) => {
-    e.preventDefault();
+    e.preventDefault()
+    setLoading(true)
+    setMessage("")
+
+    try {
+      const endpoint = postType === "blog" ? "/blogs" : "/works"
+      const contents = postType === "blog" ? buildBlogContents() : buildWorkContents()
+      console.log(contents)
+
+      const res = await fetch(`${fetchUrl}${endpoint}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(contents)
+      })
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Failed to create post");
+      }
+
+      if (res.ok) {
+        setMessage(`${postType} posted successfully`);
+
+        if (postType === "blog") {
+          resetBlogForm();
+        } else {
+          resetWorkForm();
+        }
+      }
+    } catch(err) {
+      const error =
+        err instanceof Error ? err.message : "Something went wrong";
+      setMessage(error);
+    } finally {
+      setLoading(false);
+    }
 
   }
 
@@ -265,7 +458,7 @@ const PostPage:React.FC = () => {
                         <input
                           type="text"
                           placeholder="Alt Text"
-                          value={block.caption || ""}
+                          value={block.alt || ""}
                           onChange={(e) => updateBlogBlock(
                             index,
                             "alt",
@@ -369,7 +562,7 @@ const PostPage:React.FC = () => {
           <div>
             {/* ℹ️ Work Info ℹ️ */}
             <section className="flex flex-col gap-[32px] text-left mt-[24px]">
-              <h2 className="text-xl font-semibold">Work Info</h2>
+              <h2 className="text-xl font-semibold">Work Contents</h2>
               <input
                 type="text"
                 placeholder="Title"
@@ -404,64 +597,65 @@ const PostPage:React.FC = () => {
                 onChange={(e) => setWorkProjectImageUrl(e.target.value)}
                 className="border rounded px-[12px] py-[8px]"
               />
-              <textarea
+              <input
+                type="text"
                 placeholder="Video URL"
                 value={workVideoLoc}
                 onChange={(e) => setWorkVideoLoc(e.target.value)}
                 className="border rounded px-[12px] py-[8px]"
               />
-              <input
-                type="text"
+              <textarea
                 placeholder="Detailed Description"
                 value={workDetailedDesc}
                 onChange={(e) => setWorkDetailedDesc(e.target.value)}
-                className="border rounded px-[12px] py-[8px]"
+                className="border rounded px-[12px] py-[8px] min-h-[100px]"
               />
               <input
                 type="text"
                 placeholder="Tech Stack Image URL"
                 value={workTechStackImageUrl}
                 onChange={(e) => setWorkTechStackImageUrl(e.target.value)}
-                className="border rounded px-3 py-2"
+                className="border rounded px-[12px] py-[8px]"
               />
               <textarea
                 placeholder="Tech Stack Explanations (one per line)"
                 value={workTechStackExps}
                 onChange={(e) => setWorkTechStackExps(e.target.value)}
-                className="border rounded px-3 py-2 min-h-[100px]"
+                className="border rounded px-[12px] py-[8px] min-h-[100px]"
               />
               <input
                 type="text"
                 placeholder="Contribution Image URL"
                 value={workContributionImageUrl}
                 onChange={(e) => setWorkContributionImageUrl(e.target.value)}
-                className="border rounded px-3 py-2"
+                className="border rounded px-[12px] py-[8px]"
               />
               <textarea
                 placeholder="Contribution Explanations (one per line)"
                 value={workContributionExps}
                 onChange={(e) => setWorkContributionExps(e.target.value)}
-                className="border rounded px-3 py-2 min-h-[100px]"
+                className="border rounded px-[12px] py-[8px] min-h-[100px]"
               />
-              <textarea
+              <input
+                type="text"
                 placeholder="Screen Image URLs (one per line)"
                 value={workScreenImageUrl}
                 onChange={(e) => setWorkScreenImageUrl(e.target.value)}
-                className="border rounded px-3 py-2 min-h-[100px]"
+                className="border rounded px-[12px] py-[8px]"
               />
               <input
                 type="text"
                 placeholder="Modal Message"
                 value={workModalMsg}
                 onChange={(e) => setWorkModalMsg(e.target.value)}
-                className="border rounded px-3 py-2"
+                className="border rounded px-[12px] py-[8px]"
               />
               <input
                 type="text"
                 placeholder="Modal CTA URL"
                 value={workModalCtaUrl}
                 onChange={(e) => setWorkModalCtaUrl(e.target.value)}
-                className="border rounded px-3 py-2"
+                className="border rounded px-[12px] py-[8px]"
               />
             </section>
 
@@ -528,16 +722,15 @@ const PostPage:React.FC = () => {
           </div>
         )}
 
-
         <button 
           type="submit"
-          disabled={loading}
-          className="px-[24px] py-[16px] border-1 border-black bg-white hover:bg-black text-black hover:text-white rounded-4xl disabled:opacity-50 duration-200 ease-in"
+          disabled={loading || !isFormValid}
+          className="px-[24px] py-[16px] border-1 border-black bg-white hover:bg-black text-black hover:text-white rounded-4xl disabled:bg-black disabled:text-white disabled:opacity-50 duration-200 ease-in"
         >
           {loading ? "Posting..." : `Post ${postType}`}
         </button>
+        {message && <p className="text-sm">{message}</p>}
       </form>
-
     </div>
   )
 }
