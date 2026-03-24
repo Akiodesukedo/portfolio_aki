@@ -23,8 +23,9 @@ const PostPage:React.FC = () => {
 
   const [postType, setPostType] = useState<PostType>("blog")
   const [loading, setLoading] = useState<boolean>(false)
-
-  // Blog post states
+  // -------------------------------
+  // Blog post state management
+  // -------------------------------
   const [blogTitle, setBlogTitle] = useState<string>("")
   const [blogSlug, setBlogSlug] = useState<string>("")
   const [blogTags, setBlogTags] = useState<string>("")
@@ -36,6 +37,27 @@ const PostPage:React.FC = () => {
     { type: "paragraph", text: "" }
   ])
   const [blogButtons, setBlogButtons] = useState<BtnItem[]>([
+    { btnName: "", url: "" }
+  ])
+
+  // -------------------------------
+  // Work post state management
+  // -------------------------------
+  const [workTitle, setWorkTitle] = useState("");
+  const [workYear, setWorkYear] = useState("");
+  const [workTags, setWorkTags] = useState("");
+  const [workDescription, setWorkDescription] = useState("");
+  const [workProjectImageUrl, setWorkProjectImageUrl] = useState("");
+  const [workVideoLoc, setWorkVideoLoc] = useState("");
+  const [workDetailedDesc, setWorkDetailedDesc] = useState("");
+  const [workTechStackImageUrl, setWorkTechStackImageUrl] = useState("");
+  const [workTechStackExps, setWorkTechStackExps] = useState("");
+  const [workContributionImageUrl, setWorkContributionImageUrl] = useState("");
+  const [workContributionExps, setWorkContributionExps] = useState("");
+  const [workScreenImageUrl, setWorkScreenImageUrl] = useState("");
+  const [workModalMsg, setWorkModalMsg] = useState("");
+  const [workModalCtaUrl, setWorkModalCtaUrl] = useState("");
+  const [workButtons, setWorkButtons] = useState<BtnItem[]>([
     { btnName: "", url: "" }
   ])
 
@@ -74,6 +96,26 @@ const PostPage:React.FC = () => {
     value: string
   ) => {
     setBlogButtons((prev) =>
+      prev.map((button, i) =>
+        i === index ? { ...button, [field]: value } : button
+      )
+    )
+  }
+
+  const addWorkButton = () => {
+    setWorkButtons((prev) => [...prev, { btnName: "", url: "" }])
+  }
+
+  const removeWorkButton = (index: number) => {
+    setWorkButtons((prep) => prep.filter((_, i) => i !== index))
+  }
+
+  const updateWorkButton = (
+    index: number,
+    field: keyof BtnItem,
+    value: string
+  ) => {
+    setWorkButtons((prev) =>
       prev.map((button, i) =>
         i === index ? { ...button, [field]: value } : button
       )
@@ -319,10 +361,173 @@ const PostPage:React.FC = () => {
                   </div>
                 ))}
               </div>
-         
             </section>
           </div>
         )}
+
+        {postType === "work" && (
+          <div>
+            {/* ℹ️ Work Info ℹ️ */}
+            <section className="flex flex-col gap-[32px] text-left mt-[24px]">
+              <h2 className="text-xl font-semibold">Work Info</h2>
+              <input
+                type="text"
+                placeholder="Title"
+                value={workTitle}
+                onChange={(e) => setWorkTitle(e.target.value)}
+                className="border rounded px-[12px] py-[8px]"
+              />
+              <input
+                type="text"
+                placeholder="Year"
+                value={workYear}
+                onChange={(e) => setWorkYear(e.target.value)}
+                className="border rounded px-[12px] py-[8px]"
+              />
+              <input
+                type="text"
+                placeholder="Tags (Comma seperated)"
+                value={workTags}
+                onChange={(e) => setWorkTags(e.target.value)}
+                className="border rounded px-[12px] py-[8px]"
+              />
+              <textarea
+                placeholder="Description"
+                value={workDescription}
+                onChange={(e) => setWorkDescription(e.target.value)}
+                className="border rounded px-[12px] py-[8px] min-h-[100px]"
+              />
+              <input
+                type="text"
+                placeholder="Project Image URL"
+                value={workProjectImageUrl}
+                onChange={(e) => setWorkProjectImageUrl(e.target.value)}
+                className="border rounded px-[12px] py-[8px]"
+              />
+              <textarea
+                placeholder="Video URL"
+                value={workVideoLoc}
+                onChange={(e) => setWorkVideoLoc(e.target.value)}
+                className="border rounded px-[12px] py-[8px]"
+              />
+              <input
+                type="text"
+                placeholder="Detailed Description"
+                value={workDetailedDesc}
+                onChange={(e) => setWorkDetailedDesc(e.target.value)}
+                className="border rounded px-[12px] py-[8px]"
+              />
+              <input
+                type="text"
+                placeholder="Tech Stack Image URL"
+                value={workTechStackImageUrl}
+                onChange={(e) => setWorkTechStackImageUrl(e.target.value)}
+                className="border rounded px-3 py-2"
+              />
+              <textarea
+                placeholder="Tech Stack Explanations (one per line)"
+                value={workTechStackExps}
+                onChange={(e) => setWorkTechStackExps(e.target.value)}
+                className="border rounded px-3 py-2 min-h-[100px]"
+              />
+              <input
+                type="text"
+                placeholder="Contribution Image URL"
+                value={workContributionImageUrl}
+                onChange={(e) => setWorkContributionImageUrl(e.target.value)}
+                className="border rounded px-3 py-2"
+              />
+              <textarea
+                placeholder="Contribution Explanations (one per line)"
+                value={workContributionExps}
+                onChange={(e) => setWorkContributionExps(e.target.value)}
+                className="border rounded px-3 py-2 min-h-[100px]"
+              />
+              <textarea
+                placeholder="Screen Image URLs (one per line)"
+                value={workScreenImageUrl}
+                onChange={(e) => setWorkScreenImageUrl(e.target.value)}
+                className="border rounded px-3 py-2 min-h-[100px]"
+              />
+              <input
+                type="text"
+                placeholder="Modal Message"
+                value={workModalMsg}
+                onChange={(e) => setWorkModalMsg(e.target.value)}
+                className="border rounded px-3 py-2"
+              />
+              <input
+                type="text"
+                placeholder="Modal CTA URL"
+                value={workModalCtaUrl}
+                onChange={(e) => setWorkModalCtaUrl(e.target.value)}
+                className="border rounded px-3 py-2"
+              />
+            </section>
+
+            {/* Button section */}
+            <section >
+              <div className="flex justify-between items-center">
+                <h2 className="text-xl font-semibold">
+                  Links
+                </h2>
+                <CtaBtn 
+                  btnMsg="Add Btn"
+                  passedFunc={() => addWorkButton()}
+                  width="w-[300px]"
+                  className="hover:bg-black hover:text-white"
+                />     
+              </div>
+              <div className="flex flex-col gap-[24px] mt-[24px]">
+                {workButtons.map((button, index) => (
+                  <div 
+                    key={index}
+                    className="bg-gray-200 rounded p-[24px] flex flex-col gap-[12px]"
+                  >
+                    <div className="flex justify-between items-center">
+                      <p className="font-semibold">
+                        Button #{index + 1}
+                      </p>
+                      <CtaBtn 
+                        btnMsg="Remove Button"
+                        passedFunc={() => removeWorkButton(index)}
+                        width="w-[300px]"
+                        txtColor="text-red-600"
+                        marginTop="mt-0"
+                        className="border-red-500 hover:bg-red-500 hover:border-red-500 hover:text-white"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-[8px]">
+                      <input
+                        type="text"
+                        placeholder="Button Name"
+                        value={button.btnName || ""}
+                        onChange={(e) => updateWorkButton(
+                          index,
+                          "btnName",
+                          e.target.value
+                        )}
+                        className="border rounded px-[12px] py-[8px] bg-white"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Button URL"
+                        value={button.url || ""}
+                        onChange={(e) => updateWorkButton(
+                          index,
+                          "url",
+                          e.target.value
+                        )}
+                        className="border rounded px-[12px] py-[8px] bg-white"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </div>
+        )}
+
 
         <button 
           type="submit"
