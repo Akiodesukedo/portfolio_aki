@@ -48,9 +48,6 @@ const blogSchema = new mongoose.Schema(
       }
     ],
 
-    // Time stamps
-    createdAt: { type: String, required: true },
-    modifiedAt: { type: String, required: true },
     published: { type:Boolean }
   },
   { timestamps: true }

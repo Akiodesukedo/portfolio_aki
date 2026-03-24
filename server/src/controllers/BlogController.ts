@@ -1,5 +1,6 @@
 import { Blog } from "../models/blogModel";
 import { Request, Response } from "express";
+import { validateBlogInput } from "../utils/validateBlogInput";
 
 // Get all the blog posts
 export const getAllBlogs = async (req: Request, res: Response) => {
@@ -65,9 +66,22 @@ export const getMultipleBlogsBySlugs = async (req: Request, res: Response) => {
 // Create a new blog
 export const createBlog = async (req: Request, res: Response) => {
   try {
+    const validationError = validateBlogInput(req.body)
+
+    if (validationError) {
+      res.status(400).json({message: validationError})
+      return
+    }
+
+    const existingSlug = await Blog.findOne({ slug: req.body.slug })
+    if (existingSlug) {
+      res.status(400).json({ message: "The slug is already used. Use a different slug" });
+      return;
+    }
+
     const newBlog = new Blog(req.body);
-    const saved = await newBlog.save();
-    res.status(201).json(saved);
+    const savedBlog = await newBlog.save();
+    res.status(201).json(savedBlog);
   } catch (err) {
     console.error(err);
     res.status(400).json({ message: "Invalid data" });
