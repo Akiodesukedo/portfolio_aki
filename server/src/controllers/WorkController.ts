@@ -1,6 +1,7 @@
 import { Work } from "../models/workModel";
 import { Request, Response } from "express";
 import mongoose from "mongoose";
+import { validateWorkInput } from "../utils/validateWorkInput";
 
 // Get all works
 export const getAllWorks = async (req: Request, res: Response) => {
@@ -86,9 +87,16 @@ export const getWorksByIdsForHome = async (req: Request, res: Response) => {
 // Create a new work
 export const createWork = async (req: Request, res: Response) => {
   try {
+    const validationError = validateWorkInput(req.body)
+
+    if (validationError) {
+      res.status(400).json({message: validationError})
+      return
+    }
+
     const newWork = new Work(req.body);
-    const saved = await newWork.save();
-    res.status(201).json(saved);
+    const savedWork = await newWork.save();
+    res.status(201).json(savedWork);
   } catch (err) {
     console.error(err);
     res.status(400).json({ message: "Invalid data" });
