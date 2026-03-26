@@ -3,7 +3,7 @@ import { useAuth } from "../context/AuthContext"
 import { usePageTransition } from "../context/PageTransitionContext";
 
 const Login: React.FC = () => {
-  const { loginWithGoogle, isAdmin } = useAuth();
+  const { loginWithGoogle, isAdmin, logout } = useAuth();
   const { triggerTransition } = usePageTransition();
 
   return (
@@ -14,20 +14,24 @@ const Login: React.FC = () => {
         onSuccess={async(credentialResponse) => {
           if (!credentialResponse.credential) return;
 
-          await loginWithGoogle(credentialResponse.credential);
+          const result = await loginWithGoogle(credentialResponse.credential);
 
-          setTimeout(() => {
-            if (isAdmin) {
-              triggerTransition('/post-new-content')
-            } else {
-              triggerTransition('/')
-            }            
-          }, 100)
+          if (result?.isAdmin) {
+            triggerTransition('/post-new-content')
+          } else {
+            triggerTransition('/')
+          }            
         }}
         onError={() => {
           console.log("Login failed")
         }}
       />
+
+      <button
+        onClick={() => logout()}
+      >
+        Logout
+      </button>
     </div>
   )
 }

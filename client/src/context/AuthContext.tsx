@@ -10,7 +10,7 @@ type AuthContextType = {
   token: string | null
   isAdmin: boolean
   loading: boolean
-  loginWithGoogle: (token: string) => Promise<void>
+  loginWithGoogle: (token: string) => Promise<{ user: User, isAdmin: boolean } | undefined>
   logout: () => void
 }
 
@@ -45,6 +45,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(data.user);
       setToken(googleToken);
       setIsAdmin(data.isAdmin);  
+
+      return {
+        user: data.user,
+        isAdmin: data.isAdmin
+      };
 
     } catch (err) {
       console.error(err);

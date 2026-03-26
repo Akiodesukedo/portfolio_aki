@@ -23,6 +23,7 @@ const PostPage:React.FC = () => {
   const fetchUrl = import.meta.env.VITE_BACKEND_URL;
 
   const { isAdmin, loading } = useAuth();
+  console.log(isAdmin)
   const [postType, setPostType] = useState<PostType>("blog")
   const [postLoading, setPostLoading] = useState<boolean>(false)
   const [message, setMessage] = useState<string>("")
@@ -321,7 +322,7 @@ const PostPage:React.FC = () => {
     }
 
   }
-  
+
   if (loading) return <p>Loading...</p>;
   if (!isAdmin) return <p>Not authorized</p>;
 
