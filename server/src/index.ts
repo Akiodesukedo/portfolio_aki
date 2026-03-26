@@ -4,6 +4,7 @@ import cors from 'cors'
 import dotenv from 'dotenv';
 import workRoute from './routes/WorkRoute'
 import blogRoute from './routes/BlogRoute'
+import authRoute from "./routes/AuthRoute";
 
 // Load .env file to use process.env.*
 dotenv.config();
@@ -38,7 +39,8 @@ const startServer = async () => {
   console.log("✅ Successfully connected to MongoDB")
 
   app.use("/works", workRoute);
-  app.use("/blogs", blogRoute)
+  app.use("/blogs", blogRoute);
+  app.use("/auth", authRoute);
 
   const httpServer = app.listen(port, () => {
     console.log(`🏃 Server running on port ${port}`)
