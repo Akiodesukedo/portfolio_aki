@@ -1,6 +1,7 @@
 import { GoogleLogin } from "@react-oauth/google";
 import { useAuth } from "../context/AuthContext"
 import { usePageTransition } from "../context/PageTransitionContext";
+import CtaBtn from "../atoms/CtaBtn";
 
 const Login: React.FC = () => {
   const { loginWithGoogle, isAdmin, logout } = useAuth();
@@ -27,11 +28,13 @@ const Login: React.FC = () => {
         }}
       />
 
-      <button
-        onClick={() => logout()}
-      >
-        Logout
-      </button>
+      <CtaBtn 
+        btnMsg="Log out"
+        disabled={!isAdmin}
+        className="hover:bg-black hover:text-white disabled:opacity-50 disabled:bg-black disabled:text-white"
+        width="w-[500px]"
+        passedFunc={() => logout()}
+      />
     </div>
   )
 }
