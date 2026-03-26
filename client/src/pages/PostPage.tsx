@@ -1,5 +1,6 @@
 import { useState } from "react"
 import CtaBtn from "../atoms/CtaBtn"
+import { useAuth } from "../context/AuthContext"
 
 type BlogBlockType = "heading" | "paragraph" | "quote" | "image"
 
@@ -21,8 +22,10 @@ type PostType = "blog" | "work"
 const PostPage:React.FC = () => {
   const fetchUrl = import.meta.env.VITE_BACKEND_URL;
 
+  const { isAdmin, loading } = useAuth();
+  console.log(isAdmin)
   const [postType, setPostType] = useState<PostType>("blog")
-  const [loading, setLoading] = useState<boolean>(false)
+  const [postLoading, setPostLoading] = useState<boolean>(false)
   const [message, setMessage] = useState<string>("")
 
   // -------------------------------
@@ -279,7 +282,7 @@ const PostPage:React.FC = () => {
 
   const handleSubmit = async (e: React.SubmitEvent) => {
     e.preventDefault()
-    setLoading(true)
+    setPostLoading(true)
     setMessage("")
 
     try {
@@ -315,11 +318,13 @@ const PostPage:React.FC = () => {
         err instanceof Error ? err.message : "Something went wrong";
       setMessage(error);
     } finally {
-      setLoading(false);
+      setPostLoading(false);
     }
 
   }
 
+  if (loading) return <p>Loading...</p>;
+  if (!isAdmin) return <p>Not authorized</p>;
 
   return (
     <div className="max-w-[1080px] mx-auto px-[24px] py-[48px]">
@@ -732,10 +737,10 @@ const PostPage:React.FC = () => {
 
         <button 
           type="submit"
-          disabled={loading || !isFormValid}
+          disabled={postLoading || !isFormValid}
           className="px-[24px] py-[16px] border-1 border-black bg-white hover:bg-black text-black hover:text-white rounded-4xl disabled:bg-black disabled:text-white disabled:opacity-50 duration-200 ease-in"
         >
-          {loading ? "Posting..." : `Post ${postType}`}
+          {postLoading ? "Posting..." : `Post ${postType}`}
         </button>
         {message && <p className="text-sm">{message}</p>}
       </form>
