@@ -33,7 +33,6 @@ const Blogs:React.FC = () => {
       fetch(`${fetchUrl}/blogs/`)
         .then(async res => {
           const data = await res.json();
-          console.log(data);
           setAllBlogs(data);
         })
         .catch(err => console.error(err));    

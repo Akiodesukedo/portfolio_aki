@@ -22,8 +22,7 @@ type PostType = "blog" | "work"
 const PostPage:React.FC = () => {
   const fetchUrl = import.meta.env.VITE_BACKEND_URL;
 
-  const { isAdmin, loading } = useAuth();
-  console.log(isAdmin)
+  const { isAdmin, loading, token } = useAuth();
   const [postType, setPostType] = useState<PostType>("blog")
   const [postLoading, setPostLoading] = useState<boolean>(false)
   const [message, setMessage] = useState<string>("")
@@ -290,10 +289,16 @@ const PostPage:React.FC = () => {
       const contents = postType === "blog" ? buildBlogContents() : buildWorkContents()
       console.log(contents)
 
+      if (!token) {
+        setMessage("You must be logged in");
+        return;
+      }
+
       const res = await fetch(`${fetchUrl}${endpoint}`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
         },
         body: JSON.stringify(contents)
       })
@@ -647,12 +652,11 @@ const PostPage:React.FC = () => {
                 onChange={(e) => setWorkContributionExps(e.target.value)}
                 className="border rounded px-[12px] py-[8px] min-h-[100px]"
               />
-              <input
-                type="text"
+              <textarea
                 placeholder="Screen Image URLs (one per line)"
                 value={workScreenImageUrl}
                 onChange={(e) => setWorkScreenImageUrl(e.target.value)}
-                className="border rounded px-[12px] py-[8px]"
+                className="border rounded px-[12px] py-[8px] min-h-[100px]"
               />
               <input
                 type="text"
