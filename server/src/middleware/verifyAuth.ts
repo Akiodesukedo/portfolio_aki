@@ -11,7 +11,7 @@ export type RequestWithUser = Request & {
   }
 }
 
-export const verfiyAuth = async(
+export const verifyAuth = async(
   req: RequestWithUser,
   res: Response,
   next: NextFunction
