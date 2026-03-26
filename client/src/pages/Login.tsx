@@ -4,7 +4,7 @@ import { usePageTransition } from "../context/PageTransitionContext";
 import CtaBtn from "../atoms/CtaBtn";
 
 const Login: React.FC = () => {
-  const { loginWithGoogle, isAdmin, logout } = useAuth();
+  const { loginWithGoogle, logout } = useAuth();
   const { triggerTransition } = usePageTransition();
 
   return (
@@ -30,7 +30,6 @@ const Login: React.FC = () => {
 
       <CtaBtn 
         btnMsg="Log out"
-        disabled={!isAdmin}
         className="hover:bg-black hover:text-white disabled:opacity-50 disabled:bg-black disabled:text-white"
         width="w-[500px]"
         passedFunc={() => logout()}
