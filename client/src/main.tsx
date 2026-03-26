@@ -4,13 +4,16 @@ import './index.css'
 import App from './App.tsx'
 import { MenuProvider } from './context/MenuContext.tsx'
 import { PageTransitionProvider } from './context/PageTransitionContext.tsx'
+import { AuthProvider } from './context/AuthContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <PageTransitionProvider>
-      <MenuProvider>
-        <App />
-      </MenuProvider>
-    </PageTransitionProvider>
+    <AuthProvider>
+      <PageTransitionProvider>
+        <MenuProvider>
+          <App />
+        </MenuProvider>
+      </PageTransitionProvider>      
+    </AuthProvider>
   </StrictMode>
 )
