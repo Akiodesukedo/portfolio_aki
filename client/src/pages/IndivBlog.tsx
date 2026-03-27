@@ -63,10 +63,9 @@ const IndivBlog:React.FC = () => {
   const { slug } = useParams();
   const fetchUrl = import.meta.env.VITE_BACKEND_URL;
   const [blog, setBlog] = useState<Blog>();
-  const { isTransitioning } = usePageTransition();
+  const { triggerTransition, isTransitioning } = usePageTransition();
   const hasFetched = useRef(false);
   const [isValid, setIsValid] = useState<boolean | null>(null);
-  const { triggerTransition } = usePageTransition();
   const {isOpen, setIsOpen} = useMenu();
 
   useEffect(() => {
@@ -106,6 +105,44 @@ const IndivBlog:React.FC = () => {
       },
     },
   }
+
+  const formatDate = (rawDate: string | undefined) => {
+    if (rawDate == undefined) {
+      return
+    }
+
+    const rawCreatedData = new Date(rawDate)
+
+    const options: Intl.DateTimeFormatOptions = {
+      year: 'numeric',
+      month: "short",
+      day: "numeric"
+    }
+  
+    const formattedDate = new Intl.DateTimeFormat('en-US', options).format(rawCreatedData);
+
+    return formattedDate
+  }
+
+  const handleShare = async () => {
+    const shareData = {
+      title: blog?.title,
+      text: blog?.description,
+      url: window.location.href
+    };
+  
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+        return;
+      }
+  
+      await navigator.clipboard.writeText(window.location.href);
+      alert("Link copied to clipboard");
+    } catch (err) {
+      console.error("Share failed:", err);
+    }
+  };
 
   if (isValid === false) {
     return (
@@ -147,22 +184,15 @@ const IndivBlog:React.FC = () => {
         </motion.div>
         : 
         <div>
-          <img 
-            src='/images/akisroom_thumbnail.webp'
-            alt='tentative image here for test'
-            className='object-cover h-[120px] md:h-[200px] w-full self-center mb-[32px]'
-          />
-          {/* 👇 Turn this back on once data and blogs are ready */}
-          {/* {blog.thumbnailImageUrl && (
+          {blog.thumbnailImageUrl && (
             <img
               src={blog.thumbnailImageUrl}
               alt={blog.title}
-              className="object-cover md:h-[200px] w-full mb-[32px]"
+              className="object-cover h-[120px] md:h-[200px] w-full self-center mb-[32px]"
             />
-          )} */}
+          )}
           <div className="mx-[24px] md:mx-[60px] mb-[60px] max-w-[1160px] xl:mx-auto">
-            <div className="flex flex-col md:flex-row flex-nowrap justify-between">
-              <p className="text-gray-600">Posted on: {blog.createdAt}</p>
+            <div className="flex flex-col md:flex-row flex-nowrap justify-between my-[40px]">
               <div className="flex flex-nowrap">
                 {blog.tags.map((tag, index) => {
                   return blog.tags.length - 1 === index ? (
@@ -172,13 +202,36 @@ const IndivBlog:React.FC = () => {
                   ) :
                   (
                     <p key={tag} className="text-gray-600">
-                      { tag }/
+                      { tag } / &thinsp
                     </p>
                   )
                 })}
               </div>
+              <div className="flex flex-nowrap gap-[16px]">
+                <div 
+                  className="border-1 pt-[10px] pr-[10px] pb-[8px] pl-[8px] rounded-3xl"
+                  onClick={() => handleShare()}
+                >
+                  <img 
+                    src="/images/share.webp"
+                    alt="Click to share this content"
+                    className="w-[20px] h-[20px]"
+                  />
+                </div>              
+                <div 
+                  className="border-1 pt-[9px] pr-[9px] pb-[9px] pl-[9px] rounded-3xl"
+                  onClick={() => triggerTransition("/blogs") }
+                >
+                  <img 
+                    src="/images/close.webp"
+                    alt="Close this post and back to blogs page"
+                    className="w-[20px] h-[20px]"
+                  />
+                </div>
+              </div>
             </div>
             <h1 className="text-[36px] md:text-[48px] font-bold text-left mb-[16px]">{blog.title}</h1>
+            <p className="text-gray-600">Posted on: {formatDate(blog.createdAt)}</p>
             <div className="flex flex-col gap-[24px] mb-[60px]">
               {blog.blocks.map((block, index) => {
                 switch (block.type) {
