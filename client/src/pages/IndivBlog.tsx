@@ -9,6 +9,7 @@ import TopMessage from "../components/TopMessage";
 import CtaBtn from "../atoms/CtaBtn";
 import Footer from "../components/Footer";
 import LineDivider from "../atoms/LineDivider";
+import BlogCard from "../molecules/BlogCard";
 
 type BlogHeadingBlock = {
   type: "heading";
@@ -49,21 +50,32 @@ type Blog = {
   slug: string;
   tags: string[];
   description: string;
-  thumbnailImageUrl?: string;
+  thumbnailImageUrl: string;
 
   blocks: BlogContentBlock[];
 
   btns?: BlogButton[];
 
   createdAt?: string;
-  modifiedAt?: string;
   published?: boolean;
+}
+
+type RelatedBlog = {
+  _id: string,
+  title: string,
+  slug: string,
+  tags: string[],
+  description: string,
+  thumbnailImageUrl: string,
+  createdAt: string;
+  published: boolean;
 }
 
 const IndivBlog:React.FC = () => {
   const { slug } = useParams();
   const fetchUrl = import.meta.env.VITE_BACKEND_URL;
   const [blog, setBlog] = useState<Blog>();
+  const [relatedBlogs, setRelatedBlogs] = useState<RelatedBlog[]>([]);
   const { triggerTransition, isTransitioning } = usePageTransition();
   const hasFetched = useRef(false);
   const [isValid, setIsValid] = useState<boolean | null>(null);
@@ -95,6 +107,29 @@ const IndivBlog:React.FC = () => {
       hasFetched.current = false;
     }
   }, [slug, isTransitioning])
+
+  const fetchRelatedBlogs = async (slug: string) => {
+    try {
+      const res = await fetch(`${fetchUrl}/blogs/related?slug=${slug}&limit=3`)
+
+      if (!res.ok) {
+        throw new Error("Failed to fetch related blogs")
+      }
+
+      const data = await res.json()
+      console.log(data)
+      setRelatedBlogs(data);
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  useEffect(() => {
+    if (!blog?.slug) {
+      return
+    }
+    fetchRelatedBlogs(blog.slug);
+  }, [blog?.slug])
 
   const dotLoading: Variants = {
     pulse: {
@@ -300,11 +335,14 @@ const IndivBlog:React.FC = () => {
                 }
               })}
             </div>
-            <h3 className="text-[24px] font-medium text-left mb-[22px]">
-              Links
-            </h3>  
+            {/* Blog page doesn't necessarily need btns. So it's optional */}
+            {blog.btns && blog.btns?.length !== 0 && (
+              <h3 className="text-[24px] font-medium text-left mb-[22px]">
+                Links
+              </h3>  
+            )}
             {
-              blog.btns && blog.btns.map((btn) => (
+              blog.btns && blog.btns?.length !== 0 && blog.btns.map((btn) => (
                 <CtaBtn 
                   key={btn.btnName}
                   btnMsg={btn.btnName}
@@ -318,7 +356,39 @@ const IndivBlog:React.FC = () => {
 
                 />
               ))
-            }         
+            } 
+            <h3 className="text-[24px] font-medium text-left mb-[30px] mt-[50px]">
+              Related Posts
+            </h3>
+            {relatedBlogs.length > 0 ?
+              <div className="pb-[60px] max-w-[1160px] xl:mx-auto md:grid md:grid-cols-2 md:gap-[48px] lg:grid-cols-3 lg:gap-[64px]">
+                {relatedBlogs.map((blog) => {
+                  return blog.published && 
+                    (
+                      <div key={blog._id}>
+                        <BlogCard blogData={blog}/>
+                      </div>
+                    )
+                })}
+              </div>
+            :
+              <div>
+                <p>
+                  Oops, there is no related posts with this post 😬
+                </p>
+                <CtaBtn 
+                  btnMsg="Check other blog posts"
+                  passedFunc={() => triggerTransition("/blogs")}
+                  borderColor="#747474"
+                  bgColor="bg-white"
+                  txtColor="text-black"
+                  marginTop="mt-[16px]"
+                  hoverBgColor="hover:bg-black"
+                  hovertxtColor="hover:text-white"
+                />
+              </div>
+            }
+
           </div>
         </div>
       }
