@@ -9,6 +9,7 @@ const router = express.Router({ mergeParams: true });
 router.get('/', blogController.getAllBlogs);
 router.get('/by-slugs', blogController.getMultipleBlogsBySlugs);
 router.get('/:slug', blogController.getBlogBySlug);
+router.get('/related', blogController.getRelatedBlogs);
 
 // Protected endpoints
 router.post('/', verifyAuth, requireAdmin, blogController.createBlog);

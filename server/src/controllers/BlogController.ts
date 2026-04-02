@@ -63,6 +63,63 @@ export const getMultipleBlogsBySlugs = async (req: Request, res: Response) => {
   }
 }
 
+// Get related blog posts based on shared tags
+export const getRelatedBlogs =async (req: Request, res: Response) => {
+  try {
+    const {slug, limit} = req.query
+
+    const blogSlug = String(slug || "").trim()
+    const blogNum = Number(limit || 3)
+
+    if (!blogSlug) {
+      res.status(400).json({ message: "Blog slug is required" })
+      return
+    }
+
+    // Check current blog tags first
+    const currentBlog = await Blog.findOne({ slug: blogSlug })
+
+    if (!currentBlog) {
+      res.status(404).json({ message: "Blog not found" })
+      return
+    }
+
+    const currentTags = currentBlog.tags || []
+
+    if (currentTags.length === 0) {
+      res.status(200).json([])
+      return
+    }
+
+    // Then look for blogs that have share the same tag
+    const relatedBlogs = await Blog.find({
+      _id: { $ne: currentBlog._id },
+      tags: { $in: currentTags },
+      published: true
+    })
+      .sort({ createdAt: -1 })
+      .limit(blogNum)
+
+    // Make the response cleaner
+    const formattedBlogs = relatedBlogs.map((blog) => ({
+      _id: blog._id,
+      title: blog.title,
+      slug: blog.slug,
+      tags: blog.tags,
+      description: blog.description,
+      thumbnailImageUrl: blog.thumbnailImageUrl,
+      createdAt: blog.createdAt,
+      published: blog.published,
+    }))
+
+    res.status(200).json(formattedBlogs)
+
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ message: "Server error" })
+  }
+}
+
 // Create a new blog
 export const createBlog = async (req: Request, res: Response) => {
   try {
