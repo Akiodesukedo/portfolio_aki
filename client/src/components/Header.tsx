@@ -21,13 +21,12 @@ const Header: React.FC<HeaderProps> = ({ WebsiteName, txtColor, absolute = false
       >
         { WebsiteName }
       </h1>
-      <p
-        style={{color: txtColor ? txtColor: 'black'}}
-        className="text-[20px] md:hidden cursor-pointer hover:font-bold"
+      <img 
+        src="/images/mobile_menu.webp"
+        alt="Menu button"
+        className="w-[46px] md:hidden cursor-pointer"
         onClick={openMenu}
-      >
-        Menu
-      </p>
+      />
       <div
         style={{color: txtColor ? txtColor: 'black'}}
         className="text-[20px] hidden md:flex md:gap-[12px] items-center"
