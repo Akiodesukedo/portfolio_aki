@@ -228,12 +228,12 @@ const IndivBlog:React.FC = () => {
             />
           )}
           <div className="mx-[24px] md:mx-[60px] mb-[60px] max-w-[1160px] xl:mx-auto">
-            <div className="flex flex-col md:flex-row flex-nowrap justify-between my-[40px]">
-              <div className="flex flex-nowrap items-center">
+            <div className="flex flex-row gap-[20px] md:gap-0 flex-nowrap justify-between my-[40px]">
+              <div className="flex flex-wrap flex-1 md:flex-nowrap items-center">
                 <img 
                   src="/images/stack.webp"
                   alt="Decorative icon"
-                  className="w-[20px] mr-[10px]"
+                  className="hidden md:block w-[20px] mr-[10px]"
                 />
                 {blog.tags.map((tag, index) => {
                   return blog.tags.length - 1 === index ? (
@@ -271,12 +271,12 @@ const IndivBlog:React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col mt-[60px] mb-[50px] md:grid md:grid-cols-[3fr_4fr] md:gap-[80px] md:items-center">
+            <div className="flex flex-col gap-[40px] mt-[60px] mb-[50px] md:grid md:grid-cols-[3fr_4fr] md:gap-[80px] md:items-center">
               <div className="flex flex-col">
-                <h1 className="font-bold text-left mb-[12px] md:text-[36px] leading-[40px]">{blog.title}</h1>
+                <h1 className="font-bold text-left mb-[12px] text-[32px] md:text-[36px] leading-[40px]">{blog.title}</h1>
                 <p className="text-gray-600 text-left text-[14px]"> Posted on: {formatDate(blog.createdAt)}</p>
               </div>
-              <p className="text-left text-[14px] text-neutral-800">
+              <p className="hidden md:block text-left text-[14px] text-neutral-800">
                 {blog.description}
               </p>
             </div>
@@ -288,7 +288,7 @@ const IndivBlog:React.FC = () => {
                     return (
                       <h2
                         key={index}
-                        className="text-[20px] md:text-[28px] font-semibold text-left mt-[40px]"
+                        className="text-[24px] md:text-[28px] font-semibold text-left mt-[40px]"
                       >
                         {block.text}
                       </h2>
@@ -308,7 +308,7 @@ const IndivBlog:React.FC = () => {
                     return (
                       <blockquote
                         key={index}
-                        className="border-l-4 border-neutral-400 pl-[16px] italic text-left text-[18px] text-neutral-700"
+                        className="border-l-4 border-neutral-400 pl-[16px] my-[8px] italic text-left text-[18px] text-neutral-700"
                       >
                         {block.text}
                       </blockquote>
@@ -361,7 +361,7 @@ const IndivBlog:React.FC = () => {
               Related Posts
             </h3>
             {relatedBlogs.length > 0 ?
-              <div className="pb-[60px] max-w-[1160px] xl:mx-auto md:grid md:grid-cols-2 md:gap-[48px] lg:grid-cols-3 lg:gap-[64px]">
+              <div className="pb-[10px] md:pb-[60px] max-w-[1160px] xl:mx-auto md:grid md:grid-cols-2 md:gap-[48px] lg:grid-cols-3 lg:gap-[64px]">
                 {relatedBlogs.map((blog) => {
                   return blog.published && 
                     (
