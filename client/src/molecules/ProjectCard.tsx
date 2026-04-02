@@ -47,7 +47,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ projectData }) => {
             <Tag tagName={tag} key={index}/>
           ))}
         </div>
-        <p className='leading-[18px] text-[14px] text-left md:col-span-1 md:col-start-2'>
+        <p className='leading-[18px] text-[14px] text-left md:col-span-1 md:col-start-2 text-neutral-800'>
           { isLarge ? projectData.detailedDesc : projectData.description }
         </p>
         <p className='text-[18px] text-right font-semibold md:col-span-1 md:col-start-2 pt-[16px] md:pt-0'>

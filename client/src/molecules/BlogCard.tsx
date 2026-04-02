@@ -46,7 +46,12 @@ const BlogCard: React.FC<BlogCardProps> = ({ blogData }) => {
           :
             <div className="h-[180px] w-full bg-neutral-300 md:col-span-1 md:col-start-1"></div>
         }
-        <div className='flex flex-wrap gap-x-[6px] gap-y-[5px] mt-[8px]'>
+        <div className='flex flex-wrap items-center gap-x-[6px] gap-y-[5px] mt-[8px]'>
+          <img 
+            src="/images/stack.webp"
+            alt="Decorative icon"
+            className="w-[16px] opacity-70 mr-[4px]"
+          />
           {blogData.tags.map((tag, index) => (
             index === blogData.tags.length - 1 ?
             <p key={index} className='text-gray-600 text-[12px]'>
@@ -58,8 +63,8 @@ const BlogCard: React.FC<BlogCardProps> = ({ blogData }) => {
             </p>
           ))}
         </div>
-        <h3 className='text-[24px] leading-[28px] font-semibold text-left mt-[8px] mb-[8px]'>{ blogData.title }</h3>
-        <p className='leading-[18px] text-[12px] text-left line-clamp-3 mb-[8px]'>
+        <h3 className='text-[20px] leading-[24px] font-semibold text-left mt-[8px] mb-[8px]'>{ blogData.title }</h3>
+        <p className='leading-[18px] text-[12px] text-left line-clamp-3 mb-[8px] text-neutral-800'>
           { blogData.description }
         </p>
         <p className='text-[12px] text-neutral-700 text-left'>Posted on: {formattedDate}</p>

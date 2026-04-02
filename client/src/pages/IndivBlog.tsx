@@ -8,6 +8,7 @@ import { motion, Variants } from "motion/react"
 import TopMessage from "../components/TopMessage";
 import CtaBtn from "../atoms/CtaBtn";
 import Footer from "../components/Footer";
+import LineDivider from "../atoms/LineDivider";
 
 type BlogHeadingBlock = {
   type: "heading";
@@ -193,53 +194,66 @@ const IndivBlog:React.FC = () => {
           )}
           <div className="mx-[24px] md:mx-[60px] mb-[60px] max-w-[1160px] xl:mx-auto">
             <div className="flex flex-col md:flex-row flex-nowrap justify-between my-[40px]">
-              <div className="flex flex-nowrap">
+              <div className="flex flex-nowrap items-center">
+                <img 
+                  src="/images/stack.webp"
+                  alt="Decorative icon"
+                  className="w-[20px] mr-[10px]"
+                />
                 {blog.tags.map((tag, index) => {
                   return blog.tags.length - 1 === index ? (
-                    <p key={tag} className="text-gray-600">
+                    <p key={tag} className="text-gray-600 text-[14px]">
                       { tag }
                     </p>
                   ) :
                   (
-                    <p key={tag} className="text-gray-600">
-                      { tag } / &thinsp
+                    <p key={tag} className="text-gray-600 text-[14px]">
+                      { tag } /&thinsp;
                     </p>
                   )
                 })}
               </div>
               <div className="flex flex-nowrap gap-[16px]">
                 <div 
-                  className="border-1 pt-[10px] pr-[10px] pb-[8px] pl-[8px] rounded-3xl"
+                  className="border-2 border-gray-400 pt-[12px] pr-[12px] pb-[10px] pl-[10px] rounded-3xl opacity-60 hover:border-gray-800 hover:opacity-100 duration-500 ease-in-out"
                   onClick={() => handleShare()}
                 >
                   <img 
                     src="/images/share.webp"
                     alt="Click to share this content"
-                    className="w-[20px] h-[20px]"
+                    className="w-[16px] h-[16px]"
                   />
                 </div>              
                 <div 
-                  className="border-1 pt-[9px] pr-[9px] pb-[9px] pl-[9px] rounded-3xl"
+                  className="border-2 border-gray-400 pt-[13px] pr-[13px] pb-[13px] pl-[13px] rounded-3xl opacity-60 hover:border-gray-800 hover:opacity-100 duration-500 ease-in-out"
                   onClick={() => triggerTransition("/blogs") }
                 >
                   <img 
                     src="/images/close.webp"
                     alt="Close this post and back to blogs page"
-                    className="w-[20px] h-[20px]"
+                    className="w-[12px] h-[12px]"
                   />
                 </div>
               </div>
             </div>
-            <h1 className="text-[36px] md:text-[48px] font-bold text-left mb-[16px]">{blog.title}</h1>
-            <p className="text-gray-600">Posted on: {formatDate(blog.createdAt)}</p>
-            <div className="flex flex-col gap-[24px] mb-[60px]">
+            <div className="flex flex-col mt-[60px] mb-[50px] md:grid md:grid-cols-[3fr_4fr] md:gap-[80px] md:items-center">
+              <div className="flex flex-col">
+                <h1 className="font-bold text-left mb-[12px] md:text-[36px] leading-[40px]">{blog.title}</h1>
+                <p className="text-gray-600 text-left text-[14px]"> Posted on: {formatDate(blog.createdAt)}</p>
+              </div>
+              <p className="text-left text-[14px] text-neutral-800">
+                {blog.description}
+              </p>
+            </div>
+            <LineDivider color="border-gray-300"/>
+            <div className="flex flex-col gap-[20px] mt-[20px] mb-[60px]">
               {blog.blocks.map((block, index) => {
                 switch (block.type) {
                   case "heading":
                     return (
                       <h2
                         key={index}
-                        className="text-[28px] md:text-[32px] font-semibold text-left mt-[20px]"
+                        className="text-[20px] md:text-[28px] font-semibold text-left mt-[40px]"
                       >
                         {block.text}
                       </h2>
@@ -249,7 +263,7 @@ const IndivBlog:React.FC = () => {
                     return (
                       <p
                         key={index}
-                        className="text-left text-[17px] leading-[1.9] text-neutral-800"
+                        className="text-left text-[14px] text-neutral-800"
                       >
                         {block.text}
                       </p>
