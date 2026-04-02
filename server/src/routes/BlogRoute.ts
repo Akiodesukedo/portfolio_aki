@@ -8,8 +8,8 @@ const router = express.Router({ mergeParams: true });
 // Public endpoints
 router.get('/', blogController.getAllBlogs);
 router.get('/by-slugs', blogController.getMultipleBlogsBySlugs);
-router.get('/:slug', blogController.getBlogBySlug);
 router.get('/related', blogController.getRelatedBlogs);
+router.get('/:slug', blogController.getBlogBySlug);
 
 // Protected endpoints
 router.post('/', verifyAuth, requireAdmin, blogController.createBlog);

@@ -69,7 +69,7 @@ export const getRelatedBlogs =async (req: Request, res: Response) => {
     const {slug, limit} = req.query
 
     const blogSlug = String(slug || "").trim()
-    const blogNum = Number(limit || 3)
+    const blogNum = Number(limit) || 3
 
     if (!blogSlug) {
       res.status(400).json({ message: "Blog slug is required" })
