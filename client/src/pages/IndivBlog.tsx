@@ -298,7 +298,7 @@ const IndivBlog:React.FC = () => {
                     return (
                       <p
                         key={index}
-                        className="text-left text-[14px] text-neutral-800"
+                        className="text-left text-[14px] whitespace-pre-line text-neutral-800"
                       >
                         {block.text}
                       </p>
@@ -308,7 +308,7 @@ const IndivBlog:React.FC = () => {
                     return (
                       <blockquote
                         key={index}
-                        className="border-l-4 border-neutral-400 pl-[16px] my-[8px] italic text-left text-[18px] text-neutral-700"
+                        className="border-l-4 border-neutral-400 pl-[16px] my-[8px] italic text-left  whitespace-pre-line text-[18px] text-neutral-700"
                       >
                         {block.text}
                       </blockquote>
