@@ -1,19 +1,25 @@
 type CtaBtnProps = {
+  type?: "submit" | "reset" | "button" | undefined
   btnMsg: string,
-  borderColor: string,
-  bgColor: string,
-  txtColor: string,
+  borderColor?: string,
+  bgColor?: string,
+  txtColor?: string,
   hoverBgColor?: string,
   hovertxtColor?: string,
   passedFunc?: () => void
   marginTop?: string,
+  width?: string,
+  className?: string
+  disabled?: boolean
 }
 
-const CtaBtn: React.FC<CtaBtnProps> = ({btnMsg, borderColor, bgColor, txtColor, passedFunc, marginTop = "mt-[24px]", hoverBgColor, hovertxtColor }) => {
+const CtaBtn: React.FC<CtaBtnProps> = ({ type = "submit", btnMsg, borderColor = "border-black", bgColor = "bg-white", txtColor = "text-black", passedFunc, marginTop = "mt-[24px]", width = "w-full", hoverBgColor, hovertxtColor, disabled = false, className }) => {
   return (
     <button
+      type={type}
       onClick={passedFunc}
-      className={`!rounded-full border h-[64px] w-full cursor-pointer ${marginTop} ${bgColor} ${borderColor} ${txtColor} ${hoverBgColor} ${hovertxtColor} duration-200 ease-in`}
+      disabled={disabled}
+      className={`!rounded-full border h-[64px]  cursor-pointer ${marginTop} ${bgColor} ${borderColor} ${txtColor} ${hoverBgColor} ${hovertxtColor} ${className} ${width} duration-200 ease-in`}
     >
       {btnMsg}
     </button>

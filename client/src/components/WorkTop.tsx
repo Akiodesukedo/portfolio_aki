@@ -14,7 +14,7 @@ const WorkTop: React.FC<WorkTopProps> = ({ title, paragraph1, paragraph2, paragr
         { title }
       </h3>
       { paragraph1 &&
-        <p className="text-[14px] text-left mb-[22px] whitespace-pre-line">
+        <p className="text-[14px] text-left mb-[22px] whitespace-pre-line text-neutral-800">
           {paragraph1}
         </p>
       }
@@ -26,12 +26,12 @@ const WorkTop: React.FC<WorkTopProps> = ({ title, paragraph1, paragraph2, paragr
         />
       }
       { paragraph2 &&
-        <p className="text-[14px] text-left mb-[22px]">
+        <p className="text-[14px] text-left mb-[22px] text-neutral-800">
           {paragraph2}
         </p>
       }
       { paragraph3 &&
-        <p className="text-[14px] text-left mb-[22px]">
+        <p className="text-[14px] text-left mb-[22px] text-neutral-800">
           {paragraph3}
         </p>
       }

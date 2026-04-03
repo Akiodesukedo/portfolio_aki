@@ -12,7 +12,7 @@ const Header: React.FC<HeaderProps> = ({ WebsiteName, txtColor, absolute = false
 
   return (
     <div 
-      className={`w-full flex flex-nowrap justify-between p-[20px] md:p-[40px] z-30 ${absolute ? 'absolute top-0 left-0' : 'relative'}`}
+      className={`w-full flex flex-nowrap justify-between p-[20px] md:p-[40px] z-30 ${absolute ? 'absolute top-0 left-0' : 'relative'}`} 
     >
       <h1
         style={{color: txtColor ? txtColor: 'black'}}
@@ -21,13 +21,12 @@ const Header: React.FC<HeaderProps> = ({ WebsiteName, txtColor, absolute = false
       >
         { WebsiteName }
       </h1>
-      <p
-        style={{color: txtColor ? txtColor: 'black'}}
-        className="text-[20px] md:hidden cursor-pointer hover:font-bold"
+      <img 
+        src="/images/mobile_menu.webp"
+        alt="Menu button"
+        className="w-[46px] md:hidden cursor-pointer"
         onClick={openMenu}
-      >
-        Menu
-      </p>
+      />
       <div
         style={{color: txtColor ? txtColor: 'black'}}
         className="text-[20px] hidden md:flex md:gap-[12px] items-center"
@@ -46,6 +45,11 @@ const Header: React.FC<HeaderProps> = ({ WebsiteName, txtColor, absolute = false
           onClick={() => triggerTransition('works')}
         >
           Works
+        </p>
+        <p className="cursor-pointer p-[8px] hover:font-bold duration-200 ease-in"
+          onClick={() => triggerTransition('blogs')}
+        >
+          Blogs
         </p>
       </div>
     </div>

@@ -4,15 +4,10 @@ type LineDividerProps = {
   color?: string
 }
 
-const LineDivider: React.FC<LineDividerProps> = ({ mTop, mBottom, color }) => {
+const LineDivider: React.FC<LineDividerProps> = ({ mTop = "40px", mBottom = "40px", color = "border-black" }) => {
   return (
     <hr 
-      className="border-"
-      style={{
-        marginTop: mTop ? mTop : "40px",
-        marginBottom: mBottom ? mBottom : "20px",
-        borderColor: color ? color: "black"
-      }}
+      className={`border-1 ${mTop} ${mBottom} ${color}`}
     />
   )
 }

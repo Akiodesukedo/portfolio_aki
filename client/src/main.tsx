@@ -4,13 +4,19 @@ import './index.css'
 import App from './App.tsx'
 import { MenuProvider } from './context/MenuContext.tsx'
 import { PageTransitionProvider } from './context/PageTransitionContext.tsx'
+import { AuthProvider } from './context/AuthContext.tsx'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <PageTransitionProvider>
-      <MenuProvider>
-        <App />
-      </MenuProvider>
-    </PageTransitionProvider>
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+      <AuthProvider>
+        <PageTransitionProvider>
+          <MenuProvider>
+            <App />
+          </MenuProvider>
+        </PageTransitionProvider>      
+      </AuthProvider>      
+    </GoogleOAuthProvider>
   </StrictMode>
 )

@@ -15,7 +15,7 @@ const ParaSection: React.FC<ParaSecProps> = ({ title, paragraph1, paragraph2, pa
         { title }
       </h3>
       { paragraph1 &&
-        <p className={`text-[14px] text-left mb-[22px] whitespace-pre-line ${colDiv ? "md:col-span-1 md:col-start-2 md:row-start-2" : ""}`}>
+        <p className={`text-[14px] text-left mb-[22px] whitespace-pre-line text-neutral-800 ${colDiv ? "md:col-span-1 md:col-start-2 md:row-start-2" : ""}`}>
           {paragraph1}
         </p>
       }
@@ -23,21 +23,21 @@ const ParaSection: React.FC<ParaSecProps> = ({ title, paragraph1, paragraph2, pa
         <img 
           src={imageUrl}
           alt={`${title} image`}
-          className={`w-full h-auto ovject-cover mb-[22px] ${colDiv ? "md:col-span-1 md:col-start-1 md:row-start-2" : ""} `}
+          className={`w-full h-auto ovject-cover mb-[22px] rounded-xl md:rounded-2xl ${colDiv ? "md:col-span-1 md:col-start-1 md:row-start-2" : ""} `}
         />
       }
       { paragraph2 &&
-        <p className={`text-[14px] text-left mb-[22px] ${colDiv ? paragraph1 ? "md:col-span-2" : "md:col-span-1 md:col-start-2 md:row-start-2" : ""}`}>
+        <p className={`text-[14px] text-left mb-[22px] text-neutral-800 ${colDiv ? paragraph1 ? "md:col-span-2" : "md:col-span-1 md:col-start-2 md:row-start-2" : ""}`}>
           {paragraph2}
         </p>
       }
       { paragraph3 &&
-        <p className={`text-[14px] text-left mb-[22px] ${colDiv ? paragraph1 || paragraph2 ? "md:col-span-2" : "md:col-span-1 md:col-start-2 md:row-start-2" : ""}`}>
+        <p className={`text-[14px] text-left mb-[22px] text-neutral-800 ${colDiv ? paragraph1 || paragraph2 ? "md:col-span-2" : "md:col-span-1 md:col-start-2 md:row-start-2" : ""}`}>
           {paragraph3}
         </p>
       }
       { paragraph4 &&
-        <p className={`text-[14px] text-left mb-[22px] ${colDiv ? paragraph1 || paragraph2 || paragraph3 ? "md:col-span-2" : "md:col-span-1 md:col-start-2 md:row-start-2" : ""}`}>
+        <p className={`text-[14px] text-left mb-[22px] text-neutral-800 ${colDiv ? paragraph1 || paragraph2 || paragraph3 ? "md:col-span-2" : "md:col-span-1 md:col-start-2 md:row-start-2" : ""}`}>
           {paragraph4}
         </p>
       }

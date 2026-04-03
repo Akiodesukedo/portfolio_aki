@@ -8,7 +8,7 @@ const FlashScreen = () => {
   const { isTransitioning, targetRoute, endTransition, isFirstVisit } = usePageTransition();
   const [shouldRender, setShouldRender] = useState(false);
   const navigate = useNavigate();
-  const pageName = isFirstVisit ? "AKI'S ROOM" : targetRoute == "/" ? "HOME" : targetRoute.includes("/work/") ? "  Loading..." : targetRoute.replace('/', '').toUpperCase();
+  const pageName = isFirstVisit ? "AKI'S ROOM" : targetRoute == "/" ? "HOME" : targetRoute.includes("/work/") ? "  Loading..." : targetRoute.includes("/blog/") ? "Aki thought..." : targetRoute.replace('/', '').toUpperCase();
 
   useEffect(()=> {
     if (isTransitioning) {
