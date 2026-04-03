@@ -61,17 +61,17 @@ const Blogs:React.FC = () => {
       <TopMessage line1="Here is what" line2="Akifumi thought"/>
       {
         allBlogs == undefined ? 
-        <motion.div
-        animate="pulse"
-        transition={{ staggerChildren: -0.2, staggerDirection: -1 }}
-        className="flex justify-center items-center gap-[20px] my-[80px] md:my-[160px]"
-        >
-          <motion.div className="w-[20px] h-[20px] rounded-2xl bg-black will-change-transform" variants={dotLoading} />
-          <motion.div className="w-[20px] h-[20px] rounded-2xl bg-black will-change-transform" variants={dotLoading} />
-          <motion.div className="w-[20px] h-[20px] rounded-2xl bg-black will-change-transform" variants={dotLoading} />
-        </motion.div>
+          <motion.div
+          animate="pulse"
+          transition={{ staggerChildren: -0.2, staggerDirection: -1 }}
+          className="flex justify-center items-center gap-[20px] my-[80px] md:my-[160px]"
+          >
+            <motion.div className="w-[20px] h-[20px] rounded-2xl bg-black will-change-transform" variants={dotLoading} />
+            <motion.div className="w-[20px] h-[20px] rounded-2xl bg-black will-change-transform" variants={dotLoading} />
+            <motion.div className="w-[20px] h-[20px] rounded-2xl bg-black will-change-transform" variants={dotLoading} />
+          </motion.div>
         : 
-        <AllBlogs allBlogs={allBlogs} />
+          <AllBlogs allBlogs={allBlogs} />
       }
       <Footer />
     </div>
