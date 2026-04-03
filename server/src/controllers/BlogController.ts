@@ -5,7 +5,7 @@ import { validateBlogInput } from "../utils/validateBlogInput";
 // Get all the blog posts
 export const getAllBlogs = async (req: Request, res: Response) => {
   try {
-    const blogs = await Blog.find();
+    const blogs = await Blog.find().sort({ createdAt: -1 });
     res.status(200).json(blogs);
   } catch (err) {
     console.error(err);

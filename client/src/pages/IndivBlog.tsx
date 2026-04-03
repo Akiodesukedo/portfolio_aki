@@ -337,7 +337,7 @@ const IndivBlog:React.FC = () => {
             </div>
             {/* Blog page doesn't necessarily need btns. So it's optional */}
             {blog.btns && blog.btns?.length !== 0 && (
-              <h3 className="text-[24px] font-medium text-left mb-[22px]">
+              <h3 className="text-[24px] md:text-[28px] font-semibold text-left mb-[22px]">
                 Links
               </h3>  
             )}
@@ -357,7 +357,7 @@ const IndivBlog:React.FC = () => {
                 />
               ))
             } 
-            <h3 className="text-[24px] font-medium text-left mb-[30px] mt-[50px]">
+            <h3 className="text-[24px] md:text-[28px] font-semibold text-left mb-[30px] mt-[50px]">
               Related Posts
             </h3>
             {relatedBlogs.length > 0 ?
