@@ -6,7 +6,7 @@ import { validateWorkInput } from "../utils/validateWorkInput";
 // Get all works
 export const getAllWorks = async (req: Request, res: Response) => {
   try {
-    const works = await Work.find();
+    const works = await Work.find().sort({ createdAt: -1 });
     res.status(200).json(works);
   } catch (err) {
     console.error(err);
@@ -16,7 +16,7 @@ export const getAllWorks = async (req: Request, res: Response) => {
 
 export const getAllWorksForWork = async (req: Request, res: Response) => {
   try {
-    const works = await Work.find();
+    const works = await Work.find().sort({ createdAt: -1 });
 
     const WorksForWorks = works.map(work => ({
       _id: work._id,
@@ -65,7 +65,7 @@ export const getWorksByIdsForHome = async (req: Request, res: Response) => {
       return
     }
 
-    const works = await Work.find({ _id: { $in: validIds } });
+    const works = await Work.find({ _id: { $in: validIds } }).sort({ createdAt: -1 });
     const WorksForHome = works.map(work => ({
       _id: work._id,
       title: work.title,

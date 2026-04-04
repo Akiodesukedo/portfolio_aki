@@ -43,7 +43,7 @@ export const getMultipleBlogsBySlugs = async (req: Request, res: Response) => {
       return
     }
 
-    const blogs = await Blog.find({ slug: { $in: validSlugs } });
+    const blogs = await Blog.find({ slug: { $in: validSlugs } }).sort({ createdAt: -1 });
 
     const blogsBySlugs = blogs.map((blog) => ({
       _id: blog._id,
