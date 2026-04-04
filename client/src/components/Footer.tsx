@@ -62,8 +62,7 @@ const Footer: React.FC<FooterProps> = ({ imgUrl }) => {
           <CtaBtn btnMsg="LinkedIn" bgColor="bg-black" borderColor="border-white" txtColor="text-white" hoverBgColor='hover:bg-white' hovertxtColor='hover:text-black' passedFunc={openLinkedIn}/>
         </div>
       </div>
-      <LineDivider color="white" mTop="50px"/>
-      <div className='flex flex-nowrap justify-between'>
+      <div className='flex flex-nowrap justify-between mt-[50px]'>
         <div>
           <p className="text-white text-[14px] text-left">Version:</p>
           <p className="text-white text-[14px] text-left">2026.05</p>
