@@ -228,7 +228,7 @@ const IndivBlog:React.FC = () => {
             />
           )}
           <div className="mx-[24px] md:mx-[60px] mb-[60px] max-w-[1160px] xl:mx-auto">
-            <div className="flex flex-row gap-[20px] md:gap-0 flex-nowrap justify-between my-[40px]">
+            <div className="flex flex-row gap-[20px] md:gap-0 flex-nowrap justify-between items-center my-[40px]">
               <div className="flex flex-wrap flex-1 md:flex-nowrap items-center">
                 <img 
                   src="/images/stack.webp"
