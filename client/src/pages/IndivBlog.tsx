@@ -26,6 +26,11 @@ type BlogQuoteBlock = {
   text: string;
 };
 
+type BlogCodeBlock = {
+  type: "code",
+  text: string,
+}
+
 type BlogImageBlock = {
   type: "image";
   imageUrl: string;
@@ -37,6 +42,7 @@ type BlogContentBlock =
   | BlogHeadingBlock
   | BlogParagraphBlock
   | BlogQuoteBlock
+  | BlogCodeBlock
   | BlogImageBlock;
 
 type BlogButton = {
@@ -312,6 +318,16 @@ const IndivBlog:React.FC = () => {
                       >
                         {block.text}
                       </blockquote>
+                    );
+
+                  case "code":
+                    return (
+                      <pre
+                        key={index}
+                        className="bg-neutral-900 text-neutral-100 text-[13px] p-[16px] text-left rounded-xl overflow-x-auto font-mono whitespace-pre"
+                      >
+                        <code>{block.text}</code>
+                      </pre>
                     );
 
                   case "image":

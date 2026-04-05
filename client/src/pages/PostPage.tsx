@@ -2,7 +2,7 @@ import { useState } from "react"
 import CtaBtn from "../atoms/CtaBtn"
 import { useAuth } from "../context/AuthContext"
 
-type BlogBlockType = "heading" | "paragraph" | "quote" | "image"
+type BlogBlockType = "heading" | "paragraph" | "quote" | "code" | "image"
 
 type BlogBlock = {
   type: BlogBlockType
@@ -66,7 +66,7 @@ const PostPage:React.FC = () => {
   ])
 
   const addBlogBlock = () => {
-    setBlogBlocks((prev) => [...prev, { type: "heading", text: "" }])
+    setBlogBlocks((prev) => [...prev, { type: "paragraph", text: "" }])
   }
 
     // 🚨🚨🚨 Have to make a pop up to confirm delete to prevent accidental delete 🚨🚨🚨
@@ -454,6 +454,7 @@ const PostPage:React.FC = () => {
                       <option value="heading">Heading</option>
                       <option value="paragraph">Paragraph</option>
                       <option value="quote">Quote</option>
+                      <option value="code">Code</option>
                       <option value="image">Image</option>
                     </select>
                     {block.type === "image" ? (
