@@ -1,5 +1,5 @@
 type BlogBlock = {
-  type: "paragraph" | "image" | "heading" | "quote";
+  type: "paragraph" | "image" | "heading" | "code" | "quote";
   text?: string;
   imageUrl?: string;
   alt?: string;
@@ -40,7 +40,7 @@ export const validateBlogInput = (body: BlogInput): string | null => {
     if (!block.type) return "Each block must have a type";
 
     if (
-      !["paragraph", "image", "heading", "quote"].includes(block.type)
+      !["paragraph", "image", "heading", "code", "quote"].includes(block.type)
     ) {
       return `Invalid block type: ${block.type}`;
     }
