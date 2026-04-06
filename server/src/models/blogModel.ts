@@ -17,7 +17,7 @@ const blogBlockSchema = new mongoose.Schema(
     type: {
       type: String,
       required: true,
-      enum: ["paragraph", "image", "heading", "quote"]
+      enum: ["paragraph", "image", "heading", "code", "quote"]
     },
     text: { type: String },
     imageUrl: { type: String },
